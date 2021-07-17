@@ -11,7 +11,7 @@ namespace FacebookAppLogic
     public sealed class AppSettings
     {
         private const string k_AppSettingsFilePath = @"AppSettings.xml";
-
+        //
         private AppSettings()
         {
            LastWindowSize = new Size(1141, 856);
