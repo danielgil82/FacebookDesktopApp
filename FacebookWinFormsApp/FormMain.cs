@@ -28,9 +28,6 @@ namespace BasicFacebookFeatures
             this.StartPosition = FormStartPosition.Manual;
             this.Location = r_AppSettings.LastWindowLocation;
             this.Size = r_AppSettings.LastWindowSize;
-
-
-
         }
 
         private void buttonLogin_Click(object sender, EventArgs e)
@@ -46,7 +43,6 @@ namespace BasicFacebookFeatures
             Clipboard.SetText("design.patterns20cc"); /// the current password for Desig Patter
 
             m_LoginResult = FacebookService.Login(
-                /// (This is Desig Patter's App ID. replace it with your own)
                 "452659572840281",
                 /// requested permissions:
                 "email",
@@ -65,15 +61,11 @@ namespace BasicFacebookFeatures
                 "user_videos",
                 "pages_messaging");
             buttonLogin.Text = $"Logged in as {m_LoginResult.LoggedInUser.Name}";
+           //buttonLogin.ForeColor = Color.Azure;
             buttonLogin.Enabled = false;
-            populateUiFeatures();
-            getUserInfo();
+            fetchLoggedInUser();
         }
 
-        private void populateUiFeatures()
-        {
-            this.Text = "Welcome to our Desktop Facebook app";
-        }
 
         protected override void OnShown(EventArgs e)
         {
@@ -82,7 +74,9 @@ namespace BasicFacebookFeatures
             if (r_AppSettings.RememberUser && !string.IsNullOrEmpty(r_AppSettings.LastAccessToken))
             {
                 m_LoginResult = FacebookService.Connect(r_AppSettings.LastAccessToken);
-                populateUiFeatures();
+                fetchLoggedInUser();
+                buttonLogin.Enabled = false;
+                buttonLogout.Enabled = true;
             }
         }
 
@@ -96,9 +90,10 @@ namespace BasicFacebookFeatures
             r_AppSettings.SaveToFile();
         }
 
-        private void getUserInfo()
+        private void fetchLoggedInUser()
         {
             m_FacebookAppManager = new FacebookAppManager(m_LoginResult.LoggedInUser);
+            this.Text = "Welcome to our Desktop Facebook app";
             labelUserFullName.Text = "Welcome, "
                                      + m_FacebookAppManager.LoginUser.FirstName + " "
                                      + m_FacebookAppManager.LoginUser.LastName;
@@ -115,17 +110,17 @@ namespace BasicFacebookFeatures
             (sender as Button).Enabled = false;
         }
 
-        private void radioButtonFriends_CheckChanged(object sender, EventArgs e)
+        private void radioButtonFriends_Click(object sender, EventArgs e)
         {
             fetchFriends();
         }
 
-        private void radioButtonEvents_CheckedChanged(object sender, EventArgs e)
+        private void radioButtonEvents_Click(object sender, EventArgs e)
         {
             fetchEvents();
         }
 
-        private void radioButtonGroups_CheckedChanged(object sender, EventArgs e)
+        private void radioButtonGroups_Click(object sender, EventArgs e)
         {
             fetchGroups();
         }
@@ -183,10 +178,6 @@ namespace BasicFacebookFeatures
                 MessageBox.Show("Sorry, no events to retrieve.");
             }
         }
-
-        //private void checkBoxRememberMe_CheckedChanged(object sender, EventArgs e)
-        //{
-
-        //}
+         
     }
 }
