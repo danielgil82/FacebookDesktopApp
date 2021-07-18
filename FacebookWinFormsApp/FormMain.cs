@@ -36,6 +36,8 @@ namespace BasicFacebookFeatures
             (sender as Button).Enabled = false;
             buttonLogout.Enabled = true;
             checkBoxRememberMe.Enabled = true;
+            buttonLogin.Enabled = false;
+            buttonHelpToElder.Enabled = true;
         }
 
         private void loginAndInit()
@@ -46,6 +48,8 @@ namespace BasicFacebookFeatures
                 "452659572840281",
                 /// requested permissions:
                 "email",
+                "publish_to_groups",
+                //"groups_access_member_info",
                 "public_profile",
                 "user_age_range",
                 "user_birthday",
@@ -62,7 +66,7 @@ namespace BasicFacebookFeatures
                 "pages_messaging");
             buttonLogin.Text = $"Logged in as {m_LoginResult.LoggedInUser.Name}";
            //buttonLogin.ForeColor = Color.Azure;
-            buttonLogin.Enabled = false;
+           
             fetchLoggedInUser();
         }
 
@@ -77,7 +81,10 @@ namespace BasicFacebookFeatures
                 fetchLoggedInUser();
                 buttonLogin.Enabled = false;
                 buttonLogout.Enabled = true;
+                buttonHelpToElder.Enabled = true;
+
             }
+
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -178,6 +185,13 @@ namespace BasicFacebookFeatures
                 MessageBox.Show("Sorry, no events to retrieve.");
             }
         }
-         
+
+        private void buttonHelpToElder_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormFindElderToHelp helpToElderly = new FormFindElderToHelp();
+            helpToElderly.ShowDialog();
+            this.Show();
+        }
     }
 }

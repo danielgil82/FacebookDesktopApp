@@ -40,6 +40,7 @@
   <ItemGroup>
     <Compile Include="AppSettings.cs" />
     <Compile Include="FacebookAppManager.cs" />
+    <Compile Include="ElderToHelp.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Facebook">
