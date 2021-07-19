@@ -33,6 +33,7 @@ namespace BasicFacebookFeatures
             this.labelFindElderTitle = new System.Windows.Forms.Label();
             this.labelGenderInterest = new System.Windows.Forms.Label();
             this.panelElederly = new System.Windows.Forms.Panel();
+            this.listBoxPotentialElders = new System.Windows.Forms.ListBox();
             this.buttonFindElderToHelp = new System.Windows.Forms.Button();
             this.buttonBack = new System.Windows.Forms.Button();
             this.pictureBoxElderPicture = new System.Windows.Forms.PictureBox();
@@ -40,7 +41,6 @@ namespace BasicFacebookFeatures
             this.checkedListBoxGenderPrefrence = new System.Windows.Forms.CheckedListBox();
             this.checkedListBoxAgeRange = new System.Windows.Forms.CheckedListBox();
             this.labelElderAge = new System.Windows.Forms.Label();
-            this.listBoxPotentialElders = new System.Windows.Forms.ListBox();
             this.panelElederly.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxElderPicture)).BeginInit();
             this.SuspendLayout();
@@ -84,6 +84,15 @@ namespace BasicFacebookFeatures
             this.panelElederly.Name = "panelElederly";
             this.panelElederly.Size = new System.Drawing.Size(935, 656);
             this.panelElederly.TabIndex = 5;
+            // 
+            // listBoxPotentialElders
+            // 
+            this.listBoxPotentialElders.FormattingEnabled = true;
+            this.listBoxPotentialElders.ItemHeight = 16;
+            this.listBoxPotentialElders.Location = new System.Drawing.Point(66, 476);
+            this.listBoxPotentialElders.Name = "listBoxPotentialElders";
+            this.listBoxPotentialElders.Size = new System.Drawing.Size(222, 116);
+            this.listBoxPotentialElders.TabIndex = 12;
             // 
             // buttonFindElderToHelp
             // 
@@ -172,15 +181,6 @@ namespace BasicFacebookFeatures
             this.labelElderAge.Size = new System.Drawing.Size(227, 25);
             this.labelElderAge.TabIndex = 5;
             this.labelElderAge.Text = "Choose an age range:";
-            // 
-            // listBoxPotentialElders
-            // 
-            this.listBoxPotentialElders.FormattingEnabled = true;
-            this.listBoxPotentialElders.ItemHeight = 16;
-            this.listBoxPotentialElders.Location = new System.Drawing.Point(66, 476);
-            this.listBoxPotentialElders.Name = "listBoxPotentialElders";
-            this.listBoxPotentialElders.Size = new System.Drawing.Size(222, 116);
-            this.listBoxPotentialElders.TabIndex = 12;
             // 
             // FormFindElderToHelp
             // 

@@ -10,7 +10,8 @@ namespace FacebookAppLogic
     public class FacebookAppManager
     {
         private readonly User r_LoggedInUser;
-        private PotentialElders m_PotentialElder;
+
+        public PotentialElders PotentialElders { get; set; }
 
 
         public FacebookAppManager(User i_LoggedInUser)
@@ -44,7 +45,5 @@ namespace FacebookAppLogic
                 return userFriends;
             }
         }
-
-        public PotentialElders PotentialElders { get; set; }
     }
 }

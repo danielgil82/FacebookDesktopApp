@@ -8,8 +8,8 @@ namespace FacebookAppLogic
 {
     public enum eGender
     {
-        Male,
-        Female,
+        female,
+        male,
         Both
     }
 }

@@ -16,18 +16,14 @@ namespace BasicFacebookFeatures
     public partial class FormFindElderToHelp : Form
     {
         private readonly FacebookAppManager r_FacebookAppManager;
-     //   private readonly User r_CurrentUser; 
-       // private readonly FacebookObjectCollection<User> r_ListOfElders;
 
         public FormFindElderToHelp(FormMain i_FormMain)
         {
             r_FacebookAppManager = i_FormMain.FacebookAppManager;
-        //    r_CurrentUser = i_FormMain.FacebookAppManager.LoggedInUser;
-         //   r_CurrentUser = r_FacebookAppManager.LoggedInUser;
             InitializeComponent();
         }
 
-     
+
         private void buttonBack_Click(object sender, EventArgs e)
         {
             Back();
@@ -40,9 +36,39 @@ namespace BasicFacebookFeatures
 
         private void buttonFindElderToHelp_Click(object sender, EventArgs e)
         {
-            r_FacebookAppManager.PotentialElders = new PotentialElders(r_FacebookAppManager.LoggedInUser, checkedListBoxGenderPrefrence.CheckedItems.ToString(), 
-                                                    checkedListBoxAgeRange.CheckedItems.ToString()); 
-            
+            try
+            {
+                r_FacebookAppManager.PotentialElders = new PotentialElders(r_FacebookAppManager.LoggedInUser, checkedListBoxGenderPrefrence.CheckedItems.ToString(),
+                    checkedListBoxAgeRange.CheckedItems);
+                fetchPotentialElders();
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void fetchPotentialElders()
+        {
+            listBoxPotentialElders.Items.Clear();
+            listBoxPotentialElders.DisplayMember = "Name";
+
+            try
+            {
+                foreach (User user in r_FacebookAppManager.PotentialElders.PotentialElderToHelp)
+                {
+                    listBoxPotentialElders.Items.Add(user.Name);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            if (listBoxPotentialElders.Items.Count == 0)
+            {
+                MessageBox.Show("No potential elders to retrieve");
+            }
         }
 
         private void checkedListBoxGenderPreference_SelectedIndexChanged(object sender, EventArgs e)
@@ -58,7 +84,7 @@ namespace BasicFacebookFeatures
         private void makeTheOtherListBoxOptionsDisabled(object i_Sender)
         {
             CheckedListBox currentCheckedListBox = i_Sender as CheckedListBox;
-            
+
             if (currentCheckedListBox != null)
             {
                 int index = currentCheckedListBox.SelectedIndex;
