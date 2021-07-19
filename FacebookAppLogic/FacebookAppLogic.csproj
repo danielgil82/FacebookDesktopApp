@@ -39,8 +39,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AppSettings.cs" />
+    <Compile Include="eGender.cs" />
     <Compile Include="FacebookAppManager.cs" />
-    <Compile Include="ElderToHelp.cs" />
+    <Compile Include="PotentialElders.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Facebook">
@@ -49,6 +50,7 @@
     <Reference Include="FbGraphApiWrapper">
       <HintPath>..\FBApi\FbGraphApiWrapper.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />

@@ -9,18 +9,20 @@ namespace FacebookAppLogic
 {
     public class FacebookAppManager
     {
-        private readonly User r_LoginUser;
+        private readonly User r_LoggedInUser;
+        private PotentialElders m_PotentialElder;
+
 
         public FacebookAppManager(User i_LoggedInUser)
         {
-            r_LoginUser = i_LoggedInUser;
+            r_LoggedInUser = i_LoggedInUser;
         }
 
-        public User LoginUser
+        public User LoggedInUser
         {
             get
             {
-                return r_LoginUser;
+                return r_LoggedInUser;
             }
         }
 
@@ -32,7 +34,7 @@ namespace FacebookAppLogic
 
                 try
                 {
-                    userFriends = r_LoginUser.Friends;
+                    userFriends = r_LoggedInUser.Friends;
                 }
                 catch (Exception ex)
                 {
@@ -42,5 +44,7 @@ namespace FacebookAppLogic
                 return userFriends;
             }
         }
+
+        public PotentialElders PotentialElders { get; set; }
     }
 }

@@ -18,7 +18,14 @@ namespace BasicFacebookFeatures
         private readonly AppSettings r_AppSettings;
         private FacebookAppManager m_FacebookAppManager;
         private LoginResult m_LoginResult;
-         
+
+        public FacebookAppManager FacebookAppManager
+        {
+            get
+            {
+                return m_FacebookAppManager;
+            }
+        }
 
         public FormMain()
         {
@@ -29,6 +36,8 @@ namespace BasicFacebookFeatures
             this.Location = r_AppSettings.LastWindowLocation;
             this.Size = r_AppSettings.LastWindowSize;
         }
+
+        
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
@@ -48,7 +57,7 @@ namespace BasicFacebookFeatures
                 "452659572840281",
                 /// requested permissions:
                 "email",
-                "publish_to_groups",
+                //"publish_to_groups",
                 //"groups_access_member_info",
                 "public_profile",
                 "user_age_range",
@@ -62,8 +71,8 @@ namespace BasicFacebookFeatures
                 "user_location",
                 "user_photos",
                 "user_posts",
-                "user_videos",
-                "pages_messaging");
+                "user_videos");
+                //"pages_messaging");
             buttonLogin.Text = $"Logged in as {m_LoginResult.LoggedInUser.Name}";
            //buttonLogin.ForeColor = Color.Azure;
            
@@ -102,9 +111,9 @@ namespace BasicFacebookFeatures
             m_FacebookAppManager = new FacebookAppManager(m_LoginResult.LoggedInUser);
             this.Text = "Welcome to our Desktop Facebook app";
             labelUserFullName.Text = "Welcome, "
-                                     + m_FacebookAppManager.LoginUser.FirstName + " "
-                                     + m_FacebookAppManager.LoginUser.LastName;
-            pictureBoxProfile.LoadAsync(m_FacebookAppManager.LoginUser.PictureNormalURL);
+                                     + m_FacebookAppManager.LoggedInUser.FirstName + " "
+                                     + m_FacebookAppManager.LoggedInUser.LastName;
+            pictureBoxProfile.LoadAsync(m_FacebookAppManager.LoggedInUser.PictureNormalURL);
             labelCurrentDate.Text = DateTime.Now.ToLongDateString();
         }
 
@@ -155,7 +164,7 @@ namespace BasicFacebookFeatures
 
             try
             {
-                foreach (Group group in m_FacebookAppManager.LoginUser.Groups)
+                foreach (Group group in m_FacebookAppManager.LoggedInUser.Groups)
                 {
                     listBoxGroups.Items.Add(group);
                 }
@@ -175,7 +184,7 @@ namespace BasicFacebookFeatures
         {
             listBoxEvents.Items.Clear();
             listBoxEvents.DisplayMember = "Name";
-            foreach (Event fbEvent in m_FacebookAppManager.LoginUser.Events)
+            foreach (Event fbEvent in m_FacebookAppManager.LoggedInUser.Events)
             {
                 listBoxEvents.Items.Add(fbEvent);
             }
@@ -189,7 +198,7 @@ namespace BasicFacebookFeatures
         private void buttonHelpToElder_Click(object sender, EventArgs e)
         {
             this.Hide();
-            FormFindElderToHelp helpToElderly = new FormFindElderToHelp();
+            FormFindElderToHelp helpToElderly = new FormFindElderToHelp(this);
             helpToElderly.ShowDialog();
             this.Show();
         }

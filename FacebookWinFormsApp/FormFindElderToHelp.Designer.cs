@@ -33,13 +33,14 @@ namespace BasicFacebookFeatures
             this.labelFindElderTitle = new System.Windows.Forms.Label();
             this.labelGenderInterest = new System.Windows.Forms.Label();
             this.panelElederly = new System.Windows.Forms.Panel();
+            this.buttonFindElderToHelp = new System.Windows.Forms.Button();
+            this.buttonBack = new System.Windows.Forms.Button();
+            this.pictureBoxElderPicture = new System.Windows.Forms.PictureBox();
+            this.labelOptionalElders = new System.Windows.Forms.Label();
+            this.checkedListBoxGenderPrefrence = new System.Windows.Forms.CheckedListBox();
             this.checkedListBoxAgeRange = new System.Windows.Forms.CheckedListBox();
             this.labelElderAge = new System.Windows.Forms.Label();
-            this.checkedListBoxElders = new System.Windows.Forms.CheckedListBox();
-            this.labelOptionalElders = new System.Windows.Forms.Label();
-            this.pictureBoxElderPicture = new System.Windows.Forms.PictureBox();
-            this.buttonBack = new System.Windows.Forms.Button();
-            this.checkedListBoxGenderPrefrence = new System.Windows.Forms.CheckedListBox();
+            this.listBoxPotentialElders = new System.Windows.Forms.ListBox();
             this.panelElederly.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxElderPicture)).BeginInit();
             this.SuspendLayout();
@@ -69,10 +70,11 @@ namespace BasicFacebookFeatures
             // panelElederly
             // 
             this.panelElederly.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panelElederly.BackgroundImage")));
+            this.panelElederly.Controls.Add(this.listBoxPotentialElders);
+            this.panelElederly.Controls.Add(this.buttonFindElderToHelp);
             this.panelElederly.Controls.Add(this.buttonBack);
             this.panelElederly.Controls.Add(this.pictureBoxElderPicture);
             this.panelElederly.Controls.Add(this.labelOptionalElders);
-            this.panelElederly.Controls.Add(this.checkedListBoxElders);
             this.panelElederly.Controls.Add(this.checkedListBoxGenderPrefrence);
             this.panelElederly.Controls.Add(this.checkedListBoxAgeRange);
             this.panelElederly.Controls.Add(this.labelElderAge);
@@ -83,64 +85,15 @@ namespace BasicFacebookFeatures
             this.panelElederly.Size = new System.Drawing.Size(935, 656);
             this.panelElederly.TabIndex = 5;
             // 
-            // checkedListBoxAgeRange
+            // buttonFindElderToHelp
             // 
-            this.checkedListBoxAgeRange.FormattingEnabled = true;
-            this.checkedListBoxAgeRange.Items.AddRange(new object[] {
-            "65-70",
-            "71-75",
-            "76-80",
-            "81-85",
-            "86-90",
-            "91-95",
-            "96-100",
-            "101-105",
-            "106-110",
-            "111-115",
-            "116-120"});
-            this.checkedListBoxAgeRange.Location = new System.Drawing.Point(543, 164);
-            this.checkedListBoxAgeRange.Name = "checkedListBoxAgeRange";
-            this.checkedListBoxAgeRange.Size = new System.Drawing.Size(195, 123);
-            this.checkedListBoxAgeRange.TabIndex = 6;
-            // 
-            // labelElderAge
-            // 
-            this.labelElderAge.AutoSize = true;
-            this.labelElderAge.BackColor = System.Drawing.Color.White;
-            this.labelElderAge.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelElderAge.Location = new System.Drawing.Point(528, 124);
-            this.labelElderAge.Name = "labelElderAge";
-            this.labelElderAge.Size = new System.Drawing.Size(227, 25);
-            this.labelElderAge.TabIndex = 5;
-            this.labelElderAge.Text = "Choose an age range:";
-            // 
-            // checkedListBoxElders
-            // 
-            this.checkedListBoxElders.FormattingEnabled = true;
-            this.checkedListBoxElders.Location = new System.Drawing.Point(47, 469);
-            this.checkedListBoxElders.Name = "checkedListBoxElders";
-            this.checkedListBoxElders.Size = new System.Drawing.Size(195, 123);
-            this.checkedListBoxElders.TabIndex = 7;
-            // 
-            // labelOptionalElders
-            // 
-            this.labelOptionalElders.AutoSize = true;
-            this.labelOptionalElders.BackColor = System.Drawing.Color.White;
-            this.labelOptionalElders.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelOptionalElders.Location = new System.Drawing.Point(61, 415);
-            this.labelOptionalElders.Name = "labelOptionalElders";
-            this.labelOptionalElders.Size = new System.Drawing.Size(165, 25);
-            this.labelOptionalElders.TabIndex = 8;
-            this.labelOptionalElders.Text = "Optional elders:";
-            // 
-            // pictureBoxElderPicture
-            // 
-            this.pictureBoxElderPicture.BackColor = System.Drawing.Color.White;
-            this.pictureBoxElderPicture.Location = new System.Drawing.Point(459, 469);
-            this.pictureBoxElderPicture.Name = "pictureBoxElderPicture";
-            this.pictureBoxElderPicture.Size = new System.Drawing.Size(193, 123);
-            this.pictureBoxElderPicture.TabIndex = 9;
-            this.pictureBoxElderPicture.TabStop = false;
+            this.buttonFindElderToHelp.Location = new System.Drawing.Point(390, 284);
+            this.buttonFindElderToHelp.Name = "buttonFindElderToHelp";
+            this.buttonFindElderToHelp.Size = new System.Drawing.Size(114, 43);
+            this.buttonFindElderToHelp.TabIndex = 11;
+            this.buttonFindElderToHelp.Text = "Find Elder";
+            this.buttonFindElderToHelp.UseVisualStyleBackColor = true;
+            this.buttonFindElderToHelp.Click += new System.EventHandler(this.buttonFindElderToHelp_Click);
             // 
             // buttonBack
             // 
@@ -154,6 +107,26 @@ namespace BasicFacebookFeatures
             this.buttonBack.UseVisualStyleBackColor = false;
             this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
             // 
+            // pictureBoxElderPicture
+            // 
+            this.pictureBoxElderPicture.BackColor = System.Drawing.Color.White;
+            this.pictureBoxElderPicture.Location = new System.Drawing.Point(608, 469);
+            this.pictureBoxElderPicture.Name = "pictureBoxElderPicture";
+            this.pictureBoxElderPicture.Size = new System.Drawing.Size(193, 123);
+            this.pictureBoxElderPicture.TabIndex = 9;
+            this.pictureBoxElderPicture.TabStop = false;
+            // 
+            // labelOptionalElders
+            // 
+            this.labelOptionalElders.AutoSize = true;
+            this.labelOptionalElders.BackColor = System.Drawing.Color.White;
+            this.labelOptionalElders.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelOptionalElders.Location = new System.Drawing.Point(61, 415);
+            this.labelOptionalElders.Name = "labelOptionalElders";
+            this.labelOptionalElders.Size = new System.Drawing.Size(165, 25);
+            this.labelOptionalElders.TabIndex = 8;
+            this.labelOptionalElders.Text = "Optional elders:";
+            // 
             // checkedListBoxGenderPrefrence
             // 
             this.checkedListBoxGenderPrefrence.FormattingEnabled = true;
@@ -163,8 +136,51 @@ namespace BasicFacebookFeatures
             "Both"});
             this.checkedListBoxGenderPrefrence.Location = new System.Drawing.Point(47, 164);
             this.checkedListBoxGenderPrefrence.Name = "checkedListBoxGenderPrefrence";
-            this.checkedListBoxGenderPrefrence.Size = new System.Drawing.Size(86, 55);
+            this.checkedListBoxGenderPrefrence.Size = new System.Drawing.Size(105, 89);
             this.checkedListBoxGenderPrefrence.TabIndex = 6;
+            this.checkedListBoxGenderPrefrence.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxGenderPreference_SelectedIndexChanged);
+            // 
+            // checkedListBoxAgeRange
+            // 
+            this.checkedListBoxAgeRange.FormattingEnabled = true;
+            this.checkedListBoxAgeRange.Items.AddRange(new object[] {
+            "20-25",
+            "65-70",
+            "71-75",
+            "76-80",
+            "81-85",
+            "86-90",
+            "91-95",
+            "96-100",
+            "101-105",
+            "106-110",
+            "111-115",
+            "116-120"});
+            this.checkedListBoxAgeRange.Location = new System.Drawing.Point(606, 173);
+            this.checkedListBoxAgeRange.Name = "checkedListBoxAgeRange";
+            this.checkedListBoxAgeRange.Size = new System.Drawing.Size(195, 123);
+            this.checkedListBoxAgeRange.TabIndex = 6;
+            this.checkedListBoxAgeRange.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxAgeRange_SelectedIndexChanged);
+            // 
+            // labelElderAge
+            // 
+            this.labelElderAge.AutoSize = true;
+            this.labelElderAge.BackColor = System.Drawing.Color.White;
+            this.labelElderAge.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelElderAge.Location = new System.Drawing.Point(591, 133);
+            this.labelElderAge.Name = "labelElderAge";
+            this.labelElderAge.Size = new System.Drawing.Size(227, 25);
+            this.labelElderAge.TabIndex = 5;
+            this.labelElderAge.Text = "Choose an age range:";
+            // 
+            // listBoxPotentialElders
+            // 
+            this.listBoxPotentialElders.FormattingEnabled = true;
+            this.listBoxPotentialElders.ItemHeight = 16;
+            this.listBoxPotentialElders.Location = new System.Drawing.Point(66, 476);
+            this.listBoxPotentialElders.Name = "listBoxPotentialElders";
+            this.listBoxPotentialElders.Size = new System.Drawing.Size(222, 116);
+            this.listBoxPotentialElders.TabIndex = 12;
             // 
             // FormFindElderToHelp
             // 
@@ -176,6 +192,7 @@ namespace BasicFacebookFeatures
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FormFindElderToHelp";
             this.RightToLeftLayout = true;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormFindElderToHelp";
             this.panelElederly.ResumeLayout(false);
             this.panelElederly.PerformLayout();
@@ -193,8 +210,9 @@ namespace BasicFacebookFeatures
         private System.Windows.Forms.Label labelElderAge;
         private System.Windows.Forms.PictureBox pictureBoxElderPicture;
         private System.Windows.Forms.Label labelOptionalElders;
-        private System.Windows.Forms.CheckedListBox checkedListBoxElders;
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.CheckedListBox checkedListBoxGenderPrefrence;
+        private System.Windows.Forms.Button buttonFindElderToHelp;
+        private System.Windows.Forms.ListBox listBoxPotentialElders;
     }
 }
