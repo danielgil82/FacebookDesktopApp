@@ -38,7 +38,7 @@ namespace BasicFacebookFeatures
         {
             try
             {
-                r_FacebookAppManager.PotentialElders = new PotentialElders(r_FacebookAppManager.LoggedInUser, "female",
+                r_FacebookAppManager.FindElders = new FindElders(r_FacebookAppManager.LoggedInUser, "female",
                     "20-25");
                 fetchPotentialElders();
             }
@@ -55,7 +55,7 @@ namespace BasicFacebookFeatures
 
             try
             {
-                foreach (User user in r_FacebookAppManager.PotentialElders.PotentialElderToHelp)
+                foreach (FindElders.ElderUser user in r_FacebookAppManager.FindElders.PotentialElderToHelp)
                 {
                     listBoxPotentialElders.Items.Add(user.Name);
                 }

@@ -41,7 +41,7 @@
     <Compile Include="AppSettings.cs" />
     <Compile Include="eGender.cs" />
     <Compile Include="FacebookAppManager.cs" />
-    <Compile Include="PotentialElders.cs" />
+    <Compile Include="FindElders.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Facebook">

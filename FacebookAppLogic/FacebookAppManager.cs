@@ -10,8 +10,24 @@ namespace FacebookAppLogic
     public class FacebookAppManager
     {
         private readonly User r_LoggedInUser;
+        private FindElders m_FindElders;
 
-        public PotentialElders PotentialElders { get; set; }
+        public FindElders FindElders
+        {
+            get
+            {
+                return m_FindElders;
+            }
+
+            set
+            {
+                if(m_FindElders == null)
+                {
+                    m_FindElders = value;
+
+                }
+            }
+        }
 
 
         public FacebookAppManager(User i_LoggedInUser)
