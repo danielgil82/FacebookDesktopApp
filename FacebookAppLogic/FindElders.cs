@@ -20,13 +20,13 @@ namespace FacebookAppLogic
         private byte m_UpperAgeRange;
         private byte m_LowerAgeRange;
 
-        public FindElders(User i_User, string i_Gender, string i_AgeRange)
+        public FindElders(User i_User, string i_PreferredGender, string i_PreferredAgeRange)
         {
             r_User = i_User;
             UsersCurrentCity = r_User.Hometown;
             r_PotentialElderToHelp = new FacebookObjectCollection<ElderUser>();
-            ageConversionFromString(i_AgeRange);
-            eldersThatMatchUsersPreferredGender(i_Gender);
+            ageConversionFromString(i_PreferredAgeRange);
+            eldersThatMatchUsersPreferredGender(i_PreferredGender);
         }
 
         public class ElderUser 
@@ -61,15 +61,12 @@ namespace FacebookAppLogic
                 m_UsersCurrentCity = value;
             }
         }
-
-
-       
+        
 
         private void ageConversionFromString(string i_AgeRange)
         {
-            var ageRange = i_AgeRange.Split('-');
-            int length = ageRange.Length;
-            Console.WriteLine(ageRange[0]);
+            string[] ageRange = i_AgeRange.Split('-');
+         
             if (!(byte.TryParse(ageRange[0], out m_LowerAgeRange) && byte.TryParse(ageRange[1], out m_UpperAgeRange)))
             {
                 throw new ArgumentException("Couldn't convert the age !");
@@ -87,7 +84,7 @@ namespace FacebookAppLogic
                 case eGender.male:
                     eldersBySpecificGender();
                     break;
-                case eGender.Both:
+                case eGender.both:
                     eldersWithoutSpecificGender();
                     break;
             }

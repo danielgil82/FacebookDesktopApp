@@ -57,8 +57,6 @@ namespace BasicFacebookFeatures
                 "452659572840281",
                 /// requested permissions:
                 "email",
-                //"publish_to_groups",
-                //"groups_access_member_info",
                 "public_profile",
                 "user_age_range",
                 "user_birthday",

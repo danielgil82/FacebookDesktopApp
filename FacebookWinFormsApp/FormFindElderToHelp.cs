@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,13 +17,30 @@ namespace BasicFacebookFeatures
     public partial class FormFindElderToHelp : Form
     {
         private readonly FacebookAppManager r_FacebookAppManager;
-
+        private StringBuilder m_GenderStringBuilder = new StringBuilder();
         public FormFindElderToHelp(FormMain i_FormMain)
         {
             r_FacebookAppManager = i_FormMain.FacebookAppManager;
+            fetchCheckedListBoxGenderData();
+            //fetchCheckedListBoxAgeRangeData();
             InitializeComponent();
         }
 
+        private void fetchCheckedListBoxGenderData()
+        {
+            if (checkedListBoxAgeRange.Items.Count > 0)
+            {
+                MessageBox.Show("Yo what's going on ");
+            }
+            //checkedListBoxGender.Items.Clear();
+            m_GenderStringBuilder.Clear();
+            foreach (string gender in Enum.GetNames(typeof(eGender)))
+            {
+                m_GenderStringBuilder.AppendLine(gender);
+            }
+
+            checkedListBoxGender.Text = m_GenderStringBuilder.ToString();
+        }
 
         private void buttonBack_Click(object sender, EventArgs e)
         {
@@ -36,15 +54,18 @@ namespace BasicFacebookFeatures
 
         private void buttonFindElderToHelp_Click(object sender, EventArgs e)
         {
-            try
+            if (checkedListBoxGender.SelectedItem != null && checkedListBoxAgeRange.SelectedItem != null)
             {
-                r_FacebookAppManager.FindElders = new FindElders(r_FacebookAppManager.LoggedInUser, "female",
-                    "20-25");
-                fetchPotentialElders();
-            }
-            catch (ArgumentException ex)
-            {
-                MessageBox.Show(ex.Message);
+                try
+                {
+                    r_FacebookAppManager.FindElders = new FindElders(r_FacebookAppManager.LoggedInUser, checkedListBoxGender.SelectedItem.ToString().ToLower(),
+                        checkedListBoxAgeRange.SelectedItem.ToString().ToLower());
+                    fetchPotentialElders();
+                }
+                catch (ArgumentException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 

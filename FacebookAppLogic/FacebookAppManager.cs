@@ -12,6 +12,9 @@ namespace FacebookAppLogic
         private readonly User r_LoggedInUser;
         private FindElders m_FindElders;
 
+        internal eGender GenderTypes
+        { get; }
+
         public FindElders FindElders
         {
             get

@@ -10,6 +10,6 @@ namespace FacebookAppLogic
     {
         female,
         male,
-        Both
+        both
     }
 }
