@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using CefSharp.DevTools.LayerTree;
 using FacebookAppLogic;
 using FacebookWrapper.ObjectModel;
+using Microsoft.Win32;
 
 namespace BasicFacebookFeatures
 {
@@ -18,22 +19,23 @@ namespace BasicFacebookFeatures
     {
         private readonly FacebookAppManager r_FacebookAppManager;
         private StringBuilder m_GenderStringBuilder = new StringBuilder();
+        private string m_PreferredGender = string.Empty;
+
+        public string PreferredGender { get; private set; }
+
         public FormFindElderToHelp(FormMain i_FormMain)
         {
             r_FacebookAppManager = i_FormMain.FacebookAppManager;
             fetchCheckedListBoxGenderData();
+            
             //fetchCheckedListBoxAgeRangeData();
             InitializeComponent();
         }
 
         private void fetchCheckedListBoxGenderData()
         {
-            if (checkedListBoxAgeRange.Items.Count > 0)
-            {
-                MessageBox.Show("Yo what's going on ");
-            }
-            //checkedListBoxGender.Items.Clear();
-            m_GenderStringBuilder.Clear();
+            checkedListBoxGender.Items.Clear();
+            checkedListBoxGender.DisplayMember = "Name";
             foreach (string gender in Enum.GetNames(typeof(eGender)))
             {
                 m_GenderStringBuilder.AppendLine(gender);
@@ -58,7 +60,7 @@ namespace BasicFacebookFeatures
             {
                 try
                 {
-                    r_FacebookAppManager.FindElders = new FindElders(r_FacebookAppManager.LoggedInUser, checkedListBoxGender.SelectedItem.ToString().ToLower(),
+                    r_FacebookAppManager.FindElders = new FindElders(r_FacebookAppManager.LoggedInUser, PreferredGender,
                         checkedListBoxAgeRange.SelectedItem.ToString().ToLower());
                     fetchPotentialElders();
                 }
@@ -92,9 +94,10 @@ namespace BasicFacebookFeatures
             }
         }
 
-        private void checkedListBoxGenderPreference_SelectedIndexChanged(object sender, EventArgs e)
+        private void checkedListBoxGender_SelectedIndexChanged(object sender, EventArgs e)
         {
             makeTheOtherListBoxOptionsDisabled(sender);
+            m_PreferredGender = (sender as CheckedListBox).CheckedItems.ToString().ToLower();
         }
 
         private void checkedListBoxAgeRange_SelectedIndexChanged(object sender, EventArgs e)
