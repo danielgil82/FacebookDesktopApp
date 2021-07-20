@@ -33,11 +33,11 @@ namespace FacebookAppLogic
         }
 
 
-        public PotentialElders(User i_User, string i_Gender, CheckedListBox.CheckedItemCollection i_AgeRange)
+        public PotentialElders(User i_User, string i_Gender, string i_AgeRange)
         {
             r_User = i_User;
             UsersCurrentCity = r_User.Hometown;
-            ageConversionFromString(i_AgeRange.ToString());
+            ageConversionFromString(i_AgeRange);
             eldersThatMatchUsersPreferredGender(i_Gender);
         }
 
@@ -45,8 +45,10 @@ namespace FacebookAppLogic
         {
             var ageRange = i_AgeRange.Split('-');
             int length = ageRange.Length;
+            Console.WriteLine(ageRange[0]);
             if ((byte.TryParse(ageRange[0], out m_LowerAgeRange)) && (byte.TryParse(ageRange[1], out m_UpperAgeRange)))
             {
+
             }
             else
             {
