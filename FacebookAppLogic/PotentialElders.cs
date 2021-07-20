@@ -99,7 +99,21 @@ namespace FacebookAppLogic
 
             if (i_CurrentUser.Location == UsersCurrentCity && usersAge >= m_LowerAgeRange && usersAge <= m_UpperAgeRange)
             {
-                PotentialElderToHelp.Add(i_CurrentUser);
+                //PotentialElderToHelp.Add(new User(i_CurrentUser));
+            }
+        }
+
+        private class ElderUser
+        {
+            public string Name { get; private set; }
+
+
+            public User elderUser { get; set; }
+
+            public ElderUser(User i_User)
+            {
+                elderUser = i_User;
+
             }
         }
 

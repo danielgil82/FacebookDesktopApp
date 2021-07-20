@@ -38,8 +38,8 @@ namespace BasicFacebookFeatures
         {
             try
             {
-                r_FacebookAppManager.PotentialElders = new PotentialElders(r_FacebookAppManager.LoggedInUser, checkedListBoxGenderPrefrence.CheckedItems.ToString(),
-                    checkedListBoxAgeRange.CheckedItems.ToString());
+                r_FacebookAppManager.PotentialElders = new PotentialElders(r_FacebookAppManager.LoggedInUser, "female",
+                    "20-25");
                 fetchPotentialElders();
             }
             catch (ArgumentException ex)
