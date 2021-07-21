@@ -33,6 +33,7 @@
             this.buttonLogin = new System.Windows.Forms.Button();
             this.buttonLogout = new System.Windows.Forms.Button();
             this.panelOptions = new System.Windows.Forms.Panel();
+            this.buttonHelpToElder = new System.Windows.Forms.Button();
             this.panelForUserInfo = new System.Windows.Forms.Panel();
             this.labelUserFullName = new System.Windows.Forms.Label();
             this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
@@ -49,7 +50,7 @@
             this.radioButtonFriends = new System.Windows.Forms.RadioButton();
             this.radioButtonEvents = new System.Windows.Forms.RadioButton();
             this.radioButtonGroups = new System.Windows.Forms.RadioButton();
-            this.buttonHelpToElder = new System.Windows.Forms.Button();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panelOptions.SuspendLayout();
             this.panelForUserInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
@@ -57,17 +58,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriendsLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGroupsLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEventsLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonLogin
             // 
             this.buttonLogin.BackColor = System.Drawing.Color.DarkBlue;
+            this.buttonLogin.Dock = System.Windows.Forms.DockStyle.Top;
             this.buttonLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonLogin.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.buttonLogin.Location = new System.Drawing.Point(15, 15);
-            this.buttonLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonLogin.Location = new System.Drawing.Point(0, 0);
+            this.buttonLogin.Margin = new System.Windows.Forms.Padding(4);
             this.buttonLogin.Name = "buttonLogin";
-            this.buttonLogin.Size = new System.Drawing.Size(261, 46);
+            this.buttonLogin.Size = new System.Drawing.Size(309, 46);
             this.buttonLogin.TabIndex = 36;
             this.buttonLogin.Text = "Login to Facebook";
             this.buttonLogin.UseVisualStyleBackColor = false;
@@ -76,13 +82,14 @@
             // buttonLogout
             // 
             this.buttonLogout.BackColor = System.Drawing.Color.DarkBlue;
+            this.buttonLogout.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.buttonLogout.Enabled = false;
             this.buttonLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonLogout.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.buttonLogout.Location = new System.Drawing.Point(15, 627);
-            this.buttonLogout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonLogout.Location = new System.Drawing.Point(0, 571);
+            this.buttonLogout.Margin = new System.Windows.Forms.Padding(4);
             this.buttonLogout.Name = "buttonLogout";
-            this.buttonLogout.Size = new System.Drawing.Size(261, 46);
+            this.buttonLogout.Size = new System.Drawing.Size(309, 46);
             this.buttonLogout.TabIndex = 52;
             this.buttonLogout.Text = "Logout";
             this.buttonLogout.UseVisualStyleBackColor = false;
@@ -93,18 +100,31 @@
             this.panelOptions.Controls.Add(this.buttonHelpToElder);
             this.panelOptions.Controls.Add(this.buttonLogin);
             this.panelOptions.Controls.Add(this.buttonLogout);
-            this.panelOptions.Location = new System.Drawing.Point(12, 37);
+            this.panelOptions.Location = new System.Drawing.Point(3, 43);
             this.panelOptions.Name = "panelOptions";
-            this.panelOptions.Size = new System.Drawing.Size(293, 718);
+            this.panelOptions.Size = new System.Drawing.Size(309, 617);
             this.panelOptions.TabIndex = 53;
+            // 
+            // buttonHelpToElder
+            // 
+            this.buttonHelpToElder.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.buttonHelpToElder.Enabled = false;
+            this.buttonHelpToElder.Location = new System.Drawing.Point(40, 110);
+            this.buttonHelpToElder.Name = "buttonHelpToElder";
+            this.buttonHelpToElder.Size = new System.Drawing.Size(124, 69);
+            this.buttonHelpToElder.TabIndex = 53;
+            this.buttonHelpToElder.Text = "Help to elderly";
+            this.buttonHelpToElder.UseVisualStyleBackColor = false;
+            this.buttonHelpToElder.Click += new System.EventHandler(this.buttonHelpToElder_Click);
             // 
             // panelForUserInfo
             // 
             this.panelForUserInfo.Controls.Add(this.labelUserFullName);
             this.panelForUserInfo.Controls.Add(this.pictureBoxProfile);
-            this.panelForUserInfo.Location = new System.Drawing.Point(376, 37);
+            this.panelForUserInfo.Controls.Add(this.checkBoxRememberMe);
+            this.panelForUserInfo.Location = new System.Drawing.Point(24, 42);
             this.panelForUserInfo.Name = "panelForUserInfo";
-            this.panelForUserInfo.Size = new System.Drawing.Size(480, 199);
+            this.panelForUserInfo.Size = new System.Drawing.Size(413, 190);
             this.panelForUserInfo.TabIndex = 54;
             // 
             // labelUserFullName
@@ -118,9 +138,10 @@
             // 
             // pictureBoxProfile
             // 
-            this.pictureBoxProfile.Location = new System.Drawing.Point(18, 15);
+            this.pictureBoxProfile.Location = new System.Drawing.Point(19, 15);
             this.pictureBoxProfile.Name = "pictureBoxProfile";
-            this.pictureBoxProfile.Size = new System.Drawing.Size(138, 116);
+            this.pictureBoxProfile.Size = new System.Drawing.Size(103, 100);
+            this.pictureBoxProfile.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxProfile.TabIndex = 0;
             this.pictureBoxProfile.TabStop = false;
             // 
@@ -128,7 +149,7 @@
             // 
             this.labelCurrentDate.AutoSize = true;
             this.labelCurrentDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCurrentDate.Location = new System.Drawing.Point(8, 9);
+            this.labelCurrentDate.Location = new System.Drawing.Point(3, 10);
             this.labelCurrentDate.Name = "labelCurrentDate";
             this.labelCurrentDate.Size = new System.Drawing.Size(92, 20);
             this.labelCurrentDate.TabIndex = 3;
@@ -138,7 +159,7 @@
             // 
             this.pictureBoxFbLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxFbLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxFbLogo.Image")));
-            this.pictureBoxFbLogo.Location = new System.Drawing.Point(958, 37);
+            this.pictureBoxFbLogo.Location = new System.Drawing.Point(540, 10);
             this.pictureBoxFbLogo.Name = "pictureBoxFbLogo";
             this.pictureBoxFbLogo.Size = new System.Drawing.Size(102, 98);
             this.pictureBoxFbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -149,7 +170,7 @@
             // 
             this.listBoxFriends.FormattingEnabled = true;
             this.listBoxFriends.ItemHeight = 16;
-            this.listBoxFriends.Location = new System.Drawing.Point(333, 482);
+            this.listBoxFriends.Location = new System.Drawing.Point(50, 421);
             this.listBoxFriends.Name = "listBoxFriends";
             this.listBoxFriends.Size = new System.Drawing.Size(171, 228);
             this.listBoxFriends.TabIndex = 2;
@@ -158,7 +179,7 @@
             // 
             this.listBoxEvents.FormattingEnabled = true;
             this.listBoxEvents.ItemHeight = 16;
-            this.listBoxEvents.Location = new System.Drawing.Point(625, 482);
+            this.listBoxEvents.Location = new System.Drawing.Point(238, 421);
             this.listBoxEvents.Name = "listBoxEvents";
             this.listBoxEvents.Size = new System.Drawing.Size(171, 228);
             this.listBoxEvents.TabIndex = 57;
@@ -167,7 +188,7 @@
             // 
             this.listBoxGroups.FormattingEnabled = true;
             this.listBoxGroups.ItemHeight = 16;
-            this.listBoxGroups.Location = new System.Drawing.Point(899, 482);
+            this.listBoxGroups.Location = new System.Drawing.Point(427, 421);
             this.listBoxGroups.Name = "listBoxGroups";
             this.listBoxGroups.Size = new System.Drawing.Size(171, 228);
             this.listBoxGroups.TabIndex = 58;
@@ -177,7 +198,7 @@
             this.checkBoxRememberMe.AutoSize = true;
             this.checkBoxRememberMe.Enabled = false;
             this.checkBoxRememberMe.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxRememberMe.Location = new System.Drawing.Point(376, 257);
+            this.checkBoxRememberMe.Location = new System.Drawing.Point(19, 121);
             this.checkBoxRememberMe.Name = "checkBoxRememberMe";
             this.checkBoxRememberMe.Size = new System.Drawing.Size(146, 24);
             this.checkBoxRememberMe.TabIndex = 59;
@@ -187,7 +208,7 @@
             // pictureBoxFriendsLogo
             // 
             this.pictureBoxFriendsLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxFriendsLogo.Image")));
-            this.pictureBoxFriendsLogo.Location = new System.Drawing.Point(356, 416);
+            this.pictureBoxFriendsLogo.Location = new System.Drawing.Point(73, 355);
             this.pictureBoxFriendsLogo.Name = "pictureBoxFriendsLogo";
             this.pictureBoxFriendsLogo.Size = new System.Drawing.Size(113, 32);
             this.pictureBoxFriendsLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -197,7 +218,7 @@
             // pictureBoxGroupsLogo
             // 
             this.pictureBoxGroupsLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxGroupsLogo.Image")));
-            this.pictureBoxGroupsLogo.Location = new System.Drawing.Point(917, 417);
+            this.pictureBoxGroupsLogo.Location = new System.Drawing.Point(445, 356);
             this.pictureBoxGroupsLogo.Name = "pictureBoxGroupsLogo";
             this.pictureBoxGroupsLogo.Size = new System.Drawing.Size(107, 31);
             this.pictureBoxGroupsLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -207,7 +228,7 @@
             // pictureBoxEventsLogo
             // 
             this.pictureBoxEventsLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxEventsLogo.Image")));
-            this.pictureBoxEventsLogo.Location = new System.Drawing.Point(641, 417);
+            this.pictureBoxEventsLogo.Location = new System.Drawing.Point(254, 356);
             this.pictureBoxEventsLogo.Name = "pictureBoxEventsLogo";
             this.pictureBoxEventsLogo.Size = new System.Drawing.Size(119, 32);
             this.pictureBoxEventsLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -223,7 +244,7 @@
             // radioButtonFriends
             // 
             this.radioButtonFriends.AutoSize = true;
-            this.radioButtonFriends.Location = new System.Drawing.Point(356, 454);
+            this.radioButtonFriends.Location = new System.Drawing.Point(73, 393);
             this.radioButtonFriends.Name = "radioButtonFriends";
             this.radioButtonFriends.Size = new System.Drawing.Size(140, 21);
             this.radioButtonFriends.TabIndex = 63;
@@ -235,7 +256,7 @@
             // radioButtonEvents
             // 
             this.radioButtonEvents.AutoSize = true;
-            this.radioButtonEvents.Location = new System.Drawing.Point(641, 454);
+            this.radioButtonEvents.Location = new System.Drawing.Point(254, 393);
             this.radioButtonEvents.Name = "radioButtonEvents";
             this.radioButtonEvents.Size = new System.Drawing.Size(136, 21);
             this.radioButtonEvents.TabIndex = 64;
@@ -247,7 +268,7 @@
             // radioButtonGroups
             // 
             this.radioButtonGroups.AutoSize = true;
-            this.radioButtonGroups.Location = new System.Drawing.Point(917, 454);
+            this.radioButtonGroups.Location = new System.Drawing.Point(445, 393);
             this.radioButtonGroups.Name = "radioButtonGroups";
             this.radioButtonGroups.Size = new System.Drawing.Size(140, 21);
             this.radioButtonGroups.TabIndex = 65;
@@ -256,39 +277,42 @@
             this.radioButtonGroups.UseVisualStyleBackColor = true;
             this.radioButtonGroups.Click += new System.EventHandler(this.radioButtonGroups_Click);
             // 
-            // buttonHelpToElder
+            // splitContainer1
             // 
-            this.buttonHelpToElder.BackColor = System.Drawing.Color.MediumAquamarine;
-            this.buttonHelpToElder.Enabled = false;
-            this.buttonHelpToElder.Location = new System.Drawing.Point(79, 106);
-            this.buttonHelpToElder.Name = "buttonHelpToElder";
-            this.buttonHelpToElder.Size = new System.Drawing.Size(124, 69);
-            this.buttonHelpToElder.TabIndex = 53;
-            this.buttonHelpToElder.Text = "Help to elderly";
-            this.buttonHelpToElder.UseVisualStyleBackColor = false;
-            this.buttonHelpToElder.Click += new System.EventHandler(this.buttonHelpToElder_Click);
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.panelOptions);
+            this.splitContainer1.Panel1.Controls.Add(this.labelCurrentDate);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.panelForUserInfo);
+            this.splitContainer1.Panel2.Controls.Add(this.radioButtonGroups);
+            this.splitContainer1.Panel2.Controls.Add(this.listBoxFriends);
+            this.splitContainer1.Panel2.Controls.Add(this.pictureBoxGroupsLogo);
+            this.splitContainer1.Panel2.Controls.Add(this.radioButtonEvents);
+            this.splitContainer1.Panel2.Controls.Add(this.listBoxGroups);
+            this.splitContainer1.Panel2.Controls.Add(this.pictureBoxFbLogo);
+            this.splitContainer1.Panel2.Controls.Add(this.pictureBoxEventsLogo);
+            this.splitContainer1.Panel2.Controls.Add(this.radioButtonFriends);
+            this.splitContainer1.Panel2.Controls.Add(this.pictureBoxFriendsLogo);
+            this.splitContainer1.Panel2.Controls.Add(this.listBoxEvents);
+            this.splitContainer1.Size = new System.Drawing.Size(959, 674);
+            this.splitContainer1.SplitterDistance = 297;
+            this.splitContainer1.TabIndex = 66;
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
-            this.ClientSize = new System.Drawing.Size(1098, 762);
-            this.Controls.Add(this.radioButtonGroups);
-            this.Controls.Add(this.radioButtonEvents);
-            this.Controls.Add(this.radioButtonFriends);
-            this.Controls.Add(this.pictureBoxEventsLogo);
-            this.Controls.Add(this.pictureBoxGroupsLogo);
-            this.Controls.Add(this.pictureBoxFriendsLogo);
-            this.Controls.Add(this.checkBoxRememberMe);
-            this.Controls.Add(this.labelCurrentDate);
-            this.Controls.Add(this.listBoxGroups);
-            this.Controls.Add(this.listBoxEvents);
-            this.Controls.Add(this.listBoxFriends);
-            this.Controls.Add(this.pictureBoxFbLogo);
-            this.Controls.Add(this.panelForUserInfo);
-            this.Controls.Add(this.panelOptions);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ClientSize = new System.Drawing.Size(959, 674);
+            this.Controls.Add(this.splitContainer1);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
@@ -300,8 +324,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriendsLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGroupsLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEventsLogo)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -327,6 +356,7 @@
         private System.Windows.Forms.RadioButton radioButtonEvents;
         private System.Windows.Forms.RadioButton radioButtonGroups;
         private System.Windows.Forms.Button buttonHelpToElder;
+        private System.Windows.Forms.SplitContainer splitContainer1;
     }
 }
 

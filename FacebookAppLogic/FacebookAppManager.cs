@@ -12,31 +12,21 @@ namespace FacebookAppLogic
         private readonly User r_LoggedInUser;
         private FindElders m_FindElders;
 
-        internal eGender GenderTypes
-        { get; }
-
-        public FindElders FindElders
-        {
-            get
-            {
-                return m_FindElders;
-            }
-
-            set
-            {
-                if(m_FindElders == null)
-                {
-                    m_FindElders = value;
-
-                }
-            }
-        }
-
-
         public FacebookAppManager(User i_LoggedInUser)
         {
             r_LoggedInUser = i_LoggedInUser;
         }
+
+        public FacebookObjectCollection<User> FindEldersThatMatchUsersConditions(string i_PreferredGender, string i_PreferredAgeRange)
+        {
+            if (m_FindElders == null)
+            {
+                m_FindElders = new FindElders(r_LoggedInUser);
+            }
+
+            return m_FindElders.FindEldersThatMatchUsersConditions(i_PreferredGender, i_PreferredAgeRange);
+        }
+
 
         public User LoggedInUser
         {

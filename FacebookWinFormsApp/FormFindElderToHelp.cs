@@ -18,30 +18,30 @@ namespace BasicFacebookFeatures
     public partial class FormFindElderToHelp : Form
     {
         private readonly FacebookAppManager r_FacebookAppManager;
-        private StringBuilder m_GenderStringBuilder = new StringBuilder();
-        private string m_PreferredGender = string.Empty;
+        private readonly List<string> m_AgeRangeList;
+        private FacebookObjectCollection<User> m_PotentialEldersList = null;
 
-        public string PreferredGender { get; private set; }
+        internal string PreferredAgeRange { get; private set; }
+
+        internal string PreferredGender { get; private set; }
 
         public FormFindElderToHelp(FormMain i_FormMain)
         {
-            r_FacebookAppManager = i_FormMain.FacebookAppManager;
-            fetchCheckedListBoxGenderData();
-            
-            //fetchCheckedListBoxAgeRangeData();
             InitializeComponent();
+            r_FacebookAppManager = i_FormMain.FacebookAppManager;
+            m_AgeRangeList = new List<string>();
+            initAgeRangeList();
         }
 
-        private void fetchCheckedListBoxGenderData()
+        private void initAgeRangeList()
         {
-            checkedListBoxGender.Items.Clear();
-            checkedListBoxGender.DisplayMember = "Name";
-            foreach (string gender in Enum.GetNames(typeof(eGender)))
+            m_AgeRangeList.Add("20-25");
+            for (int i = 65; i < 125; i += 5)
             {
-                m_GenderStringBuilder.AppendLine(gender);
+                m_AgeRangeList.Add(string.Format("{0} - {1}", i + 1, i + 5));
             }
 
-            checkedListBoxGender.Text = m_GenderStringBuilder.ToString();
+            checkedListBoxAgeRange.DataSource = m_AgeRangeList;
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
@@ -56,17 +56,43 @@ namespace BasicFacebookFeatures
 
         private void buttonFindElderToHelp_Click(object sender, EventArgs e)
         {
-            if (checkedListBoxGender.SelectedItem != null && checkedListBoxAgeRange.SelectedItem != null)
+            if (listBoxPotentialElders.Items.Count > 0)
+            {
+                listBoxPotentialElders.Items.Clear();
+            }
+
+            if (!string.IsNullOrEmpty(PreferredGender) && !string.IsNullOrEmpty(PreferredAgeRange))
             {
                 try
                 {
-                    r_FacebookAppManager.FindElders = new FindElders(r_FacebookAppManager.LoggedInUser, PreferredGender,
-                        checkedListBoxAgeRange.SelectedItem.ToString().ToLower());
+                    m_PotentialEldersList = r_FacebookAppManager.FindEldersThatMatchUsersConditions(PreferredGender, PreferredAgeRange);
                     fetchPotentialElders();
+                    displaySelectedElderUser();
+                    PreferredGender = String.Empty;
                 }
                 catch (ArgumentException ex)
                 {
                     MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("There is no elders that match your preferences");
+            }
+        }
+
+        private void displaySelectedElderUser()
+        {
+            if (listBoxPotentialElders.SelectedItems.Count == 1)
+            {
+                User SelectedUser = listBoxPotentialElders.SelectedItem as User;
+                if (SelectedUser.PictureNormalURL != null)
+                {
+                    pictureBoxElderPicture.LoadAsync(SelectedUser.PictureNormalURL);
+                }
+                else
+                {
+                    pictureBoxElderPicture.Image = pictureBoxElderPicture.ErrorImage;
                 }
             }
         }
@@ -75,17 +101,9 @@ namespace BasicFacebookFeatures
         {
             listBoxPotentialElders.Items.Clear();
             listBoxPotentialElders.DisplayMember = "Name";
-
-            try
+            foreach (User user in m_PotentialEldersList)
             {
-                foreach (FindElders.ElderUser user in r_FacebookAppManager.FindElders.PotentialElderToHelp)
-                {
-                    listBoxPotentialElders.Items.Add(user.Name);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                listBoxPotentialElders.Items.Add(user);
             }
 
             if (listBoxPotentialElders.Items.Count == 0)
@@ -96,12 +114,13 @@ namespace BasicFacebookFeatures
 
         private void checkedListBoxGender_SelectedIndexChanged(object sender, EventArgs e)
         {
+            PreferredGender = (sender as CheckedListBox).SelectedItem.ToString().ToLower();
             makeTheOtherListBoxOptionsDisabled(sender);
-            m_PreferredGender = (sender as CheckedListBox).CheckedItems.ToString().ToLower();
         }
 
         private void checkedListBoxAgeRange_SelectedIndexChanged(object sender, EventArgs e)
         {
+            PreferredAgeRange = (sender as CheckedListBox).SelectedItem.ToString();
             makeTheOtherListBoxOptionsDisabled(sender);
         }
 
@@ -122,6 +141,13 @@ namespace BasicFacebookFeatures
                     }
                 }
             }
+        }
+
+        private void listBoxPotentialElders_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            displaySelectedElderUser();
+            string name = (sender as ListBox).SelectedItem.ToString();
+            MessageBox.Show("Good luck with the helping this elderly " + name);
         }
     }
 }

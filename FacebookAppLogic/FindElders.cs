@@ -11,25 +11,54 @@ using FacebookWrapper.ObjectModel;
 
 namespace FacebookAppLogic
 {
-    public class FindElders
+    internal class FindElders
     {
         private readonly FacebookObjectCollection<ElderUser> r_PotentialElderToHelp;
         private readonly User r_User;
         private City m_UsersCurrentCity;
-        private eGender m_PreferredGender;
         private byte m_UpperAgeRange;
         private byte m_LowerAgeRange;
+        private eGender m_PreferredGender;
 
-        public FindElders(User i_User, string i_PreferredGender, string i_PreferredAgeRange)
+        public FindElders(User i_User)
         {
             r_User = i_User;
             UsersCurrentCity = r_User.Hometown;
             r_PotentialElderToHelp = new FacebookObjectCollection<ElderUser>();
-            ageConversionFromString(i_PreferredAgeRange);
-            eldersThatMatchUsersPreferredGender(i_PreferredGender);
         }
 
-        public class ElderUser 
+        public FacebookObjectCollection<User> FindEldersThatMatchUsersConditions(
+            string i_PreferredGender,
+            string i_PreferredAgeRange)
+        {
+            FacebookObjectCollection<User> PotentialElders = new FacebookObjectCollection<User>();
+
+            if (r_PotentialElderToHelp.Count > 0)
+            {
+                r_PotentialElderToHelp.Clear();
+            }
+           
+            ageConversionFromString(i_PreferredAgeRange);
+            eldersThatMatchUsersPreferredGender(i_PreferredGender);
+            fetchDataFromElderListTypeToUserListType(PotentialElders);
+
+            return PotentialElders;
+        }
+
+        private void fetchDataFromElderListTypeToUserListType(FacebookObjectCollection<User> io_PotentialEldersList)
+        {
+            foreach (ElderUser CurrenUserToAdd in r_PotentialElderToHelp)
+            {
+                io_PotentialEldersList.Add(CurrenUserToAdd.CurrentElderUser);
+            }
+
+            if (io_PotentialEldersList.Count == 0)
+            {
+                throw new ArgumentException("No potential elders we're found");
+            }
+        }
+
+        internal class ElderUser 
         {
             public string Name { get; set; }
 
@@ -61,7 +90,7 @@ namespace FacebookAppLogic
                 m_UsersCurrentCity = value;
             }
         }
-        
+
 
         private void ageConversionFromString(string i_AgeRange)
         {
@@ -74,9 +103,9 @@ namespace FacebookAppLogic
         }
 
 
-        private void eldersThatMatchUsersPreferredGender(string i_Gender)
+        private void eldersThatMatchUsersPreferredGender(string i_PreferredGender)
         {
-            m_PreferredGender = (eGender)Enum.Parse(typeof(eGender), i_Gender);
+            m_PreferredGender = (eGender)Enum.Parse(typeof(eGender), i_PreferredGender);
 
             switch (m_PreferredGender)
             {
@@ -94,23 +123,23 @@ namespace FacebookAppLogic
         {
             foreach (User user in r_User.Friends)
             {
-                checkPotentialEldersConditions(user);
+                checkPotentialEldersConditionsByAgeAndCity(user);
             }
         }
 
         private void eldersBySpecificGender()
         {
-            foreach (User user in r_User.Friends)
+            foreach (User CurrentUser in r_User.Friends)
             {
-                if ((user.Gender == User.eGender.female && m_PreferredGender == eGender.female)
-                    || user.Gender == User.eGender.male && m_PreferredGender == eGender.male)
+                if ((CurrentUser.Gender == User.eGender.female && m_PreferredGender == eGender.female)
+                    || CurrentUser.Gender == User.eGender.male && m_PreferredGender == eGender.male)
                 {
-                    checkPotentialEldersConditions(user);
+                    checkPotentialEldersConditionsByAgeAndCity(CurrentUser);
                 }
             }
         }
 
-        private void checkPotentialEldersConditions(User i_CurrentUser)
+        private void checkPotentialEldersConditionsByAgeAndCity(User i_CurrentUser)
         {
             int usersAge = calculateUsersAge(i_CurrentUser);
 
@@ -120,8 +149,6 @@ namespace FacebookAppLogic
             }
         }
 
-        
-
         private int calculateUsersAge(User i_CurrentUser)
         {
             int currentYear = DateTime.Now.Year;
@@ -129,7 +156,6 @@ namespace FacebookAppLogic
             int elderAge = 0;
 
             string[] usersBirthYear = i_CurrentUser.Birthday.Split('/');
-
             try
             {
                 if (Int32.TryParse(usersBirthYear[2], out yearToParse))
