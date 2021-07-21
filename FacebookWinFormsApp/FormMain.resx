@@ -118,6 +118,28 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="buttonHelpToElder.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAOuSURBVGhD7dpbyE1pHMfx1zFMihpJURSJCxc0KSWHJMc0yZRCXLmS5M6xiBBXyiFKuBBSkiQZ
+        JiZFSrmSZhxzaBzGaTAM5vt7vU/9Pf333s/W295rrdavPuVd1vP2/N+19noOa7eUKVOmTDtlFn7Dmzbn
+        MROFzCZ8qWADChVdWa9QawYKE93GXpHWORQmr+EVab1CYZJS8EsUJnoae0Vav6Iw0dDjFWlNR26ignQV
+        Nba+wFlMg42GHq9QWY9cpDO2wytC1sFGQ4+exvpMi27j3FzZnjgFr1BrLnKfbvgdXoEx3eIDkdt0wEF4
+        xVWiP45u/1xmMbyialmL3KUfnsMrqJZPGIdcZQ+8YlLdQ2/kIv3xL7xC6nEEuYjGVK+ASm5AT2jv/+Yh
+        87kJr/OeZxiM8XjfdszSpGMIMpsRiDtdzWyEzMdnxOdcQmaHqiWIO1zJScRZAe/ceOqZmaRONHQlR8LL
+        LsTn/4exyFyuIu6sR7dppej21dWP29xBL2QqjxF31LMc1fIDriBudwiZivek9fyEWumLPxG3XYDMRAv7
+        uIMeLRlTMhRPYdveR2aSsiclvyA1Y/AWoa2mnZmJdipsYZVoGVhPJuMWVOwUHchSqm3lWJWGpdylE47D
+        K9Lah8JEw0qtMfkd+qCe6EWb2m1p/Slj0SbAXXjFBitRT/6B2n1Edx3IWobjb8SFBg/QBanRUjK0HaUD
+        WYyWftU2BOoZoo4itFuoA82OJhRzvv7zmyyCLdK6iNSsQWi3VQeanUnQQ0WThTh6TWILtQYhJT8jtDmj
+        A83OKqgzT6CdDBvtUx9G6LC1DCnR7wxtHulAs2NfqfyBeNgZAO/zfAEp6Qj7DrneYa1doysYT/T1+ewK
+        m/2w54j2orU6SsllhHYTdaBZ0crGFiF/Id6PGgYVGJ+rNxUp2YvQZqkONCsaJmwBsgNeTiA+9zRSoiJD
+        GxXftOyGLUAmwMtoxOd+QMrbBt3GoY1u76blOmwB3u1so8+3PV9SNt5/RDhfGw56kDU8mnBoZ9F2fieq
+        xVs7H0NKNCSFNvHw15BowmE7LrWeoHqqX4Nto8WBVlq1oklHaKPJSMOzGrbjmnikvC3QLWzbSUoB2xDO
+        13Sz4Ym/w6HN9JToj3Ibtu0B1IodEbSgaHj0gLKd1i2emvj1TMqUUUvDcL6WjA2Ptk5DBx4i5XYO6QH7
+        B0vZldTiX8OYztdUs+GZChUt3/N9Kn1hTZsB9exKboTm5ZtbfypTpkyZMoVKS8v/KiRmG1fd360AAAAA
+        SUVORK5CYII=
+</value>
+  </data>
   <data name="pictureBoxFbLogo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAPkAAAEACAYAAABxpdD1AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAS

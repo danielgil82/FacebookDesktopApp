@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using CefSharp.DevTools.LayerTree;
 using FacebookAppLogic;
 using FacebookWrapper.ObjectModel;
 using FacebookWrapper;
@@ -37,7 +38,6 @@ namespace BasicFacebookFeatures
             this.Size = r_AppSettings.LastWindowSize;
         }
 
-        
 
         private void buttonLogin_Click(object sender, EventArgs e)
         {
@@ -81,7 +81,6 @@ namespace BasicFacebookFeatures
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
-
             if (r_AppSettings.RememberUser && !string.IsNullOrEmpty(r_AppSettings.LastAccessToken))
             {
                 m_LoginResult = FacebookService.Connect(r_AppSettings.LastAccessToken);
@@ -89,9 +88,18 @@ namespace BasicFacebookFeatures
                 buttonLogin.Enabled = false;
                 buttonLogout.Enabled = true;
                 buttonHelpToElder.Enabled = true;
-
             }
+            
+           // disableAllButtons();
+        }
 
+        private void disableAllButtons()
+        {
+            ///Button button = new Button();
+            foreach (Button but in this.)
+            {
+                
+            }
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -108,16 +116,17 @@ namespace BasicFacebookFeatures
         {
             m_FacebookAppManager = new FacebookAppManager(m_LoginResult.LoggedInUser);
             this.Text = "Welcome to our Desktop Facebook app";
-            labelUserFullName.Text = "Welcome, "
-                                     + m_FacebookAppManager.LoggedInUser.FirstName + " "
-                                     + m_FacebookAppManager.LoggedInUser.LastName;
+            
             pictureBoxProfile.LoadAsync(m_FacebookAppManager.LoggedInUser.PictureNormalURL);
             labelCurrentDate.Text = DateTime.Now.ToLongDateString();
+            labelUserFullName.Text = labelUserFullName.Text + "Welcome, " + m_FacebookAppManager.LoggedInUser.Name;
+            labelLocation.Text = labelLocation.Text + m_FacebookAppManager.LoggedInUser.Location.Name.ToString();
+            labelBirthday.Text = labelBirthday.Text + m_FacebookAppManager.UsersBirthday;
         }
 
         private void buttonLogout_Click(object sender, EventArgs e)
         {
-            FacebookService.LogoutWithUI();
+            m_FacebookAppManager.Logout();
             buttonLogin.Enabled = true;
             buttonLogin.Text = "Login to Facebook";
             buttonLogin.ForeColor = Color.WhiteSmoke;

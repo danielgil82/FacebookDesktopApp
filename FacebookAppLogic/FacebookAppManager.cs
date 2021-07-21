@@ -17,6 +17,39 @@ namespace FacebookAppLogic
             r_LoggedInUser = i_LoggedInUser;
         }
 
+        public string UsersBirthday
+        {
+
+            get
+            {
+                string Birthday = string.Empty;
+
+                try
+                {
+                    Birthday = LoggedInUser.Birthday;
+                }
+                catch (Exception)
+                {
+                    throw new Exception("Couldn't retrieve users birthday ");
+                }
+
+                return Birthday;
+            }
+            
+        }
+
+        public void Logout()
+        {
+            try
+            {
+                FacebookService.LogoutWithUI();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Couldn't log out successfully.");
+            }
+        }
+
         public FacebookObjectCollection<User> FindEldersThatMatchUsersConditions(string i_PreferredGender, string i_PreferredAgeRange)
         {
             if (m_FindElders == null)
