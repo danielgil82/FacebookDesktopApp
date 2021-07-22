@@ -82,7 +82,7 @@ namespace BasicFacebookFeatures
             }
             else
             {
-                MessageBox.Show("There is no elders that match your preferences");
+                MessageBox.Show("You must choose Age Range and Gender prefrence!");
             }
         }
 

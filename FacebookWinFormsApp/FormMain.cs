@@ -87,6 +87,7 @@ namespace BasicFacebookFeatures
             if (r_AppSettings.RememberUser && !string.IsNullOrEmpty(r_AppSettings.LastAccessToken))
             {
                 m_LoginResult = FacebookService.Connect(r_AppSettings.LastAccessToken);
+                buttonLogin.Text = $"Logged in as {m_LoginResult.LoggedInUser.Name}";
                 fetchLoggedInUser();
                 buttonLogin.Enabled = false;
                 buttonLogout.Enabled = true;
@@ -108,17 +109,17 @@ namespace BasicFacebookFeatures
             r_AppSettings.LastAccessToken = r_AppSettings.RememberUser ? m_LoginResult.AccessToken : null;
             r_AppSettings.SaveToFile();
         }
-
+        
         private void fetchLoggedInUser()
         {
             m_FacebookAppManager = new FacebookAppManager(m_LoginResult.LoggedInUser);
             this.Text = "Welcome to our Desktop Facebook app";
-
+            buttonLogin.ForeColor = Color.White;
             pictureBoxProfile.LoadAsync(m_FacebookAppManager.LoggedInUser.PictureNormalURL);
             labelCurrentDate.Text = DateTime.Now.ToLongDateString();
-            labelFullName.Text = labelFullName.Text + m_FacebookAppManager.LoggedInUser.Name;
-            labelLocation.Text = labelLocation.Text + m_FacebookAppManager.LoggedInUser.Location.Name.ToString();
-            labelBirthday.Text = labelBirthday.Text + m_FacebookAppManager.UsersBirthday;
+            labelFullName.Text = labelFullName.Text + " " + m_FacebookAppManager.LoggedInUser.Name;
+            labelLocation.Text = labelLocation.Text + " " + m_FacebookAppManager.LoggedInUser.Location.Name.ToString();
+            labelBirthday.Text = labelBirthday.Text + " "  + m_FacebookAppManager.UsersBirthday;
         }
 
         private void buttonLogout_Click(object sender, EventArgs e)
