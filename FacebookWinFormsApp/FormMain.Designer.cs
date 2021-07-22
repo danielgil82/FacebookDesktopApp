@@ -35,7 +35,9 @@
             this.panelOptions = new System.Windows.Forms.Panel();
             this.buttonHelpToElder = new System.Windows.Forms.Button();
             this.panelForUserInfo = new System.Windows.Forms.Panel();
-            this.labelUserFullName = new System.Windows.Forms.Label();
+            this.labelBirthday = new System.Windows.Forms.Label();
+            this.labelLocation = new System.Windows.Forms.Label();
+            this.labelFullName = new System.Windows.Forms.Label();
             this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
             this.labelCurrentDate = new System.Windows.Forms.Label();
             this.pictureBoxFbLogo = new System.Windows.Forms.PictureBox();
@@ -50,9 +52,7 @@
             this.radioButtonFriends = new System.Windows.Forms.RadioButton();
             this.radioButtonEvents = new System.Windows.Forms.RadioButton();
             this.radioButtonGroups = new System.Windows.Forms.RadioButton();
-            this.labelFullName = new System.Windows.Forms.Label();
-            this.labelLocation = new System.Windows.Forms.Label();
-            this.labelBirthday = new System.Windows.Forms.Label();
+            this.buttonFetchData = new System.Windows.Forms.Button();
             this.panelOptions.SuspendLayout();
             this.panelForUserInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
@@ -71,7 +71,7 @@
             this.buttonLogin.Location = new System.Drawing.Point(0, 0);
             this.buttonLogin.Margin = new System.Windows.Forms.Padding(4);
             this.buttonLogin.Name = "buttonLogin";
-            this.buttonLogin.Size = new System.Drawing.Size(259, 46);
+            this.buttonLogin.Size = new System.Drawing.Size(247, 61);
             this.buttonLogin.TabIndex = 36;
             this.buttonLogin.Text = "Login to Facebook";
             this.buttonLogin.UseVisualStyleBackColor = false;
@@ -84,10 +84,10 @@
             this.buttonLogout.Enabled = false;
             this.buttonLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonLogout.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.buttonLogout.Location = new System.Drawing.Point(0, 672);
+            this.buttonLogout.Location = new System.Drawing.Point(0, 656);
             this.buttonLogout.Margin = new System.Windows.Forms.Padding(4);
             this.buttonLogout.Name = "buttonLogout";
-            this.buttonLogout.Size = new System.Drawing.Size(259, 46);
+            this.buttonLogout.Size = new System.Drawing.Size(247, 62);
             this.buttonLogout.TabIndex = 52;
             this.buttonLogout.Text = "Logout";
             this.buttonLogout.UseVisualStyleBackColor = false;
@@ -95,26 +95,27 @@
             // 
             // panelOptions
             // 
+            this.panelOptions.Controls.Add(this.buttonFetchData);
             this.panelOptions.Controls.Add(this.buttonHelpToElder);
             this.panelOptions.Controls.Add(this.buttonLogin);
             this.panelOptions.Controls.Add(this.buttonLogout);
             this.panelOptions.Location = new System.Drawing.Point(12, 37);
             this.panelOptions.Name = "panelOptions";
-            this.panelOptions.Size = new System.Drawing.Size(259, 718);
+            this.panelOptions.Size = new System.Drawing.Size(247, 718);
             this.panelOptions.TabIndex = 53;
             // 
             // buttonHelpToElder
             // 
             this.buttonHelpToElder.BackColor = System.Drawing.Color.Honeydew;
             this.buttonHelpToElder.Enabled = false;
-            this.buttonHelpToElder.Font = new System.Drawing.Font("Microsoft YaHei UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonHelpToElder.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonHelpToElder.Image = ((System.Drawing.Image)(resources.GetObject("buttonHelpToElder.Image")));
             this.buttonHelpToElder.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.buttonHelpToElder.Location = new System.Drawing.Point(42, 97);
+            this.buttonHelpToElder.Location = new System.Drawing.Point(46, 236);
             this.buttonHelpToElder.Name = "buttonHelpToElder";
-            this.buttonHelpToElder.Size = new System.Drawing.Size(172, 91);
+            this.buttonHelpToElder.Size = new System.Drawing.Size(157, 117);
             this.buttonHelpToElder.TabIndex = 53;
-            this.buttonHelpToElder.Text = "Help to elderly";
+            this.buttonHelpToElder.Text = "Find an elderly to help:";
             this.buttonHelpToElder.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.buttonHelpToElder.UseVisualStyleBackColor = false;
             this.buttonHelpToElder.Click += new System.EventHandler(this.buttonHelpToElder_Click);
@@ -124,21 +125,44 @@
             this.panelForUserInfo.Controls.Add(this.labelBirthday);
             this.panelForUserInfo.Controls.Add(this.labelLocation);
             this.panelForUserInfo.Controls.Add(this.labelFullName);
-            this.panelForUserInfo.Controls.Add(this.labelUserFullName);
             this.panelForUserInfo.Controls.Add(this.pictureBoxProfile);
-            this.panelForUserInfo.Location = new System.Drawing.Point(356, 37);
+            this.panelForUserInfo.Location = new System.Drawing.Point(297, 37);
             this.panelForUserInfo.Name = "panelForUserInfo";
-            this.panelForUserInfo.Size = new System.Drawing.Size(565, 199);
+            this.panelForUserInfo.Size = new System.Drawing.Size(499, 199);
             this.panelForUserInfo.TabIndex = 54;
             // 
-            // labelUserFullName
+            // labelBirthday
             // 
-            this.labelUserFullName.AutoSize = true;
-            this.labelUserFullName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUserFullName.Location = new System.Drawing.Point(14, 163);
-            this.labelUserFullName.Name = "labelUserFullName";
-            this.labelUserFullName.Size = new System.Drawing.Size(0, 25);
-            this.labelUserFullName.TabIndex = 2;
+            this.labelBirthday.AutoSize = true;
+            this.labelBirthday.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.labelBirthday.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelBirthday.Location = new System.Drawing.Point(190, 103);
+            this.labelBirthday.Name = "labelBirthday";
+            this.labelBirthday.Size = new System.Drawing.Size(98, 24);
+            this.labelBirthday.TabIndex = 5;
+            this.labelBirthday.Text = "Birthday:";
+            // 
+            // labelLocation
+            // 
+            this.labelLocation.AutoSize = true;
+            this.labelLocation.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.labelLocation.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelLocation.Location = new System.Drawing.Point(190, 64);
+            this.labelLocation.Name = "labelLocation";
+            this.labelLocation.Size = new System.Drawing.Size(99, 24);
+            this.labelLocation.TabIndex = 4;
+            this.labelLocation.Text = "Location:";
+            // 
+            // labelFullName
+            // 
+            this.labelFullName.AutoSize = true;
+            this.labelFullName.BackColor = System.Drawing.Color.AntiqueWhite;
+            this.labelFullName.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFullName.Location = new System.Drawing.Point(190, 25);
+            this.labelFullName.Name = "labelFullName";
+            this.labelFullName.Size = new System.Drawing.Size(112, 24);
+            this.labelFullName.TabIndex = 3;
+            this.labelFullName.Text = "Full Name:";
             // 
             // pictureBoxProfile
             // 
@@ -163,7 +187,7 @@
             // 
             this.pictureBoxFbLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxFbLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxFbLogo.Image")));
-            this.pictureBoxFbLogo.Location = new System.Drawing.Point(958, 37);
+            this.pictureBoxFbLogo.Location = new System.Drawing.Point(984, 27);
             this.pictureBoxFbLogo.Name = "pictureBoxFbLogo";
             this.pictureBoxFbLogo.Size = new System.Drawing.Size(102, 98);
             this.pictureBoxFbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -205,7 +229,7 @@
             this.checkBoxRememberMe.AutoSize = true;
             this.checkBoxRememberMe.Enabled = false;
             this.checkBoxRememberMe.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxRememberMe.Location = new System.Drawing.Point(356, 257);
+            this.checkBoxRememberMe.Location = new System.Drawing.Point(321, 273);
             this.checkBoxRememberMe.Name = "checkBoxRememberMe";
             this.checkBoxRememberMe.Size = new System.Drawing.Size(146, 24);
             this.checkBoxRememberMe.TabIndex = 59;
@@ -255,6 +279,7 @@
             // 
             this.radioButtonFriends.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButtonFriends.AutoSize = true;
+            this.radioButtonFriends.Enabled = false;
             this.radioButtonFriends.Location = new System.Drawing.Point(356, 454);
             this.radioButtonFriends.Name = "radioButtonFriends";
             this.radioButtonFriends.Size = new System.Drawing.Size(140, 21);
@@ -268,6 +293,7 @@
             // 
             this.radioButtonEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButtonEvents.AutoSize = true;
+            this.radioButtonEvents.Enabled = false;
             this.radioButtonEvents.Location = new System.Drawing.Point(641, 454);
             this.radioButtonEvents.Name = "radioButtonEvents";
             this.radioButtonEvents.Size = new System.Drawing.Size(136, 21);
@@ -281,6 +307,7 @@
             // 
             this.radioButtonGroups.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButtonGroups.AutoSize = true;
+            this.radioButtonGroups.Enabled = false;
             this.radioButtonGroups.Location = new System.Drawing.Point(917, 454);
             this.radioButtonGroups.Name = "radioButtonGroups";
             this.radioButtonGroups.Size = new System.Drawing.Size(140, 21);
@@ -290,38 +317,19 @@
             this.radioButtonGroups.UseVisualStyleBackColor = true;
             this.radioButtonGroups.Click += new System.EventHandler(this.radioButtonGroups_Click);
             // 
-            // labelFullName
+            // buttonFetchData
             // 
-            this.labelFullName.AutoSize = true;
-            this.labelFullName.BackColor = System.Drawing.Color.AntiqueWhite;
-            this.labelFullName.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelFullName.Location = new System.Drawing.Point(190, 25);
-            this.labelFullName.Name = "labelFullName";
-            this.labelFullName.Size = new System.Drawing.Size(112, 24);
-            this.labelFullName.TabIndex = 3;
-            this.labelFullName.Text = "Full Name:";
-            // 
-            // labelLocation
-            // 
-            this.labelLocation.AutoSize = true;
-            this.labelLocation.BackColor = System.Drawing.Color.AntiqueWhite;
-            this.labelLocation.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelLocation.Location = new System.Drawing.Point(190, 64);
-            this.labelLocation.Name = "labelLocation";
-            this.labelLocation.Size = new System.Drawing.Size(99, 24);
-            this.labelLocation.TabIndex = 4;
-            this.labelLocation.Text = "Location:";
-            // 
-            // labelBirthday
-            // 
-            this.labelBirthday.AutoSize = true;
-            this.labelBirthday.BackColor = System.Drawing.Color.AntiqueWhite;
-            this.labelBirthday.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelBirthday.Location = new System.Drawing.Point(190, 103);
-            this.labelBirthday.Name = "labelBirthday";
-            this.labelBirthday.Size = new System.Drawing.Size(98, 24);
-            this.labelBirthday.TabIndex = 5;
-            this.labelBirthday.Text = "Birthday:";
+            this.buttonFetchData.BackColor = System.Drawing.Color.Azure;
+            this.buttonFetchData.Enabled = false;
+            this.buttonFetchData.Image = ((System.Drawing.Image)(resources.GetObject("buttonFetchData.Image")));
+            this.buttonFetchData.Location = new System.Drawing.Point(46, 86);
+            this.buttonFetchData.Name = "buttonFetchData";
+            this.buttonFetchData.Size = new System.Drawing.Size(157, 91);
+            this.buttonFetchData.TabIndex = 66;
+            this.buttonFetchData.Text = "Fetch All Data";
+            this.buttonFetchData.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.buttonFetchData.UseVisualStyleBackColor = false;
+            this.buttonFetchData.Click += new System.EventHandler(this.buttonFetchData_Click);
             // 
             // FormMain
             // 
@@ -372,7 +380,6 @@
         private System.Windows.Forms.ListBox listBoxEvents;
         private System.Windows.Forms.ListBox listBoxGroups;
         private System.Windows.Forms.Label labelCurrentDate;
-        private System.Windows.Forms.Label labelUserFullName;
         private System.Windows.Forms.CheckBox checkBoxRememberMe;
         private System.Windows.Forms.PictureBox pictureBoxFriendsLogo;
         private System.Windows.Forms.PictureBox pictureBoxGroupsLogo;
@@ -385,6 +392,7 @@
         private System.Windows.Forms.Label labelBirthday;
         private System.Windows.Forms.Label labelLocation;
         private System.Windows.Forms.Label labelFullName;
+        private System.Windows.Forms.Button buttonFetchData;
     }
 }
 

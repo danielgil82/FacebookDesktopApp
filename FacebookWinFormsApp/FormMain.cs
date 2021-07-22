@@ -47,6 +47,10 @@ namespace BasicFacebookFeatures
             checkBoxRememberMe.Enabled = true;
             buttonLogin.Enabled = false;
             buttonHelpToElder.Enabled = true;
+            radioButtonEvents.Enabled = true;
+            radioButtonFriends.Enabled = true;
+            radioButtonGroups.Enabled = true;
+            buttonFetchData.Enabled = true;
         }
 
         private void loginAndInit()
@@ -70,10 +74,9 @@ namespace BasicFacebookFeatures
                 "user_photos",
                 "user_posts",
                 "user_videos");
-                //"pages_messaging");
             buttonLogin.Text = $"Logged in as {m_LoginResult.LoggedInUser.Name}";
-           //buttonLogin.ForeColor = Color.Azure;
-           
+            //buttonLogin.ForeColor = Color.Azure;
+
             fetchLoggedInUser();
         }
 
@@ -88,17 +91,11 @@ namespace BasicFacebookFeatures
                 buttonLogin.Enabled = false;
                 buttonLogout.Enabled = true;
                 buttonHelpToElder.Enabled = true;
-            }
-            
-           // disableAllButtons();
-        }
-
-        private void disableAllButtons()
-        {
-            ///Button button = new Button();
-            foreach (Button but in this.)
-            {
-                
+                checkBoxRememberMe.Enabled = true;
+                buttonFetchData.Enabled = true;
+                radioButtonEvents.Enabled = true;
+                radioButtonFriends.Enabled = true;
+                radioButtonGroups.Enabled = true;
             }
         }
 
@@ -116,10 +113,10 @@ namespace BasicFacebookFeatures
         {
             m_FacebookAppManager = new FacebookAppManager(m_LoginResult.LoggedInUser);
             this.Text = "Welcome to our Desktop Facebook app";
-            
+
             pictureBoxProfile.LoadAsync(m_FacebookAppManager.LoggedInUser.PictureNormalURL);
             labelCurrentDate.Text = DateTime.Now.ToLongDateString();
-            labelUserFullName.Text = labelUserFullName.Text + "Welcome, " + m_FacebookAppManager.LoggedInUser.Name;
+            labelFullName.Text = labelFullName.Text + m_FacebookAppManager.LoggedInUser.Name;
             labelLocation.Text = labelLocation.Text + m_FacebookAppManager.LoggedInUser.Location.Name.ToString();
             labelBirthday.Text = labelBirthday.Text + m_FacebookAppManager.UsersBirthday;
         }
@@ -128,7 +125,7 @@ namespace BasicFacebookFeatures
         {
             m_FacebookAppManager.Logout();
             buttonLogin.Enabled = true;
-            buttonLogin.Text = "Login to Facebook";
+            buttonLogin.Text = "Logged to Facebook";
             buttonLogin.ForeColor = Color.WhiteSmoke;
             (sender as Button).Enabled = false;
         }
@@ -208,6 +205,13 @@ namespace BasicFacebookFeatures
             FormFindElderToHelp helpToElderly = new FormFindElderToHelp(this);
             helpToElderly.ShowDialog();
             this.Show();
+        }
+
+        private void buttonFetchData_Click(object sender, EventArgs e)
+        {
+            fetchFriends();
+            fetchEvents();
+            fetchGroups();
         }
     }
 }

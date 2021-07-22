@@ -56,6 +56,11 @@ namespace BasicFacebookFeatures
 
         private void buttonFindElderToHelp_Click(object sender, EventArgs e)
         {
+            if(pictureBoxElderPicture.Image != null)
+            {
+                pictureBoxElderPicture.Image = null;
+            }
+
             if (listBoxPotentialElders.Items.Count > 0)
             {
                 listBoxPotentialElders.Items.Clear();
