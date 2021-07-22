@@ -33,6 +33,7 @@
             this.buttonLogin = new System.Windows.Forms.Button();
             this.buttonLogout = new System.Windows.Forms.Button();
             this.panelOptions = new System.Windows.Forms.Panel();
+            this.buttonFetchData = new System.Windows.Forms.Button();
             this.buttonHelpToElder = new System.Windows.Forms.Button();
             this.panelForUserInfo = new System.Windows.Forms.Panel();
             this.labelBirthday = new System.Windows.Forms.Label();
@@ -52,7 +53,7 @@
             this.radioButtonFriends = new System.Windows.Forms.RadioButton();
             this.radioButtonEvents = new System.Windows.Forms.RadioButton();
             this.radioButtonGroups = new System.Windows.Forms.RadioButton();
-            this.buttonFetchData = new System.Windows.Forms.Button();
+            this.buttonTimeLine = new System.Windows.Forms.Button();
             this.panelOptions.SuspendLayout();
             this.panelForUserInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
@@ -95,6 +96,7 @@
             // 
             // panelOptions
             // 
+            this.panelOptions.Controls.Add(this.buttonTimeLine);
             this.panelOptions.Controls.Add(this.buttonFetchData);
             this.panelOptions.Controls.Add(this.buttonHelpToElder);
             this.panelOptions.Controls.Add(this.buttonLogin);
@@ -104,9 +106,23 @@
             this.panelOptions.Size = new System.Drawing.Size(247, 718);
             this.panelOptions.TabIndex = 53;
             // 
+            // buttonFetchData
+            // 
+            this.buttonFetchData.BackColor = System.Drawing.Color.Azure;
+            this.buttonFetchData.Enabled = false;
+            this.buttonFetchData.Image = ((System.Drawing.Image)(resources.GetObject("buttonFetchData.Image")));
+            this.buttonFetchData.Location = new System.Drawing.Point(46, 94);
+            this.buttonFetchData.Name = "buttonFetchData";
+            this.buttonFetchData.Size = new System.Drawing.Size(157, 93);
+            this.buttonFetchData.TabIndex = 66;
+            this.buttonFetchData.Text = "Fetch All Data";
+            this.buttonFetchData.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.buttonFetchData.UseVisualStyleBackColor = false;
+            this.buttonFetchData.Click += new System.EventHandler(this.buttonFetchData_Click);
+            // 
             // buttonHelpToElder
             // 
-            this.buttonHelpToElder.BackColor = System.Drawing.Color.Honeydew;
+            this.buttonHelpToElder.BackColor = System.Drawing.Color.Azure;
             this.buttonHelpToElder.Enabled = false;
             this.buttonHelpToElder.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonHelpToElder.Image = ((System.Drawing.Image)(resources.GetObject("buttonHelpToElder.Image")));
@@ -317,19 +333,20 @@
             this.radioButtonGroups.UseVisualStyleBackColor = true;
             this.radioButtonGroups.Click += new System.EventHandler(this.radioButtonGroups_Click);
             // 
-            // buttonFetchData
+            // buttonTimeLine
             // 
-            this.buttonFetchData.BackColor = System.Drawing.Color.Azure;
-            this.buttonFetchData.Enabled = false;
-            this.buttonFetchData.Image = ((System.Drawing.Image)(resources.GetObject("buttonFetchData.Image")));
-            this.buttonFetchData.Location = new System.Drawing.Point(46, 86);
-            this.buttonFetchData.Name = "buttonFetchData";
-            this.buttonFetchData.Size = new System.Drawing.Size(157, 91);
-            this.buttonFetchData.TabIndex = 66;
-            this.buttonFetchData.Text = "Fetch All Data";
-            this.buttonFetchData.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.buttonFetchData.UseVisualStyleBackColor = false;
-            this.buttonFetchData.Click += new System.EventHandler(this.buttonFetchData_Click);
+            this.buttonTimeLine.BackColor = System.Drawing.Color.Azure;
+            this.buttonTimeLine.Enabled = false;
+            this.buttonTimeLine.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonTimeLine.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.buttonTimeLine.Location = new System.Drawing.Point(46, 413);
+            this.buttonTimeLine.Name = "buttonTimeLine";
+            this.buttonTimeLine.Size = new System.Drawing.Size(157, 117);
+            this.buttonTimeLine.TabIndex = 67;
+            this.buttonTimeLine.Text = "Pictures Time Line:";
+            this.buttonTimeLine.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.buttonTimeLine.UseVisualStyleBackColor = false;
+            this.buttonTimeLine.Click += new System.EventHandler(this.buttonTimeLine_Click);
             // 
             // FormMain
             // 
@@ -393,6 +410,7 @@
         private System.Windows.Forms.Label labelLocation;
         private System.Windows.Forms.Label labelFullName;
         private System.Windows.Forms.Button buttonFetchData;
+        private System.Windows.Forms.Button buttonTimeLine;
     }
 }
 

@@ -11,6 +11,7 @@ namespace FacebookAppLogic
     {
         private readonly User r_LoggedInUser;
         private FindElders m_FindElders;
+        private TimeLineInfo m_TimeLineInfo;
 
         public FacebookAppManager(User i_LoggedInUser)
         {
@@ -35,7 +36,7 @@ namespace FacebookAppLogic
 
                 return Birthday;
             }
-            
+
         }
 
         public void Logout()
@@ -67,6 +68,18 @@ namespace FacebookAppLogic
             {
                 return r_LoggedInUser;
             }
+        }
+
+        public FacebookObjectCollection<Photo> TimeLinePhotos()
+        {
+
+
+            if (m_TimeLineInfo == null)
+            {
+                m_TimeLineInfo = new TimeLineInfo();
+            }
+
+            m_TimeLineInfo.FetchTimeLinePhotos();
         }
 
         public FacebookObjectCollection<User> GetFriends

@@ -51,6 +51,7 @@ namespace BasicFacebookFeatures
             radioButtonFriends.Enabled = true;
             radioButtonGroups.Enabled = true;
             buttonFetchData.Enabled = true;
+            buttonTimeLine.Enabled = true;
         }
 
         private void loginAndInit()
@@ -76,7 +77,6 @@ namespace BasicFacebookFeatures
                 "user_videos");
             buttonLogin.Text = $"Logged in as {m_LoginResult.LoggedInUser.Name}";
             //buttonLogin.ForeColor = Color.Azure;
-
             fetchLoggedInUser();
         }
 
@@ -92,8 +92,9 @@ namespace BasicFacebookFeatures
                 buttonLogin.Enabled = false;
                 buttonLogout.Enabled = true;
                 buttonHelpToElder.Enabled = true;
-                checkBoxRememberMe.Enabled = true;
                 buttonFetchData.Enabled = true;
+                buttonTimeLine.Enabled = true;
+                checkBoxRememberMe.Enabled = true;
                 radioButtonEvents.Enabled = true;
                 radioButtonFriends.Enabled = true;
                 radioButtonGroups.Enabled = true;
@@ -213,6 +214,14 @@ namespace BasicFacebookFeatures
             fetchFriends();
             fetchEvents();
             fetchGroups();
+        }
+
+        private void buttonTimeLine_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FormTimeLineInfo timeLineInfo = new FormTimeLineInfo(this);
+            timeLineInfo.ShowDialog();
+            this.Show();
         }
     }
 }

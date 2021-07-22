@@ -42,6 +42,7 @@
     <Compile Include="eGender.cs" />
     <Compile Include="FacebookAppManager.cs" />
     <Compile Include="FindElders.cs" />
+    <Compile Include="TimeLineInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Facebook">
