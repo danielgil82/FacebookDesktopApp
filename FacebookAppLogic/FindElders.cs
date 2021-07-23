@@ -166,7 +166,6 @@ namespace FacebookAppLogic
             }
             catch (Exception ex)
             {
-
                 throw new ArgumentException("Couldn't calculate the users age.");
             }
 

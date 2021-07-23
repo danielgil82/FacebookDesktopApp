@@ -98,6 +98,7 @@ namespace BasicFacebookFeatures
                 radioButtonEvents.Enabled = true;
                 radioButtonFriends.Enabled = true;
                 radioButtonGroups.Enabled = true;
+
             }
         }
 

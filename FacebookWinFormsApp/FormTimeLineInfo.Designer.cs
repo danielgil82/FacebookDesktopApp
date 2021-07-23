@@ -42,11 +42,11 @@ namespace BasicFacebookFeatures
             this.labelPhotoDescription = new System.Windows.Forms.Label();
             this.labelTitleChooseYears = new System.Windows.Forms.Label();
             this.panelYearChoosing = new System.Windows.Forms.Panel();
-            this.comboBoxFifthPicture = new System.Windows.Forms.ComboBox();
-            this.comboBoxFourthPicture = new System.Windows.Forms.ComboBox();
-            this.comboBoxThirdPicture = new System.Windows.Forms.ComboBox();
-            this.comboBoxSecondPicture = new System.Windows.Forms.ComboBox();
-            this.comboBoxFirstPicture = new System.Windows.Forms.ComboBox();
+            this.comboBoxFifthChoice = new System.Windows.Forms.ComboBox();
+            this.comboBoxFourthChoice = new System.Windows.Forms.ComboBox();
+            this.comboBoxThirdChoice = new System.Windows.Forms.ComboBox();
+            this.comboBoxSecondChoice = new System.Windows.Forms.ComboBox();
+            this.comboBoxFirstChoice = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -63,8 +63,10 @@ namespace BasicFacebookFeatures
             this.pictureBoxSecondPicture = new System.Windows.Forms.PictureBox();
             this.pictureBoxFirstPicture = new System.Windows.Forms.PictureBox();
             this.pictureBoxTimeLine = new System.Windows.Forms.PictureBox();
+            this.checkedListBoxYears = new System.Windows.Forms.CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panelDescription.SuspendLayout();
             this.panelYearChoosing.SuspendLayout();
@@ -84,13 +86,13 @@ namespace BasicFacebookFeatures
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.checkedListBoxYears);
             this.splitContainer1.Panel1.Controls.Add(this.buttonFetchPictures);
             this.splitContainer1.Panel1.Controls.Add(this.buttonFetchFriends);
             this.splitContainer1.Panel1.Controls.Add(this.listBoxUsersFriends);
             this.splitContainer1.Panel1.Controls.Add(this.labelTitleOfDescriptionPanel);
             this.splitContainer1.Panel1.Controls.Add(this.panelDescription);
             this.splitContainer1.Panel1.Controls.Add(this.labelTitleChooseYears);
-            this.splitContainer1.Panel1.Controls.Add(this.panelYearChoosing);
             this.splitContainer1.Panel1.Controls.Add(this.label5);
             this.splitContainer1.Panel1.Controls.Add(this.label4);
             this.splitContainer1.Panel1.Controls.Add(this.label3);
@@ -102,8 +104,12 @@ namespace BasicFacebookFeatures
             this.splitContainer1.Panel1.Controls.Add(this.pictureBoxSecondPicture);
             this.splitContainer1.Panel1.Controls.Add(this.pictureBoxFirstPicture);
             this.splitContainer1.Panel1.Controls.Add(this.pictureBoxTimeLine);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.panelYearChoosing);
             this.splitContainer1.Size = new System.Drawing.Size(1104, 742);
-            this.splitContainer1.SplitterDistance = 709;
+            this.splitContainer1.SplitterDistance = 708;
             this.splitContainer1.TabIndex = 0;
             // 
             // buttonFetchPictures
@@ -121,9 +127,9 @@ namespace BasicFacebookFeatures
             // buttonFetchFriends
             // 
             this.buttonFetchFriends.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonFetchFriends.Location = new System.Drawing.Point(521, 266);
+            this.buttonFetchFriends.Location = new System.Drawing.Point(539, 254);
             this.buttonFetchFriends.Name = "buttonFetchFriends";
-            this.buttonFetchFriends.Size = new System.Drawing.Size(152, 37);
+            this.buttonFetchFriends.Size = new System.Drawing.Size(112, 67);
             this.buttonFetchFriends.TabIndex = 15;
             this.buttonFetchFriends.Text = "Display Friends";
             this.buttonFetchFriends.UseVisualStyleBackColor = true;
@@ -133,7 +139,7 @@ namespace BasicFacebookFeatures
             // 
             this.listBoxUsersFriends.FormattingEnabled = true;
             this.listBoxUsersFriends.ItemHeight = 16;
-            this.listBoxUsersFriends.Location = new System.Drawing.Point(511, 315);
+            this.listBoxUsersFriends.Location = new System.Drawing.Point(511, 330);
             this.listBoxUsersFriends.Name = "listBoxUsersFriends";
             this.listBoxUsersFriends.Size = new System.Drawing.Size(175, 180);
             this.listBoxUsersFriends.TabIndex = 14;
@@ -207,111 +213,111 @@ namespace BasicFacebookFeatures
             this.labelTitleChooseYears.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTitleChooseYears.Location = new System.Drawing.Point(14, 283);
             this.labelTitleChooseYears.Name = "labelTitleChooseYears";
-            this.labelTitleChooseYears.Size = new System.Drawing.Size(264, 20);
+            this.labelTitleChooseYears.Size = new System.Drawing.Size(295, 20);
             this.labelTitleChooseYears.TabIndex = 12;
-            this.labelTitleChooseYears.Text = "Choose Year For Each Picture";
+            this.labelTitleChooseYears.Text = "Choose 5 Years For The Pictures:";
             // 
             // panelYearChoosing
             // 
-            this.panelYearChoosing.Controls.Add(this.comboBoxFifthPicture);
-            this.panelYearChoosing.Controls.Add(this.comboBoxFourthPicture);
-            this.panelYearChoosing.Controls.Add(this.comboBoxThirdPicture);
-            this.panelYearChoosing.Controls.Add(this.comboBoxSecondPicture);
-            this.panelYearChoosing.Controls.Add(this.comboBoxFirstPicture);
+            this.panelYearChoosing.Controls.Add(this.comboBoxFifthChoice);
+            this.panelYearChoosing.Controls.Add(this.comboBoxFourthChoice);
+            this.panelYearChoosing.Controls.Add(this.comboBoxThirdChoice);
+            this.panelYearChoosing.Controls.Add(this.comboBoxSecondChoice);
+            this.panelYearChoosing.Controls.Add(this.comboBoxFirstChoice);
             this.panelYearChoosing.Controls.Add(this.label10);
             this.panelYearChoosing.Controls.Add(this.label9);
             this.panelYearChoosing.Controls.Add(this.label8);
             this.panelYearChoosing.Controls.Add(this.label7);
             this.panelYearChoosing.Controls.Add(this.label6);
-            this.panelYearChoosing.Location = new System.Drawing.Point(14, 316);
+            this.panelYearChoosing.Location = new System.Drawing.Point(26, 151);
             this.panelYearChoosing.Name = "panelYearChoosing";
-            this.panelYearChoosing.Size = new System.Drawing.Size(309, 192);
+            this.panelYearChoosing.Size = new System.Drawing.Size(335, 194);
             this.panelYearChoosing.TabIndex = 11;
             // 
-            // comboBoxFifthPicture
+            // comboBoxFifthChoice
             // 
-            this.comboBoxFifthPicture.FormattingEnabled = true;
-            this.comboBoxFifthPicture.Location = new System.Drawing.Point(176, 151);
-            this.comboBoxFifthPicture.Name = "comboBoxFifthPicture";
-            this.comboBoxFifthPicture.Size = new System.Drawing.Size(121, 24);
-            this.comboBoxFifthPicture.TabIndex = 21;
+            this.comboBoxFifthChoice.FormattingEnabled = true;
+            this.comboBoxFifthChoice.Location = new System.Drawing.Point(176, 151);
+            this.comboBoxFifthChoice.Name = "comboBoxFifthChoice";
+            this.comboBoxFifthChoice.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxFifthChoice.TabIndex = 21;
             // 
-            // comboBoxFourthPicture
+            // comboBoxFourthChoice
             // 
-            this.comboBoxFourthPicture.FormattingEnabled = true;
-            this.comboBoxFourthPicture.Location = new System.Drawing.Point(176, 116);
-            this.comboBoxFourthPicture.Name = "comboBoxFourthPicture";
-            this.comboBoxFourthPicture.Size = new System.Drawing.Size(121, 24);
-            this.comboBoxFourthPicture.TabIndex = 20;
+            this.comboBoxFourthChoice.FormattingEnabled = true;
+            this.comboBoxFourthChoice.Location = new System.Drawing.Point(176, 116);
+            this.comboBoxFourthChoice.Name = "comboBoxFourthChoice";
+            this.comboBoxFourthChoice.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxFourthChoice.TabIndex = 20;
             // 
-            // comboBoxThirdPicture
+            // comboBoxThirdChoice
             // 
-            this.comboBoxThirdPicture.FormattingEnabled = true;
-            this.comboBoxThirdPicture.Location = new System.Drawing.Point(176, 79);
-            this.comboBoxThirdPicture.Name = "comboBoxThirdPicture";
-            this.comboBoxThirdPicture.Size = new System.Drawing.Size(121, 24);
-            this.comboBoxThirdPicture.TabIndex = 19;
+            this.comboBoxThirdChoice.FormattingEnabled = true;
+            this.comboBoxThirdChoice.Location = new System.Drawing.Point(176, 79);
+            this.comboBoxThirdChoice.Name = "comboBoxThirdChoice";
+            this.comboBoxThirdChoice.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxThirdChoice.TabIndex = 19;
             // 
-            // comboBoxSecondPicture
+            // comboBoxSecondChoice
             // 
-            this.comboBoxSecondPicture.FormattingEnabled = true;
-            this.comboBoxSecondPicture.Location = new System.Drawing.Point(176, 46);
-            this.comboBoxSecondPicture.Name = "comboBoxSecondPicture";
-            this.comboBoxSecondPicture.Size = new System.Drawing.Size(121, 24);
-            this.comboBoxSecondPicture.TabIndex = 18;
+            this.comboBoxSecondChoice.FormattingEnabled = true;
+            this.comboBoxSecondChoice.Location = new System.Drawing.Point(176, 46);
+            this.comboBoxSecondChoice.Name = "comboBoxSecondChoice";
+            this.comboBoxSecondChoice.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxSecondChoice.TabIndex = 18;
             // 
-            // comboBoxFirstPicture
+            // comboBoxFirstChoice
             // 
-            this.comboBoxFirstPicture.FormattingEnabled = true;
-            this.comboBoxFirstPicture.Location = new System.Drawing.Point(176, 12);
-            this.comboBoxFirstPicture.Name = "comboBoxFirstPicture";
-            this.comboBoxFirstPicture.Size = new System.Drawing.Size(121, 24);
-            this.comboBoxFirstPicture.TabIndex = 17;
+            this.comboBoxFirstChoice.FormattingEnabled = true;
+            this.comboBoxFirstChoice.Location = new System.Drawing.Point(176, 12);
+            this.comboBoxFirstChoice.Name = "comboBoxFirstChoice";
+            this.comboBoxFirstChoice.Size = new System.Drawing.Size(121, 24);
+            this.comboBoxFirstChoice.TabIndex = 17;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(9, 150);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(83, 17);
+            this.label10.Size = new System.Drawing.Size(86, 17);
             this.label10.TabIndex = 16;
-            this.label10.Text = "Fifth Picture";
+            this.label10.Text = "Fifth Choice:";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(9, 116);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(97, 17);
+            this.label9.Size = new System.Drawing.Size(100, 17);
             this.label9.TabIndex = 15;
-            this.label9.Text = "Fourth Picture";
+            this.label9.Text = "Fourth Choice:";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(9, 79);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(89, 17);
+            this.label8.Size = new System.Drawing.Size(92, 17);
             this.label8.TabIndex = 14;
-            this.label8.Text = "Third Picture";
+            this.label8.Text = "Third Choice:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(9, 46);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(104, 17);
+            this.label7.Size = new System.Drawing.Size(107, 17);
             this.label7.TabIndex = 13;
-            this.label7.Text = "Second Picture";
+            this.label7.Text = "Second Choice:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(9, 15);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(83, 17);
+            this.label6.Size = new System.Drawing.Size(86, 17);
             this.label6.TabIndex = 12;
-            this.label6.Text = "First Picture";
+            this.label6.Text = "First Choice:";
             // 
             // label5
             // 
@@ -409,10 +415,19 @@ namespace BasicFacebookFeatures
             this.pictureBoxTimeLine.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxTimeLine.Image")));
             this.pictureBoxTimeLine.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxTimeLine.Name = "pictureBoxTimeLine";
-            this.pictureBoxTimeLine.Size = new System.Drawing.Size(709, 243);
+            this.pictureBoxTimeLine.Size = new System.Drawing.Size(708, 243);
             this.pictureBoxTimeLine.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxTimeLine.TabIndex = 0;
             this.pictureBoxTimeLine.TabStop = false;
+            // 
+            // checkedListBoxYears
+            // 
+            this.checkedListBoxYears.FormattingEnabled = true;
+            this.checkedListBoxYears.Location = new System.Drawing.Point(12, 330);
+            this.checkedListBoxYears.Name = "checkedListBoxYears";
+            this.checkedListBoxYears.Size = new System.Drawing.Size(302, 174);
+            this.checkedListBoxYears.TabIndex = 17;
+            this.checkedListBoxYears.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxYears_SelectedIndexChanged);
             // 
             // FormTimeLineInfo
             // 
@@ -424,6 +439,7 @@ namespace BasicFacebookFeatures
             this.Text = "FormTimeLineInfo";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.panelDescription.ResumeLayout(false);
@@ -460,13 +476,13 @@ namespace BasicFacebookFeatures
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBoxFirstPicture;
+        private System.Windows.Forms.ComboBox comboBoxFirstChoice;
         private System.Windows.Forms.Panel panelDescription;
         private System.Windows.Forms.Label labelTitleChooseYears;
-        private System.Windows.Forms.ComboBox comboBoxFifthPicture;
-        private System.Windows.Forms.ComboBox comboBoxFourthPicture;
-        private System.Windows.Forms.ComboBox comboBoxThirdPicture;
-        private System.Windows.Forms.ComboBox comboBoxSecondPicture;
+        private System.Windows.Forms.ComboBox comboBoxFifthChoice;
+        private System.Windows.Forms.ComboBox comboBoxFourthChoice;
+        private System.Windows.Forms.ComboBox comboBoxThirdChoice;
+        private System.Windows.Forms.ComboBox comboBoxSecondChoice;
         private System.Windows.Forms.Label labelTitleOfDescriptionPanel;
         private System.Windows.Forms.TextBox textBoxDescription;
         private System.Windows.Forms.Label labelCheckIn;
@@ -475,5 +491,6 @@ namespace BasicFacebookFeatures
         private System.Windows.Forms.Button buttonFetchPictures;
         private System.Windows.Forms.Button buttonFetchFriends;
         private System.Windows.Forms.ListBox listBoxUsersFriends;
+        private System.Windows.Forms.CheckedListBox checkedListBoxYears;
     }
 }

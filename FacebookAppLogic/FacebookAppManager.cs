@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using FacebookWrapper.ObjectModel;
 using FacebookWrapper;
+using static FacebookAppLogic.TimeLineInfo;
 
 namespace FacebookAppLogic
 {
@@ -12,6 +13,15 @@ namespace FacebookAppLogic
         private readonly User r_LoggedInUser;
         private FindElders m_FindElders;
         private TimeLineInfo m_TimeLineInfo;
+
+        public TimeLineInfo TimeLineInfo
+        {
+            get
+            {
+                return m_TimeLineInfo;
+            }
+        }
+
 
         public FacebookAppManager(User i_LoggedInUser)
         {
@@ -70,17 +80,17 @@ namespace FacebookAppLogic
             }
         }
 
-        //public FacebookObjectCollection<Photo> TimeLinePhotos()
-        //{
+        public Dictionary<int, UserPhotoInfo> GetTimeLinePictures(User i_ChosenUser, List<int> i_YearsChoosen)
+        {
+            if (m_TimeLineInfo == null)
+            {
+                m_TimeLineInfo = new TimeLineInfo();
+            }
 
+            m_TimeLineInfo.FetchTimeLinePhotos(i_ChosenUser,i_YearsChoosen);
 
-        //    if (m_TimeLineInfo == null)
-        //    {
-        //        m_TimeLineInfo = new TimeLineInfo();
-        //    }
-
-        //    m_TimeLineInfo.FetchTimeLinePhotos();
-        //}
+            return m_TimeLineInfo.UserPhotosInfo;
+        }
 
         public FacebookObjectCollection<User> GetFriends
         {

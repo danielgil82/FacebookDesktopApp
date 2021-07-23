@@ -150,7 +150,7 @@ namespace BasicFacebookFeatures
             "Both"});
             this.checkedListBoxGender.Location = new System.Drawing.Point(47, 164);
             this.checkedListBoxGender.Name = "checkedListBoxGender";
-            this.checkedListBoxGender.Size = new System.Drawing.Size(105, 89);
+            this.checkedListBoxGender.Size = new System.Drawing.Size(105, 72);
             this.checkedListBoxGender.TabIndex = 6;
             this.checkedListBoxGender.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxGender_SelectedIndexChanged);
             // 

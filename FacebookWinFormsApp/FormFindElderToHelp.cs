@@ -35,12 +35,12 @@ namespace BasicFacebookFeatures
 
         private void initAgeRangeList()
         {
-            m_AgeRangeList.Add("20-25");
+          //  m_AgeRangeList.Add("20-25");
             for (int i = 65; i < 125; i += 5)
             {
                 m_AgeRangeList.Add(string.Format("{0} - {1}", i + 1, i + 5));
             }
-
+            
             checkedListBoxAgeRange.DataSource = m_AgeRangeList;
         }
 
