@@ -16,7 +16,10 @@ namespace BasicFacebookFeatures
     {
         private readonly FacebookAppManager r_FacebookAppManager;
         private readonly FacebookObjectCollection<User> r_UsersFriends = null;
-        private List<string> m_YearsToChoose;
+        private User m_PreferredUser;
+
+        public User PreferredUser { get; private set; }
+
 
         public FacebookObjectCollection<User> UsersFriends { get; private set; }
 
@@ -26,52 +29,23 @@ namespace BasicFacebookFeatures
             InitializeComponent();
             r_FacebookAppManager = i_MainForm.FacebookAppManager;
             UsersFriends = r_FacebookAppManager.GetFriends;
-            m_YearsToChoose = new List<string>();
-         //   fetchYearsToChoose();
-
+            fetchYearsToChoose();
         }
 
         private void fetchYearsToChoose()
         {
-
-            foreach(Control control in this.splitContainer1.Panel1.Controls)
+            foreach (Control control in this.panelYearChoosing.Controls)
             {
                 if (control is ComboBox) // check if control is comboBOx
                 {
-                    ComboBox comboBox = control as ComboBox;
-                    
-                    if(comboBox.Name.StartsWith("combo"))
+                    ComboBox cmBox = control as ComboBox;
+
+                    for (int i = 2015; i < 2022; i++)
                     {
-                        for (int i = 2015; i < 2022; i++)
-                        {
-                            comboBox.Items.Add(i);
-                        }
+                        cmBox.Items.Add(i.ToString());
                     }
-
-                    
                 }
             }
-
-           // fetchYearsToComboBoxes();
-        }
-
-        private void fetchYearsToComboBoxes()
-        {
-            foreach (Control control in this.Controls) // you can change cntrls.Controls to your container or if its the form that holds the combobox then use this.Controls
-            {
-                if (control is ComboBox) // check if control is checkbox
-                {
-                    (control as ComboBox).DataSource = m_YearsToChoose.ToString();
-                }
-
-            }
-
-            //foreach (ComboBox currentComboBox in this.Controls.OfType<ComboBox>())
-            //{
-            //    currentComboBox.DataSource = m_YearsToChoose;
-            //    currentComboBox.DisplayMember = "Name";
-
-            //}
         }
 
         private void buttonFetchFriends_Click(object sender, EventArgs e)
@@ -87,6 +61,41 @@ namespace BasicFacebookFeatures
             {
                 MessageBox.Show("No friends to retrieve");
             }
+        }
+
+        private void buttonFetchPictures_Click(object sender, EventArgs e)
+        {
+            if (areTheComboBoxesChecked() && PreferredUser != null)
+            {
+                Photo photo = new Photo();
+            //    photo.
+            }
+        }
+
+        private bool areTheComboBoxesChecked()
+        {
+            bool areChecked = true;
+
+            foreach (Control control in this.panelYearChoosing.Controls)
+            {
+                if (control is ComboBox)
+                {
+                    ComboBox cmBox = control as ComboBox;
+
+                    if (string.IsNullOrEmpty(cmBox.Text))
+                    {
+                        areChecked = false;
+                        break;
+                    }
+                }
+            }
+
+            return areChecked;
+        }
+
+        private void listBoxUsersFriends_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            PreferredUser = ((sender as ListBox).SelectedItem) as User;
         }
     }
 }

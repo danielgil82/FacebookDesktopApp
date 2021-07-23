@@ -70,17 +70,17 @@ namespace FacebookAppLogic
             }
         }
 
-        public FacebookObjectCollection<Photo> TimeLinePhotos()
-        {
+        //public FacebookObjectCollection<Photo> TimeLinePhotos()
+        //{
 
 
-            if (m_TimeLineInfo == null)
-            {
-                m_TimeLineInfo = new TimeLineInfo();
-            }
+        //    if (m_TimeLineInfo == null)
+        //    {
+        //        m_TimeLineInfo = new TimeLineInfo();
+        //    }
 
-            m_TimeLineInfo.FetchTimeLinePhotos();
-        }
+        //    m_TimeLineInfo.FetchTimeLinePhotos();
+        //}
 
         public FacebookObjectCollection<User> GetFriends
         {

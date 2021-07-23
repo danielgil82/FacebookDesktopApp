@@ -116,6 +116,7 @@ namespace BasicFacebookFeatures
             this.buttonFetchPictures.Text = "Get Pictures";
             this.buttonFetchPictures.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             this.buttonFetchPictures.UseVisualStyleBackColor = true;
+            this.buttonFetchPictures.Click += new System.EventHandler(this.buttonFetchPictures_Click);
             // 
             // buttonFetchFriends
             // 
@@ -136,6 +137,7 @@ namespace BasicFacebookFeatures
             this.listBoxUsersFriends.Name = "listBoxUsersFriends";
             this.listBoxUsersFriends.Size = new System.Drawing.Size(175, 180);
             this.listBoxUsersFriends.TabIndex = 14;
+            this.listBoxUsersFriends.SelectedIndexChanged += new System.EventHandler(this.listBoxUsersFriends_SelectedIndexChanged);
             // 
             // labelTitleOfDescriptionPanel
             // 
@@ -229,14 +231,6 @@ namespace BasicFacebookFeatures
             // comboBoxFifthPicture
             // 
             this.comboBoxFifthPicture.FormattingEnabled = true;
-            this.comboBoxFifthPicture.Items.AddRange(new object[] {
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020",
-            "2021"});
             this.comboBoxFifthPicture.Location = new System.Drawing.Point(176, 151);
             this.comboBoxFifthPicture.Name = "comboBoxFifthPicture";
             this.comboBoxFifthPicture.Size = new System.Drawing.Size(121, 24);
@@ -245,14 +239,6 @@ namespace BasicFacebookFeatures
             // comboBoxFourthPicture
             // 
             this.comboBoxFourthPicture.FormattingEnabled = true;
-            this.comboBoxFourthPicture.Items.AddRange(new object[] {
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020",
-            "2021"});
             this.comboBoxFourthPicture.Location = new System.Drawing.Point(176, 116);
             this.comboBoxFourthPicture.Name = "comboBoxFourthPicture";
             this.comboBoxFourthPicture.Size = new System.Drawing.Size(121, 24);
@@ -261,14 +247,6 @@ namespace BasicFacebookFeatures
             // comboBoxThirdPicture
             // 
             this.comboBoxThirdPicture.FormattingEnabled = true;
-            this.comboBoxThirdPicture.Items.AddRange(new object[] {
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020",
-            "2021"});
             this.comboBoxThirdPicture.Location = new System.Drawing.Point(176, 79);
             this.comboBoxThirdPicture.Name = "comboBoxThirdPicture";
             this.comboBoxThirdPicture.Size = new System.Drawing.Size(121, 24);
@@ -277,14 +255,6 @@ namespace BasicFacebookFeatures
             // comboBoxSecondPicture
             // 
             this.comboBoxSecondPicture.FormattingEnabled = true;
-            this.comboBoxSecondPicture.Items.AddRange(new object[] {
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020",
-            "2021"});
             this.comboBoxSecondPicture.Location = new System.Drawing.Point(176, 46);
             this.comboBoxSecondPicture.Name = "comboBoxSecondPicture";
             this.comboBoxSecondPicture.Size = new System.Drawing.Size(121, 24);
@@ -293,14 +263,6 @@ namespace BasicFacebookFeatures
             // comboBoxFirstPicture
             // 
             this.comboBoxFirstPicture.FormattingEnabled = true;
-            this.comboBoxFirstPicture.Items.AddRange(new object[] {
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020",
-            "2021"});
             this.comboBoxFirstPicture.Location = new System.Drawing.Point(176, 12);
             this.comboBoxFirstPicture.Name = "comboBoxFirstPicture";
             this.comboBoxFirstPicture.Size = new System.Drawing.Size(121, 24);
