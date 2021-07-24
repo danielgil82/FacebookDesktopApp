@@ -54,8 +54,6 @@ namespace FacebookAppLogic
             {
                 m_ChoosenYears.Add(year);
             }
-
-            m_ChoosenYears.Sort();
         }
 
         public class UserPhotoInfo
@@ -120,56 +118,75 @@ namespace FacebookAppLogic
 
         internal void FetchTimeLinePhotos(User i_ChosenUser, List<int> i_YearsChosen)
         {
-            int counter = ChosenYears.Count;
+           
             ChosenUser = i_ChosenUser;
-            Hashtable takenPhotos = new Hashtable();
             int i = 0;
-            FetchYears(i_YearsChosen);
+            int sizeOfTheAlbum = 0;
 
-            if(takenPhotos.Count != 0)
+            if (m_ChoosenYears.Count != 0)
             {
-                takenPhotos.Clear();
+                m_ChoosenYears.Clear();
             }
 
-            if(UserPhotosInfo.Count != 0)
+            FetchYears(i_YearsChosen);
+            if (UserPhotosInfo.Count != 0)
             {
                 UserPhotosInfo.Clear();
             }
 
-            foreach (int year in ChosenYears)
+            foreach (Album album in ChosenUser.Albums)
             {
-                foreach (Album album in ChosenUser.Albums)
+                if (album.Name == "Profile Pictures")
                 {
+                    sizeOfTheAlbum = (int)album.Count;
 
-                    if (album.CreatedTime.Value.Year == year && album.Photos.Count > 0)
+                    foreach (int year in ChosenYears)
                     {
-                        
-                        
-                        if (!takenPhotos.Contains(album.Photos[i]))
+                        i = 0;
+                        while (i < sizeOfTheAlbum)
                         {
-                            takenPhotos.Add(album.Photos[i], year);
-                            UserPhotosInfo.Add(year, new UserPhotoInfo(album.Photos[i]));
-                            break;
-                        }
-                        else
-                        {
-                            while (i < album.Photos.Count && takenPhotos.Contains(album.Photos[i]))
+                            if (album.Photos[i].CreatedTime.Value.Year != year)
                             {
                                 i++;
                             }
-
-                            if (i == album.Photos.Count)
+                            else
                             {
-                                throw new ArgumentException("Not enough photos in this year");
+                                UserPhotosInfo.Add(year, new UserPhotoInfo(album.Photos[i]));
+                                break;
                             }
-
-                            takenPhotos.Add(album.Photos[i], year);
-                            UserPhotosInfo.Add(year, new UserPhotoInfo(album.Photos[i]));
-                            break;
                         }
                     }
+                    break;
                 }
+                //if (album.CreatedTime.Value.Year == year && album.Photos.Count > 0)
+                //{
+                //    UserPhotosInfo.Add(year, new UserPhotoInfo(album.Photos[i]));
+                //    break;
+                //}
+                //if (!takenPhotos.Contains(album.Photos[i]))
+                //{
+                //    takenPhotos.Add(album.Photos[i], year);
+                //    UserPhotosInfo.Add(year, new UserPhotoInfo(album.Photos[i]));
+                //    break;
+                //}
+                //else
+                //{
+                //    while (i < album.Photos.Count && takenPhotos.Contains(album.Photos[i]))
+                //    {
+                //        i++;
+                //    }
+
+                //    if (i == album.Photos.Count)
+                //    {
+                //        throw new ArgumentException("Not enough photos in this year");
+                //    }
+
+                //    takenPhotos.Add(album.Photos[i], year);
+                //    UserPhotosInfo.Add(year, new UserPhotoInfo(album.Photos[i]));
+                //    break;
+                //}
             }
+
         }
     }
 }
