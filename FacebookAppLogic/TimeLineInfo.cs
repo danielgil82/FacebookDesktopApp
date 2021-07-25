@@ -59,8 +59,7 @@ namespace FacebookAppLogic
         public class UserPhotoInfo
         {
             private Photo m_Photo;
-            private string m_PhotoDescription;
-            private FacebookObjectCollection<PhotoTag> m_PhotoTags = new FacebookObjectCollection<PhotoTag>();
+            private string m_PhotoDescription = string.Empty;
             private string m_PhotosCreationDate = string.Empty;
 
             public string PhotosCreationDate
@@ -83,18 +82,6 @@ namespace FacebookAppLogic
                 }
             }
 
-            public FacebookObjectCollection<PhotoTag> PhotoTags
-            {
-                get
-                {
-                    return m_PhotoTags;
-                }
-                set
-                {
-                    m_PhotoTags = value;
-                }
-            }
-
             public string PhotoDescription
             {
                 get
@@ -111,7 +98,6 @@ namespace FacebookAppLogic
             {
                 m_Photo = i_ChoosenPhoto;
                 PhotoDescription = ChoosenPhoto.Name;
-                PhotoTags = ChoosenPhoto.Tags;
                 PhotosCreationDate = ChoosenPhoto.CreatedTime.ToString();
             }
         }
@@ -138,7 +124,7 @@ namespace FacebookAppLogic
             {
                 if (album.Name == "Profile Pictures")
                 {
-                    sizeOfTheAlbum = (int)album.Count;
+                    sizeOfTheAlbum = (int)album.Photos.Count;
 
                     foreach (int year in ChosenYears)
                     {
@@ -156,37 +142,10 @@ namespace FacebookAppLogic
                             }
                         }
                     }
+
                     break;
                 }
-                //if (album.CreatedTime.Value.Year == year && album.Photos.Count > 0)
-                //{
-                //    UserPhotosInfo.Add(year, new UserPhotoInfo(album.Photos[i]));
-                //    break;
-                //}
-                //if (!takenPhotos.Contains(album.Photos[i]))
-                //{
-                //    takenPhotos.Add(album.Photos[i], year);
-                //    UserPhotosInfo.Add(year, new UserPhotoInfo(album.Photos[i]));
-                //    break;
-                //}
-                //else
-                //{
-                //    while (i < album.Photos.Count && takenPhotos.Contains(album.Photos[i]))
-                //    {
-                //        i++;
-                //    }
-
-                //    if (i == album.Photos.Count)
-                //    {
-                //        throw new ArgumentException("Not enough photos in this year");
-                //    }
-
-                //    takenPhotos.Add(album.Photos[i], year);
-                //    UserPhotosInfo.Add(year, new UserPhotoInfo(album.Photos[i]));
-                //    break;
-                //}
             }
-
         }
     }
 }

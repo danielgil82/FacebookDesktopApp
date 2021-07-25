@@ -46,12 +46,6 @@ namespace BasicFacebookFeatures
             this.label6 = new System.Windows.Forms.Label();
             this.buttonFetchFriends = new System.Windows.Forms.Button();
             this.listBoxUsersFriends = new System.Windows.Forms.ListBox();
-            this.labelTitleOfDescriptionPanel = new System.Windows.Forms.Label();
-            this.panelDescription = new System.Windows.Forms.Panel();
-            this.textBoxDescription = new System.Windows.Forms.TextBox();
-            this.labelCheckIn = new System.Windows.Forms.Label();
-            this.labelTaggedPeople = new System.Windows.Forms.Label();
-            this.labelPhotoDescription = new System.Windows.Forms.Label();
             this.labelTitleChooseYears = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -64,18 +58,23 @@ namespace BasicFacebookFeatures
             this.pictureBoxPicture2 = new System.Windows.Forms.PictureBox();
             this.pictureBoxPicture1 = new System.Windows.Forms.PictureBox();
             this.pictureBoxTimeLine = new System.Windows.Forms.PictureBox();
+            this.panelDescription = new System.Windows.Forms.Panel();
+            this.labelPhotoCreationDate = new System.Windows.Forms.Label();
+            this.textBoxDescription = new System.Windows.Forms.TextBox();
+            this.labelPhotoDescription = new System.Windows.Forms.Label();
+            this.labelTitleOfDescriptionPanel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panelYearChoosing.SuspendLayout();
-            this.panelDescription.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPicture5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPicture4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPicture3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPicture2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPicture1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTimeLine)).BeginInit();
+            this.panelDescription.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -109,13 +108,13 @@ namespace BasicFacebookFeatures
             this.splitContainer1.Panel2.Controls.Add(this.panelDescription);
             this.splitContainer1.Panel2.Controls.Add(this.labelTitleOfDescriptionPanel);
             this.splitContainer1.Size = new System.Drawing.Size(1214, 784);
-            this.splitContainer1.SplitterDistance = 783;
+            this.splitContainer1.SplitterDistance = 796;
             this.splitContainer1.TabIndex = 0;
             // 
             // buttonDifferentYears
             // 
             this.buttonDifferentYears.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonDifferentYears.Location = new System.Drawing.Point(366, 480);
+            this.buttonDifferentYears.Location = new System.Drawing.Point(366, 515);
             this.buttonDifferentYears.Name = "buttonDifferentYears";
             this.buttonDifferentYears.Size = new System.Drawing.Size(119, 59);
             this.buttonDifferentYears.TabIndex = 17;
@@ -126,7 +125,7 @@ namespace BasicFacebookFeatures
             // buttonFetchPictures
             // 
             this.buttonFetchPictures.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonFetchPictures.Location = new System.Drawing.Point(366, 319);
+            this.buttonFetchPictures.Location = new System.Drawing.Point(366, 354);
             this.buttonFetchPictures.Name = "buttonFetchPictures";
             this.buttonFetchPictures.Size = new System.Drawing.Size(119, 70);
             this.buttonFetchPictures.TabIndex = 16;
@@ -146,7 +145,7 @@ namespace BasicFacebookFeatures
             this.panelYearChoosing.Controls.Add(this.label8);
             this.panelYearChoosing.Controls.Add(this.label7);
             this.panelYearChoosing.Controls.Add(this.label6);
-            this.panelYearChoosing.Location = new System.Drawing.Point(12, 316);
+            this.panelYearChoosing.Location = new System.Drawing.Point(12, 351);
             this.panelYearChoosing.Name = "panelYearChoosing";
             this.panelYearChoosing.Size = new System.Drawing.Size(335, 359);
             this.panelYearChoosing.TabIndex = 11;
@@ -249,7 +248,7 @@ namespace BasicFacebookFeatures
             // buttonFetchFriends
             // 
             this.buttonFetchFriends.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonFetchFriends.Location = new System.Drawing.Point(562, 257);
+            this.buttonFetchFriends.Location = new System.Drawing.Point(562, 292);
             this.buttonFetchFriends.Name = "buttonFetchFriends";
             this.buttonFetchFriends.Size = new System.Drawing.Size(112, 67);
             this.buttonFetchFriends.TabIndex = 15;
@@ -261,79 +260,17 @@ namespace BasicFacebookFeatures
             // 
             this.listBoxUsersFriends.FormattingEnabled = true;
             this.listBoxUsersFriends.ItemHeight = 16;
-            this.listBoxUsersFriends.Location = new System.Drawing.Point(511, 330);
+            this.listBoxUsersFriends.Location = new System.Drawing.Point(523, 374);
             this.listBoxUsersFriends.Name = "listBoxUsersFriends";
             this.listBoxUsersFriends.Size = new System.Drawing.Size(229, 340);
             this.listBoxUsersFriends.TabIndex = 14;
             this.listBoxUsersFriends.SelectedIndexChanged += new System.EventHandler(this.listBoxUsersFriends_SelectedIndexChanged);
             // 
-            // labelTitleOfDescriptionPanel
-            // 
-            this.labelTitleOfDescriptionPanel.AutoSize = true;
-            this.labelTitleOfDescriptionPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitleOfDescriptionPanel.Location = new System.Drawing.Point(25, 34);
-            this.labelTitleOfDescriptionPanel.Name = "labelTitleOfDescriptionPanel";
-            this.labelTitleOfDescriptionPanel.Size = new System.Drawing.Size(374, 25);
-            this.labelTitleOfDescriptionPanel.TabIndex = 0;
-            this.labelTitleOfDescriptionPanel.Text = "Click on one of the displayed photos !";
-            // 
-            // panelDescription
-            // 
-            this.panelDescription.Controls.Add(this.textBoxDescription);
-            this.panelDescription.Controls.Add(this.labelCheckIn);
-            this.panelDescription.Controls.Add(this.labelPhotoDescription);
-            this.panelDescription.Controls.Add(this.labelTaggedPeople);
-            this.panelDescription.Location = new System.Drawing.Point(3, 99);
-            this.panelDescription.Name = "panelDescription";
-            this.panelDescription.Size = new System.Drawing.Size(412, 673);
-            this.panelDescription.TabIndex = 13;
-            // 
-            // textBoxDescription
-            // 
-            this.textBoxDescription.Location = new System.Drawing.Point(27, 72);
-            this.textBoxDescription.Multiline = true;
-            this.textBoxDescription.Name = "textBoxDescription";
-            this.textBoxDescription.Size = new System.Drawing.Size(203, 153);
-            this.textBoxDescription.TabIndex = 3;
-            // 
-            // labelCheckIn
-            // 
-            this.labelCheckIn.AutoSize = true;
-            this.labelCheckIn.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.labelCheckIn.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCheckIn.Location = new System.Drawing.Point(32, 362);
-            this.labelCheckIn.Name = "labelCheckIn";
-            this.labelCheckIn.Size = new System.Drawing.Size(99, 24);
-            this.labelCheckIn.TabIndex = 2;
-            this.labelCheckIn.Text = "Check In:";
-            // 
-            // labelTaggedPeople
-            // 
-            this.labelTaggedPeople.AutoSize = true;
-            this.labelTaggedPeople.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.labelTaggedPeople.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTaggedPeople.Location = new System.Drawing.Point(32, 266);
-            this.labelTaggedPeople.Name = "labelTaggedPeople";
-            this.labelTaggedPeople.Size = new System.Drawing.Size(156, 24);
-            this.labelTaggedPeople.TabIndex = 1;
-            this.labelTaggedPeople.Text = "Tagged people:";
-            // 
-            // labelPhotoDescription
-            // 
-            this.labelPhotoDescription.AutoSize = true;
-            this.labelPhotoDescription.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.labelPhotoDescription.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPhotoDescription.Location = new System.Drawing.Point(32, 25);
-            this.labelPhotoDescription.Name = "labelPhotoDescription";
-            this.labelPhotoDescription.Size = new System.Drawing.Size(126, 24);
-            this.labelPhotoDescription.TabIndex = 0;
-            this.labelPhotoDescription.Text = "Description:";
-            // 
             // labelTitleChooseYears
             // 
             this.labelTitleChooseYears.AutoSize = true;
             this.labelTitleChooseYears.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitleChooseYears.Location = new System.Drawing.Point(14, 283);
+            this.labelTitleChooseYears.Location = new System.Drawing.Point(14, 318);
             this.labelTitleChooseYears.Name = "labelTitleChooseYears";
             this.labelTitleChooseYears.Size = new System.Drawing.Size(295, 20);
             this.labelTitleChooseYears.TabIndex = 12;
@@ -391,21 +328,23 @@ namespace BasicFacebookFeatures
             // 
             // pictureBoxPicture5
             // 
-            this.pictureBoxPicture5.Location = new System.Drawing.Point(642, 144);
+            this.pictureBoxPicture5.Location = new System.Drawing.Point(30, 144);
             this.pictureBoxPicture5.Name = "pictureBoxPicture5";
             this.pictureBoxPicture5.Size = new System.Drawing.Size(129, 83);
             this.pictureBoxPicture5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxPicture5.TabIndex = 5;
             this.pictureBoxPicture5.TabStop = false;
+            this.pictureBoxPicture5.Click += new System.EventHandler(this.pictureBoxPicture5_Click);
             // 
             // pictureBoxPicture4
             // 
-            this.pictureBoxPicture4.Location = new System.Drawing.Point(481, 1);
+            this.pictureBoxPicture4.Location = new System.Drawing.Point(171, 0);
             this.pictureBoxPicture4.Name = "pictureBoxPicture4";
             this.pictureBoxPicture4.Size = new System.Drawing.Size(138, 86);
             this.pictureBoxPicture4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxPicture4.TabIndex = 4;
             this.pictureBoxPicture4.TabStop = false;
+            this.pictureBoxPicture4.Click += new System.EventHandler(this.pictureBoxPicture4_Click);
             // 
             // pictureBoxPicture3
             // 
@@ -415,24 +354,27 @@ namespace BasicFacebookFeatures
             this.pictureBoxPicture3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxPicture3.TabIndex = 3;
             this.pictureBoxPicture3.TabStop = false;
+            this.pictureBoxPicture3.Click += new System.EventHandler(this.pictureBoxPicture3_Click);
             // 
             // pictureBoxPicture2
             // 
-            this.pictureBoxPicture2.Location = new System.Drawing.Point(169, 1);
+            this.pictureBoxPicture2.Location = new System.Drawing.Point(485, 0);
             this.pictureBoxPicture2.Name = "pictureBoxPicture2";
             this.pictureBoxPicture2.Size = new System.Drawing.Size(138, 86);
             this.pictureBoxPicture2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxPicture2.TabIndex = 2;
             this.pictureBoxPicture2.TabStop = false;
+            this.pictureBoxPicture2.Click += new System.EventHandler(this.pictureBoxPicture2_Click);
             // 
             // pictureBoxPicture1
             // 
-            this.pictureBoxPicture1.Location = new System.Drawing.Point(18, 144);
+            this.pictureBoxPicture1.Location = new System.Drawing.Point(649, 144);
             this.pictureBoxPicture1.Name = "pictureBoxPicture1";
             this.pictureBoxPicture1.Size = new System.Drawing.Size(131, 83);
             this.pictureBoxPicture1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxPicture1.TabIndex = 1;
             this.pictureBoxPicture1.TabStop = false;
+            this.pictureBoxPicture1.Click += new System.EventHandler(this.pictureBoxPicture1_Click);
             // 
             // pictureBoxTimeLine
             // 
@@ -440,10 +382,60 @@ namespace BasicFacebookFeatures
             this.pictureBoxTimeLine.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxTimeLine.Image")));
             this.pictureBoxTimeLine.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxTimeLine.Name = "pictureBoxTimeLine";
-            this.pictureBoxTimeLine.Size = new System.Drawing.Size(783, 243);
+            this.pictureBoxTimeLine.Size = new System.Drawing.Size(796, 243);
             this.pictureBoxTimeLine.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxTimeLine.TabIndex = 0;
             this.pictureBoxTimeLine.TabStop = false;
+            // 
+            // panelDescription
+            // 
+            this.panelDescription.Controls.Add(this.labelPhotoCreationDate);
+            this.panelDescription.Controls.Add(this.textBoxDescription);
+            this.panelDescription.Controls.Add(this.labelPhotoDescription);
+            this.panelDescription.Location = new System.Drawing.Point(3, 99);
+            this.panelDescription.Name = "panelDescription";
+            this.panelDescription.Size = new System.Drawing.Size(412, 682);
+            this.panelDescription.TabIndex = 13;
+            // 
+            // labelPhotoCreationDate
+            // 
+            this.labelPhotoCreationDate.AutoSize = true;
+            this.labelPhotoCreationDate.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.labelPhotoCreationDate.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPhotoCreationDate.Location = new System.Drawing.Point(10, 255);
+            this.labelPhotoCreationDate.Name = "labelPhotoCreationDate";
+            this.labelPhotoCreationDate.Size = new System.Drawing.Size(148, 24);
+            this.labelPhotoCreationDate.TabIndex = 6;
+            this.labelPhotoCreationDate.Text = "Creation Date:";
+            // 
+            // textBoxDescription
+            // 
+            this.textBoxDescription.Location = new System.Drawing.Point(14, 134);
+            this.textBoxDescription.Multiline = true;
+            this.textBoxDescription.Name = "textBoxDescription";
+            this.textBoxDescription.Size = new System.Drawing.Size(336, 105);
+            this.textBoxDescription.TabIndex = 3;
+            // 
+            // labelPhotoDescription
+            // 
+            this.labelPhotoDescription.AutoSize = true;
+            this.labelPhotoDescription.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.labelPhotoDescription.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPhotoDescription.Location = new System.Drawing.Point(10, 36);
+            this.labelPhotoDescription.Name = "labelPhotoDescription";
+            this.labelPhotoDescription.Size = new System.Drawing.Size(126, 24);
+            this.labelPhotoDescription.TabIndex = 0;
+            this.labelPhotoDescription.Text = "Description:";
+            // 
+            // labelTitleOfDescriptionPanel
+            // 
+            this.labelTitleOfDescriptionPanel.AutoSize = true;
+            this.labelTitleOfDescriptionPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitleOfDescriptionPanel.Location = new System.Drawing.Point(12, 27);
+            this.labelTitleOfDescriptionPanel.Name = "labelTitleOfDescriptionPanel";
+            this.labelTitleOfDescriptionPanel.Size = new System.Drawing.Size(374, 25);
+            this.labelTitleOfDescriptionPanel.TabIndex = 0;
+            this.labelTitleOfDescriptionPanel.Text = "Click on one of the displayed photos !";
             // 
             // FormTimeLineInfo
             // 
@@ -461,14 +453,14 @@ namespace BasicFacebookFeatures
             this.splitContainer1.ResumeLayout(false);
             this.panelYearChoosing.ResumeLayout(false);
             this.panelYearChoosing.PerformLayout();
-            this.panelDescription.ResumeLayout(false);
-            this.panelDescription.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPicture5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPicture4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPicture3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPicture2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPicture1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTimeLine)).EndInit();
+            this.panelDescription.ResumeLayout(false);
+            this.panelDescription.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -502,12 +494,11 @@ namespace BasicFacebookFeatures
         private System.Windows.Forms.ComboBox comboBoxSecondChoice;
         private System.Windows.Forms.Label labelTitleOfDescriptionPanel;
         private System.Windows.Forms.TextBox textBoxDescription;
-        private System.Windows.Forms.Label labelCheckIn;
-        private System.Windows.Forms.Label labelTaggedPeople;
         private System.Windows.Forms.Label labelPhotoDescription;
         private System.Windows.Forms.Button buttonFetchPictures;
         private System.Windows.Forms.Button buttonFetchFriends;
         private System.Windows.Forms.ListBox listBoxUsersFriends;
         private System.Windows.Forms.Button buttonDifferentYears;
+        private System.Windows.Forms.Label labelPhotoCreationDate;
     }
 }

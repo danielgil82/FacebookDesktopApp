@@ -19,6 +19,7 @@ namespace BasicFacebookFeatures
         private readonly AppSettings r_AppSettings;
         private FacebookAppManager m_FacebookAppManager;
         private LoginResult m_LoginResult;
+        private const string k_UnknownMessage = "Uknown";
 
         public FacebookAppManager FacebookAppManager
         {
@@ -38,7 +39,6 @@ namespace BasicFacebookFeatures
             this.Size = r_AppSettings.LastWindowSize;
         }
 
-
         private void buttonLogin_Click(object sender, EventArgs e)
         {
             loginAndInit();
@@ -56,13 +56,14 @@ namespace BasicFacebookFeatures
 
         private void loginAndInit()
         {
-            Clipboard.SetText("design.patterns20cc"); /// the current password for Desig Patter
+            Clipboard.SetText("design.patterns21c"); /// the current password for Desig Patter
 
             m_LoginResult = FacebookService.Login(
                 "452659572840281",
-                /// requested permissions:
+                ///requested permissions:
                 "email",
                 "public_profile",
+              //  "total_count",
                 "user_age_range",
                 "user_birthday",
                 "user_events",
@@ -80,27 +81,25 @@ namespace BasicFacebookFeatures
             fetchLoggedInUser();
         }
 
-
-        protected override void OnShown(EventArgs e)
-        {
-            base.OnShown(e);
-            if (r_AppSettings.RememberUser && !string.IsNullOrEmpty(r_AppSettings.LastAccessToken))
-            {
-                m_LoginResult = FacebookService.Connect(r_AppSettings.LastAccessToken);
-                buttonLogin.Text = $"Logged in as {m_LoginResult.LoggedInUser.Name}";
-                fetchLoggedInUser();
-                buttonLogin.Enabled = false;
-                buttonLogout.Enabled = true;
-                buttonHelpToElder.Enabled = true;
-                buttonFetchData.Enabled = true;
-                buttonTimeLine.Enabled = true;
-                checkBoxRememberMe.Enabled = true;
-                radioButtonEvents.Enabled = true;
-                radioButtonFriends.Enabled = true;
-                radioButtonGroups.Enabled = true;
-
-            }
-        }
+        //protected override void OnShown(EventArgs e)
+        //{
+        //    base.OnShown(e);
+        //    if (r_AppSettings.RememberUser && !string.IsNullOrEmpty(r_AppSettings.LastAccessToken))
+        //    {
+        //        m_LoginResult = FacebookService.Connect(r_AppSettings.LastAccessToken);
+        //        buttonLogin.Text = $"Logged in as {m_LoginResult.LoggedInUser.Name}";
+        //        fetchLoggedInUser();
+        //        buttonLogin.Enabled = false;
+        //        buttonLogout.Enabled = true;
+        //        buttonHelpToElder.Enabled = true;
+        //        buttonFetchData.Enabled = true;
+        //        buttonTimeLine.Enabled = true;
+        //        checkBoxRememberMe.Enabled = true;
+        //        radioButtonEvents.Enabled = true;
+        //        radioButtonFriends.Enabled = true;
+        //        radioButtonGroups.Enabled = true;
+        //    }
+        //}
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
@@ -111,7 +110,7 @@ namespace BasicFacebookFeatures
             r_AppSettings.LastAccessToken = r_AppSettings.RememberUser ? m_LoginResult.AccessToken : null;
             r_AppSettings.SaveToFile();
         }
-        
+
         private void fetchLoggedInUser()
         {
             m_FacebookAppManager = new FacebookAppManager(m_LoginResult.LoggedInUser);
@@ -120,8 +119,38 @@ namespace BasicFacebookFeatures
             pictureBoxProfile.LoadAsync(m_FacebookAppManager.LoggedInUser.PictureNormalURL);
             labelCurrentDate.Text = DateTime.Now.ToLongDateString();
             labelFullName.Text = labelFullName.Text + " " + m_FacebookAppManager.LoggedInUser.Name;
-            labelLocation.Text = labelLocation.Text + " " + m_FacebookAppManager.LoggedInUser.Location.Name.ToString();
-            labelBirthday.Text = labelBirthday.Text + " "  + m_FacebookAppManager.UsersBirthday;
+            try
+            {
+                fetchUsersLocation();
+                fetchUsersBirthday();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void fetchUsersBirthday()
+        {
+            if (m_FacebookAppManager.LoggedInUser.Location.Name != null)
+            {
+                labelBirthday.Text = labelBirthday.Text + " " + m_FacebookAppManager.UsersBirthday;
+            }
+            else
+            {
+                throw new NullReferenceException(k_UnknownMessage);
+            }
+        }
+
+        private void fetchUsersLocation()
+        {
+            if (m_FacebookAppManager.LoggedInUser.Location.Name != null)
+            {
+                labelLocation.Text = labelLocation.Text + " " + m_FacebookAppManager.LoggedInUser.Location.Name.ToString();
+            }
+            else
+            {
+                throw new NullReferenceException(k_UnknownMessage);
+            }
         }
 
         private void buttonLogout_Click(object sender, EventArgs e)
@@ -225,4 +254,5 @@ namespace BasicFacebookFeatures
             this.Show();
         }
     }
+
 }
