@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using FacebookWrapper.ObjectModel;
 using FacebookWrapper;
-using static FacebookAppLogic.TimeLineInfo;
+using static FacebookAppLogic.TimeLineChange;
 
 namespace FacebookAppLogic
 {
@@ -12,16 +12,15 @@ namespace FacebookAppLogic
     {
         private readonly User r_LoggedInUser;
         private FindElders m_FindElders;
-        private TimeLineInfo m_TimeLineInfo;
+        private TimeLineChange m_TimeLineInfo;
 
-        public TimeLineInfo TimeLineInfo
-        {
-            get
-            {
-                return m_TimeLineInfo;
-            }
-        }
-
+        //public TimeLineChange TimeLineInfo
+        //{
+        //    get
+        //    {
+        //        return m_TimeLineInfo;
+        //    }
+        //}
 
         public FacebookAppManager(User i_LoggedInUser)
         {
@@ -29,8 +28,7 @@ namespace FacebookAppLogic
         }
 
         public string UsersBirthday
-        {
-
+        { 
             get
             {
                 string Birthday = string.Empty;
@@ -41,12 +39,11 @@ namespace FacebookAppLogic
                 }
                 catch (Exception)
                 {
-                    throw new Exception("Couldn't retrieve users birthday ");
+                    throw new Exception("Couldn't retrieve users birthday.");
                 }
 
                 return Birthday;
             }
-
         }
 
         public void Logout()
@@ -71,7 +68,6 @@ namespace FacebookAppLogic
             return m_FindElders.FindEldersThatMatchUsersConditions(i_PreferredGender, i_PreferredAgeRange);
         }
 
-
         public User LoggedInUser
         {
             get
@@ -84,7 +80,7 @@ namespace FacebookAppLogic
         {
             if (m_TimeLineInfo == null)
             {
-                m_TimeLineInfo = new TimeLineInfo();
+                m_TimeLineInfo = new TimeLineChange();
             }
 
             m_TimeLineInfo.FetchTimeLinePhotos(i_ChosenUser,i_YearsChoosen);

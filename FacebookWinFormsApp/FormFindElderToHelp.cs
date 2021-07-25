@@ -15,7 +15,7 @@ using Microsoft.Win32;
 
 namespace BasicFacebookFeatures
 {
-    public partial class FormFindElderToHelp : Form
+    internal partial class FormFindElderToHelp : Form
     {
         private readonly FacebookAppManager r_FacebookAppManager;
         private readonly List<string> m_AgeRangeList;
@@ -25,7 +25,7 @@ namespace BasicFacebookFeatures
 
         internal string PreferredGender { get; private set; }
 
-        public FormFindElderToHelp(FormMain i_FormMain)
+        internal FormFindElderToHelp(FormMain i_FormMain)
         {
             InitializeComponent();
             r_FacebookAppManager = i_FormMain.FacebookAppManager;
@@ -35,8 +35,7 @@ namespace BasicFacebookFeatures
 
         private void initAgeRangeList()
         {
-             m_AgeRangeList.Add("20-25");
-            for (int i = 65; i < 125; i += 5)
+            for (int i = 65 ; i < 125 ; i += 5)
             {
                 m_AgeRangeList.Add(string.Format("{0} - {1}", i + 1, i + 5));
             }
@@ -73,7 +72,7 @@ namespace BasicFacebookFeatures
                     m_PotentialEldersList = r_FacebookAppManager.FindEldersThatMatchUsersConditions(PreferredGender, PreferredAgeRange);
                     fetchPotentialElders();
                     displaySelectedElderUser();
-                    PreferredGender = String.Empty;
+                    PreferredGender = string.Empty;
                 }
                 catch (ArgumentException ex)
                 {
@@ -91,6 +90,7 @@ namespace BasicFacebookFeatures
             if (listBoxPotentialElders.SelectedItems.Count == 1)
             {
                 User SelectedUser = listBoxPotentialElders.SelectedItem as User;
+
                 if (SelectedUser.PictureNormalURL != null)
                 {
                     pictureBoxElderPicture.LoadAsync(SelectedUser.PictureNormalURL);
@@ -106,6 +106,7 @@ namespace BasicFacebookFeatures
         {
             listBoxPotentialElders.Items.Clear();
             listBoxPotentialElders.DisplayMember = "Name";
+
             foreach (User user in m_PotentialEldersList)
             {
                 listBoxPotentialElders.Items.Add(user);
@@ -138,7 +139,7 @@ namespace BasicFacebookFeatures
                 int index = currentCheckedListBox.SelectedIndex;
                 int count = currentCheckedListBox.Items.Count;
 
-                for (int x = 0; x < count; x++)
+                for (int x = 0 ; x < count ; x++)
                 {
                     if (index != x)
                     {

@@ -8,14 +8,13 @@ using System.Threading.Tasks;
 
 namespace FacebookAppLogic
 {
-    public class TimeLineInfo
+    public class TimeLineChange
     {
-        private User m_ChosenUser;
         private readonly List<int> m_ChoosenYears = new List<int>();
         private readonly Dictionary<int, UserPhotoInfo> r_UserPhotosInfo = new Dictionary<int, UserPhotoInfo>();
+        private User m_ChosenUser;
 
-
-        public List<int> ChosenYears
+        internal List<int> ChosenYears
         {
             get
             {
@@ -23,7 +22,7 @@ namespace FacebookAppLogic
             }
         }
 
-        public Dictionary<int, UserPhotoInfo> UserPhotosInfo
+        internal Dictionary<int, UserPhotoInfo> UserPhotosInfo
         {
             get
             {
@@ -31,7 +30,7 @@ namespace FacebookAppLogic
             }
         }
 
-        public User ChosenUser
+        internal User ChosenUser
         {
             get
             {
@@ -43,11 +42,8 @@ namespace FacebookAppLogic
             }
         }
 
-        public TimeLineInfo()
-        {
-
-        }
-
+        internal TimeLineChange(){ }
+        
         private void FetchYears(List<int> i_ChoosesYearsByUser)
         {
             foreach (int year in i_ChoosesYearsByUser)
@@ -94,7 +90,7 @@ namespace FacebookAppLogic
                 }
             }
 
-            public UserPhotoInfo(Photo i_ChoosenPhoto)
+            internal UserPhotoInfo(Photo i_ChoosenPhoto)
             {
                 m_Photo = i_ChoosenPhoto;
                 PhotoDescription = ChoosenPhoto.Name;
@@ -104,7 +100,6 @@ namespace FacebookAppLogic
 
         internal void FetchTimeLinePhotos(User i_ChosenUser, List<int> i_YearsChosen)
         {
-           
             ChosenUser = i_ChosenUser;
             int i = 0;
             int sizeOfTheAlbum = 0;

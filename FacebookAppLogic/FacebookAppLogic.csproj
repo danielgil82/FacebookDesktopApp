@@ -39,10 +39,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AppSettings.cs" />
-    <Compile Include="eGender.cs" />
     <Compile Include="FacebookAppManager.cs" />
     <Compile Include="FindElders.cs" />
-    <Compile Include="TimeLineInfo.cs" />
+    <Compile Include="TimeLineChange.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Facebook">

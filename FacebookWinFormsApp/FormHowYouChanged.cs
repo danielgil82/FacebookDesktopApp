@@ -10,33 +10,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static FacebookAppLogic.TimeLineInfo;
+using static FacebookAppLogic.TimeLineChange;
 
 namespace BasicFacebookFeatures
 {
-    internal partial class FormTimeLineInfo : Form
+    internal partial class FormHowYouChanged : Form
     {
-        private readonly FacebookAppManager r_FacebookAppManager;
-        private readonly FacebookObjectCollection<User> r_UsersFriends = null;
-        private readonly List<int> r_YearsChoosenByUser;
-        private readonly Hashtable r_HasTheYearBeenChosen = new Hashtable();
-        private readonly Dictionary<int, UserPhotoInfo> r_TimeLinePhotos = new Dictionary<int, UserPhotoInfo>();
         private const string k_ChooseAUser = "You must choose a friend, via Display Friends Button!!";
         private const string k_FiveDifferentYears = "Oops you must select 5 different options in the years section";
         private const string k_NoneStr = "None";
         private const string k_DateLabel = "Creation Date:";
+        private readonly FacebookAppManager r_FacebookAppManager;
+        private readonly FacebookObjectCollection<User> r_UsersFriends = null;
+        private readonly Hashtable r_HasTheYearBeenChosen = new Hashtable();
+        private readonly Dictionary<int, UserPhotoInfo> r_TimeLinePhotos = new Dictionary<int, UserPhotoInfo>();
+        private readonly List<int> r_YearsChoosenByUser;
         private User m_PreferredUser;
 
-
-        public Dictionary<int, UserPhotoInfo> TimeLinePhotos 
-        { 
+        internal Dictionary<int, UserPhotoInfo> TimeLinePhotos
+        {
             get
             {
                 return r_TimeLinePhotos;
-            } 
+            }
         }
 
-        public Hashtable HasTheYearBeenChosen
+        internal Hashtable HasTheYearBeenChosen
         {
             get
             {
@@ -45,7 +44,7 @@ namespace BasicFacebookFeatures
         }
 
 
-        public FacebookObjectCollection<User> UsersFriends
+        internal FacebookObjectCollection<User> UsersFriends
         {
             get
             {
@@ -53,7 +52,7 @@ namespace BasicFacebookFeatures
             }
         }
 
-        public User PreferredUser
+        internal User PreferredUser
         {
             get
             {
@@ -65,14 +64,12 @@ namespace BasicFacebookFeatures
             }
         }
 
-        public FormTimeLineInfo(FormMain i_MainForm)
+        internal FormHowYouChanged(FormMain i_MainForm)
         {
             InitializeComponent();
             r_FacebookAppManager = i_MainForm.FacebookAppManager;
             r_UsersFriends = r_FacebookAppManager.GetFriends;
             r_YearsChoosenByUser = new List<int>();
-            //fetchListYears();
-
             fetchYearsToChooseInTheComboBoxes();
         }
 
@@ -109,16 +106,19 @@ namespace BasicFacebookFeatures
 
         private void buttonFetchPictures_Click(object sender, EventArgs e)
         {
-            if (HasTheYearBeenChosen.Count == 5)//areTheComboBoxesChecked())
+            ///areTheComboBoxesChecked())
+
+            if (HasTheYearBeenChosen.Count == 5)
             {
                 if (PreferredUser != null)
                 {
                     Dictionary<int, UserPhotoInfo> TempTimeLinePhotos;
+
                     fetchChoosenYearsFromTheHastable();
                     TempTimeLinePhotos = r_FacebookAppManager.GetTimeLinePictures(PreferredUser, r_YearsChoosenByUser);
-                    fetchPhotosFromTemoDictionaryToTimeLinePhotosDictionary(TempTimeLinePhotos);
-                    displayThePicturesInThePictureBoxes(TimeLinePhotos);
-
+                    fetchPhotosFromTempDictionaryToTimeLinePhotosDictionary(TempTimeLinePhotos);
+                    resetDataAboutPhotosAndPicturBoxes();
+                    fetchPhotosAndDataAboutThem(TimeLinePhotos);
                 }
                 else
                 {
@@ -131,34 +131,68 @@ namespace BasicFacebookFeatures
             }
         }
 
-        private void fetchPhotosFromTemoDictionaryToTimeLinePhotosDictionary(Dictionary<int, UserPhotoInfo> i_TimeLinePhotos)
+        private void resetDataAboutPhotosAndPicturBoxes()
         {
-            if(r_TimeLinePhotos.Count != 0)
+            resetTheImagesInThePictureBoxes();
+            resetDatesInTheLables();
+            resetTextBoxesTexts();
+        }
+
+        private void fetchPhotosAndDataAboutThem(Dictionary<int, UserPhotoInfo> i_TimeLinePhotos)
+        {
+            displayThePicturesInThePictureBoxes(TimeLinePhotos);
+            fetchPhotosDescriptions(TimeLinePhotos);
+            fetchPhotosDates(TimeLinePhotos);
+        }
+
+        private void resetTextBoxesTexts()
+        {
+            foreach (Control control in panelDescription.Controls)
+            {
+                if (control is TextBox)
+                {
+                    if ((control as TextBox).Text != string.Empty)
+                    {
+                        (control as TextBox).Text = string.Empty;
+                    }
+                }
+            }
+        }
+
+        private void resetDatesInTheLables()
+        {
+            foreach (Control control in panelDescription.Controls)
+            {
+                if (control is Label)
+                {
+                    if ((control as Label).Text.Contains(k_DateLabel))
+                    {
+                        Label currentLabel = control as Label;
+
+                        if (currentLabel.Text.Length != k_DateLabel.Length)
+                        {
+                            currentLabel.Text = k_DateLabel;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void fetchPhotosFromTempDictionaryToTimeLinePhotosDictionary(Dictionary<int, UserPhotoInfo> i_TimeLinePhotos)
+        {
+            if (r_TimeLinePhotos.Count != 0)
             {
                 r_TimeLinePhotos.Clear();
             }
 
-            foreach(KeyValuePair<int, UserPhotoInfo> element in i_TimeLinePhotos)
+            foreach (KeyValuePair<int, UserPhotoInfo> element in i_TimeLinePhotos)
             {
                 r_TimeLinePhotos.Add(element.Key, element.Value);
             }
         }
 
-
-        //private void displayThePicturesInThePictureBoxes2(Dictionary<int, UserPhotoInfo> i_TimeLinePhotos)
-        //{
-        //    int length = i_TimeLinePhotos.Keys.Count;
-
-        //    foreach (int year in i_TimeLinePhotos.Keys)
-        //    {
-
-        //    }
-        //}
-
-
         private void displayThePicturesInThePictureBoxes(Dictionary<int, UserPhotoInfo> i_TimeLinePhotos)
         {
-            resetTheImagesInThePictureBoxes();
             int length = r_YearsChoosenByUser.Count;
             int dictionaryLength = i_TimeLinePhotos.Keys.Count;
 
@@ -176,8 +210,55 @@ namespace BasicFacebookFeatures
                     }
                 }
             }
-            // sortThePictureBoxList(r_PictureBoxesNames);
-            // attachYearsToPictureBoxesNames(r_PictureBoxesNames);
+        }
+
+        /// <summary>
+        /// Fetch the dates of the each photo 
+        /// </summary>
+        /// <param name="i_TimeLinePhotos"></param>
+        private void fetchPhotosDates(Dictionary<int, UserPhotoInfo> i_TimeLinePhotos)
+        {
+            foreach (KeyValuePair<int, UserPhotoInfo> elementInfo in i_TimeLinePhotos)
+            {
+                foreach (Control control in panelDescription.Controls)
+                {
+                    if (control is Label)
+                    {
+                        if ((control as Label).Text.Contains(k_DateLabel))
+                        {
+                            Label currentLabel = control as Label;
+                            if (currentLabel.Text.Length == k_DateLabel.Length)
+                            {
+                                currentLabel.Text += elementInfo.Value.PhotosCreationDate;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// /// Fetch the description of the each photo 
+        /// </summary>
+        /// <param name="i_TimeLinePhotos"></param>
+        private void fetchPhotosDescriptions(Dictionary<int, UserPhotoInfo> i_TimeLinePhotos)
+        {
+            foreach (KeyValuePair<int, UserPhotoInfo> elementInfo in i_TimeLinePhotos)
+            {
+                foreach (Control control in panelDescription.Controls)
+                {
+                    if (control is TextBox)
+                    {
+                        if ((control as TextBox).Text == string.Empty)
+                        {
+                            (control as TextBox).Text = (elementInfo.Value.PhotoDescription == null) ? k_NoneStr
+                                : elementInfo.Value.PhotoDescription;
+                            break;
+                        }
+                    }
+                }
+            }
         }
 
         private void resetTheImagesInThePictureBoxes()
@@ -191,21 +272,6 @@ namespace BasicFacebookFeatures
                         PictureBox pic = control as PictureBox;
                         pic.Image = null;
                     }
-                }
-            }
-        }
-
-        private void attachYearsToPictureBoxesNames(List<PictureBox> i_PictureBoxesNames)
-        {
-            int length = r_YearsChoosenByUser.Count;
-            int x = 0;
-
-            foreach (PictureBox picBox in i_PictureBoxesNames)
-            {
-                if (x < length)
-                {
-                    picBox.Name += r_YearsChoosenByUser[x];
-                    x++;
                 }
             }
         }
@@ -322,85 +388,6 @@ namespace BasicFacebookFeatures
                 r_YearsChoosenByUser.Clear();
                 HasTheYearBeenChosen.Clear();
             }
-        }
-
-        private void pictureBoxPicture5_Click(object sender, EventArgs e)
-        {
-            fetchingCurrentPictureBoxData(sender as PictureBox);
-        }
-
-        private void pictureBoxPicture4_Click(object sender, EventArgs e)
-        {
-            fetchingCurrentPictureBoxData(sender as PictureBox);
-        }
-
-        private void pictureBoxPicture3_Click(object sender, EventArgs e)
-        {
-            fetchingCurrentPictureBoxData(sender as PictureBox);
-        }
-
-        private void pictureBoxPicture2_Click(object sender, EventArgs e)
-        {
-            fetchingCurrentPictureBoxData(sender as PictureBox);
-        }
-
-        private void pictureBoxPicture1_Click(object sender, EventArgs e)
-        {
-            fetchingCurrentPictureBoxData(sender as PictureBox);
-        }
-
-        private void fetchingCurrentPictureBoxData(PictureBox i_CurrentPictureBox)
-        {
-            bool flag = true;
-
-            foreach (UserPhotoInfo valueInfo in r_TimeLinePhotos.Values)
-            {
-                foreach (Control control in this.splitContainer1.Panel1.Controls)
-                {
-                    if (control is PictureBox)
-                    {
-                        PictureBox picBox = control as PictureBox;
-                        if (picBox.Image == i_CurrentPictureBox.Image && valueInfo.ChoosenPhoto.)
-                        {
-                            fetchPhotoData(valueInfo);
-                            flag = false;
-                            break;
-                        }
-                        continue;
-                    }
-                }
-
-                if (!flag)
-                {
-                    break;
-                }
-            }
-        }
-
-        private void fetchPhotoData(UserPhotoInfo i_CurrentValue)
-        {
-            fetchPhotoDescription(i_CurrentValue);
-            fetchPhotoCreationDate(i_CurrentValue);
-        }
-
-        private void fetchPhotoCreationDate(UserPhotoInfo i_CurrentValue)
-        {
-            if(labelPhotoCreationDate.Text != k_DateLabel)
-            {
-                labelPhotoCreationDate.Text = k_DateLabel;
-            }
-
-            labelPhotoCreationDate.Text += i_CurrentValue.PhotosCreationDate;
-        }
-
-        private void fetchPhotoDescription(UserPhotoInfo i_CurrentValue)
-        {
-            if (textBoxDescription.Text != string.Empty)
-            {
-                textBoxDescription.Text = string.Empty;
-            }
-
-            textBoxDescription.Text = i_CurrentValue.PhotoDescription == null ? k_NoneStr : i_CurrentValue.PhotoDescription;
         }
     }
 }

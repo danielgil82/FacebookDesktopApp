@@ -14,14 +14,14 @@ using FacebookWrapper;
 
 namespace BasicFacebookFeatures
 {
-    public partial class FormMain : Form
+    internal partial class FormMain : Form
     {
+        private const string k_UnknownMessage = "Uknown";
         private readonly AppSettings r_AppSettings;
         private FacebookAppManager m_FacebookAppManager;
         private LoginResult m_LoginResult;
-        private const string k_UnknownMessage = "Uknown";
 
-        public FacebookAppManager FacebookAppManager
+        internal FacebookAppManager FacebookAppManager
         {
             get
             {
@@ -29,11 +29,16 @@ namespace BasicFacebookFeatures
             }
         }
 
-        public FormMain()
+        internal FormMain()
         {
             InitializeComponent();
             FacebookWrapper.FacebookService.s_CollectionLimit = 100;
             r_AppSettings = AppSettings.LoadFromFile();
+            fetchFormSettings();
+        }
+
+        private void fetchFormSettings()
+        {
             this.StartPosition = FormStartPosition.Manual;
             this.Location = r_AppSettings.LastWindowLocation;
             this.Size = r_AppSettings.LastWindowSize;
@@ -63,7 +68,6 @@ namespace BasicFacebookFeatures
                 ///requested permissions:
                 "email",
                 "public_profile",
-              //  "total_count",
                 "user_age_range",
                 "user_birthday",
                 "user_events",
@@ -77,29 +81,8 @@ namespace BasicFacebookFeatures
                 "user_posts",
                 "user_videos");
             buttonLogin.Text = $"Logged in as {m_LoginResult.LoggedInUser.Name}";
-            //buttonLogin.ForeColor = Color.Azure;
             fetchLoggedInUser();
         }
-
-        //protected override void OnShown(EventArgs e)
-        //{
-        //    base.OnShown(e);
-        //    if (r_AppSettings.RememberUser && !string.IsNullOrEmpty(r_AppSettings.LastAccessToken))
-        //    {
-        //        m_LoginResult = FacebookService.Connect(r_AppSettings.LastAccessToken);
-        //        buttonLogin.Text = $"Logged in as {m_LoginResult.LoggedInUser.Name}";
-        //        fetchLoggedInUser();
-        //        buttonLogin.Enabled = false;
-        //        buttonLogout.Enabled = true;
-        //        buttonHelpToElder.Enabled = true;
-        //        buttonFetchData.Enabled = true;
-        //        buttonTimeLine.Enabled = true;
-        //        checkBoxRememberMe.Enabled = true;
-        //        radioButtonEvents.Enabled = true;
-        //        radioButtonFriends.Enabled = true;
-        //        radioButtonGroups.Enabled = true;
-        //    }
-        //}
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
@@ -113,8 +96,8 @@ namespace BasicFacebookFeatures
 
         private void fetchLoggedInUser()
         {
-            m_FacebookAppManager = new FacebookAppManager(m_LoginResult.LoggedInUser);
             this.Text = "Welcome to our Desktop Facebook app";
+            m_FacebookAppManager = new FacebookAppManager(m_LoginResult.LoggedInUser);
             buttonLogin.ForeColor = Color.White;
             pictureBoxProfile.LoadAsync(m_FacebookAppManager.LoggedInUser.PictureNormalURL);
             labelCurrentDate.Text = DateTime.Now.ToLongDateString();
@@ -129,6 +112,7 @@ namespace BasicFacebookFeatures
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void fetchUsersBirthday()
         {
             if (m_FacebookAppManager.LoggedInUser.Location.Name != null)
@@ -157,7 +141,7 @@ namespace BasicFacebookFeatures
         {
             m_FacebookAppManager.Logout();
             buttonLogin.Enabled = true;
-            buttonLogin.Text = "Logged to Facebook";
+            buttonLogin.Text = "Login To Facebook";
             buttonLogin.ForeColor = Color.WhiteSmoke;
             (sender as Button).Enabled = false;
         }
@@ -181,6 +165,7 @@ namespace BasicFacebookFeatures
         {
             listBoxFriends.Items.Clear();
             listBoxFriends.DisplayMember = "Name";
+
             foreach (User friend in m_FacebookAppManager.GetFriends)
             {
                 listBoxFriends.Items.Add(friend);
@@ -249,10 +234,9 @@ namespace BasicFacebookFeatures
         private void buttonTimeLine_Click(object sender, EventArgs e)
         {
             this.Hide();
-            FormTimeLineInfo timeLineInfo = new FormTimeLineInfo(this);
+            FormHowYouChanged timeLineInfo = new FormHowYouChanged(this);
             timeLineInfo.ShowDialog();
             this.Show();
         }
     }
-
 }

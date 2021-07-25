@@ -33,6 +33,7 @@
             this.buttonLogin = new System.Windows.Forms.Button();
             this.buttonLogout = new System.Windows.Forms.Button();
             this.panelOptions = new System.Windows.Forms.Panel();
+            this.buttonTimeLine = new System.Windows.Forms.Button();
             this.buttonFetchData = new System.Windows.Forms.Button();
             this.buttonHelpToElder = new System.Windows.Forms.Button();
             this.panelForUserInfo = new System.Windows.Forms.Panel();
@@ -53,7 +54,6 @@
             this.radioButtonFriends = new System.Windows.Forms.RadioButton();
             this.radioButtonEvents = new System.Windows.Forms.RadioButton();
             this.radioButtonGroups = new System.Windows.Forms.RadioButton();
-            this.buttonTimeLine = new System.Windows.Forms.Button();
             this.panelOptions.SuspendLayout();
             this.panelForUserInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
@@ -105,6 +105,20 @@
             this.panelOptions.Name = "panelOptions";
             this.panelOptions.Size = new System.Drawing.Size(247, 718);
             this.panelOptions.TabIndex = 53;
+            // 
+            // buttonTimeLine
+            // 
+            this.buttonTimeLine.BackColor = System.Drawing.Color.Azure;
+            this.buttonTimeLine.Enabled = false;
+            this.buttonTimeLine.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonTimeLine.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.buttonTimeLine.Location = new System.Drawing.Point(46, 413);
+            this.buttonTimeLine.Name = "buttonTimeLine";
+            this.buttonTimeLine.Size = new System.Drawing.Size(157, 84);
+            this.buttonTimeLine.TabIndex = 67;
+            this.buttonTimeLine.Text = "See How You Changed";
+            this.buttonTimeLine.UseVisualStyleBackColor = false;
+            this.buttonTimeLine.Click += new System.EventHandler(this.buttonTimeLine_Click);
             // 
             // buttonFetchData
             // 
@@ -165,9 +179,9 @@
             this.labelLocation.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelLocation.Location = new System.Drawing.Point(190, 64);
             this.labelLocation.Name = "labelLocation";
-            this.labelLocation.Size = new System.Drawing.Size(99, 24);
+            this.labelLocation.Size = new System.Drawing.Size(66, 24);
             this.labelLocation.TabIndex = 4;
-            this.labelLocation.Text = "Location:";
+            this.labelLocation.Text = "From:";
             // 
             // labelFullName
             // 
@@ -332,21 +346,6 @@
             this.radioButtonGroups.Text = "Show Groups List";
             this.radioButtonGroups.UseVisualStyleBackColor = true;
             this.radioButtonGroups.Click += new System.EventHandler(this.radioButtonGroups_Click);
-            // 
-            // buttonTimeLine
-            // 
-            this.buttonTimeLine.BackColor = System.Drawing.Color.Azure;
-            this.buttonTimeLine.Enabled = false;
-            this.buttonTimeLine.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonTimeLine.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.buttonTimeLine.Location = new System.Drawing.Point(46, 413);
-            this.buttonTimeLine.Name = "buttonTimeLine";
-            this.buttonTimeLine.Size = new System.Drawing.Size(157, 117);
-            this.buttonTimeLine.TabIndex = 67;
-            this.buttonTimeLine.Text = "Pictures Time Line:";
-            this.buttonTimeLine.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.buttonTimeLine.UseVisualStyleBackColor = false;
-            this.buttonTimeLine.Click += new System.EventHandler(this.buttonTimeLine_Click);
             // 
             // FormMain
             // 

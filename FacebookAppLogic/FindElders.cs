@@ -20,16 +20,41 @@ namespace FacebookAppLogic
         private byte m_LowerAgeRange;
         private eGender m_PreferredGender;
 
-        public FindElders(User i_User)
+        internal enum eGender
+        {
+            female,
+            male,
+            both
+        }
+
+        internal FindElders(User i_User)
         {
             r_User = i_User;
             UsersCurrentCity = r_User.Hometown;
             r_PotentialElderToHelp = new FacebookObjectCollection<ElderUser>();
         }
 
-        public FacebookObjectCollection<User> FindEldersThatMatchUsersConditions(
-            string i_PreferredGender,
-            string i_PreferredAgeRange)
+        internal FacebookObjectCollection<ElderUser> PotentialElderToHelp
+        {
+            get
+            {
+                return r_PotentialElderToHelp;
+            }
+        }
+
+        internal City UsersCurrentCity
+        {
+            get
+            {
+                return m_UsersCurrentCity;
+            }
+            set
+            {
+                m_UsersCurrentCity = value;
+            }
+        }
+
+        internal FacebookObjectCollection<User> FindEldersThatMatchUsersConditions(string i_PreferredGender, string i_PreferredAgeRange)
         {
             FacebookObjectCollection<User> PotentialElders = new FacebookObjectCollection<User>();
 
@@ -60,37 +85,16 @@ namespace FacebookAppLogic
 
         internal class ElderUser 
         {
-            public string Name { get; set; }
+            internal string Name { get; set; }
 
-            public User CurrentElderUser { get; }
+            internal User CurrentElderUser { get; }
 
-            public ElderUser(User i_User)
+            internal ElderUser(User i_User)
             {
                 CurrentElderUser = i_User;
                 Name = CurrentElderUser.Name;
             }
         }
-
-        public FacebookObjectCollection<ElderUser> PotentialElderToHelp
-        {
-            get
-            {
-                return r_PotentialElderToHelp;
-            }
-        }
-
-        public City UsersCurrentCity
-        {
-            get
-            {
-                return m_UsersCurrentCity;
-            }
-            set
-            {
-                m_UsersCurrentCity = value;
-            }
-        }
-
 
         private void ageConversionFromString(string i_AgeRange)
         {
@@ -102,11 +106,9 @@ namespace FacebookAppLogic
             }
         }
 
-
         private void eldersThatMatchUsersPreferredGender(string i_PreferredGender)
         {
             m_PreferredGender = (eGender)Enum.Parse(typeof(eGender), i_PreferredGender);
-
             switch (m_PreferredGender)
             {
                 case eGender.female:
