@@ -134,7 +134,7 @@ namespace FacebookAppLogic
             foreach (User CurrentUser in r_User.Friends)
             {
                 if ((CurrentUser.Gender == User.eGender.female && m_PreferredGender == eGender.female)
-                    || CurrentUser.Gender == User.eGender.male && m_PreferredGender == eGender.male)
+                    || (CurrentUser.Gender == User.eGender.male && m_PreferredGender == eGender.male))
                 {
                     checkPotentialEldersConditionsByAgeAndCity(CurrentUser);
                 }
@@ -160,11 +160,10 @@ namespace FacebookAppLogic
             string[] usersBirthYear = i_CurrentUser.Birthday.Split('/');
             try
             {
-                if (Int32.TryParse(usersBirthYear[2], out yearToParse))
+                if (int.TryParse(usersBirthYear[2], out yearToParse))
                 {
                     elderAge = currentYear - yearToParse;
                 }
-
             }
             catch (Exception ex)
             {

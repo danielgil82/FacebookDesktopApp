@@ -11,7 +11,22 @@ namespace FacebookAppLogic
     public sealed class AppSettings
     {
         private const string k_AppSettingsFilePath = @"AppSettings.xml";
-      
+
+        public static AppSettings LoadFromFile()
+        {
+            AppSettings obj = new AppSettings();
+            if (File.Exists(k_AppSettingsFilePath))
+            {
+                using (Stream stream = new FileStream(k_AppSettingsFilePath, FileMode.Open))
+                {
+                    XmlSerializer serializer = new XmlSerializer(typeof(AppSettings));
+                    obj = serializer.Deserialize(stream) as AppSettings;
+                }
+            }
+
+            return obj;
+        }
+
         private AppSettings()
         {
            LastWindowSize = new Size(1141, 856);
@@ -46,21 +61,6 @@ namespace FacebookAppLogic
                     serializer.Serialize(stream, this);
                 }
             }
-        }
-
-        public static AppSettings LoadFromFile()
-        {
-            AppSettings obj = new AppSettings();
-            if (File.Exists(k_AppSettingsFilePath))
-            {
-                using (Stream stream = new FileStream(k_AppSettingsFilePath, FileMode.Open))
-                {
-                    XmlSerializer serializer = new XmlSerializer(typeof(AppSettings));
-                    obj = serializer.Deserialize(stream) as AppSettings;
-                }
-            }
-
-            return obj;
         }
     }
 }

@@ -14,14 +14,6 @@ namespace FacebookAppLogic
         private FindElders m_FindElders;
         private TimeLineChange m_TimeLineInfo;
 
-        //public TimeLineChange TimeLineInfo
-        //{
-        //    get
-        //    {
-        //        return m_TimeLineInfo;
-        //    }
-        //}
-
         public FacebookAppManager(User i_LoggedInUser)
         {
             r_LoggedInUser = i_LoggedInUser;

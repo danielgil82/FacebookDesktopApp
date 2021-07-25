@@ -1,10 +1,10 @@
-﻿using FacebookWrapper.ObjectModel;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FacebookWrapper.ObjectModel;
 
 namespace FacebookAppLogic
 {
@@ -42,7 +42,9 @@ namespace FacebookAppLogic
             }
         }
 
-        internal TimeLineChange(){ }
+        internal TimeLineChange()
+        {
+        }
         
         private void FetchYears(List<int> i_ChoosesYearsByUser)
         {
