@@ -66,6 +66,7 @@ namespace BasicFacebookFeatures
             m_LoginResult = FacebookService.Login(
                 "452659572840281",
                 ///requested permissions:
+                
                 "email",
                 "public_profile",
                 "user_age_range",

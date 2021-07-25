@@ -23,18 +23,18 @@ namespace FacebookAppLogic
         { 
             get
             {
-                string Birthday = string.Empty;
+                string birthday = string.Empty;
 
                 try
                 {
-                    Birthday = LoggedInUser.Birthday;
+                    birthday = LoggedInUser.Birthday;
                 }
                 catch (Exception)
                 {
                     throw new Exception("Couldn't retrieve users birthday.");
                 }
 
-                return Birthday;
+                return birthday;
             }
         }
 
@@ -75,7 +75,7 @@ namespace FacebookAppLogic
                 m_TimeLineInfo = new TimeLineChange();
             }
 
-            m_TimeLineInfo.FetchTimeLinePhotos(i_ChosenUser,i_YearsChoosen);
+            m_TimeLineInfo.FetchTimeLinePhotos(i_ChosenUser, i_YearsChoosen);
 
             return m_TimeLineInfo.UserPhotosInfo;
         }

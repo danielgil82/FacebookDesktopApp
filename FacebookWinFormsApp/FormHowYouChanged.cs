@@ -1,6 +1,6 @@
-﻿using FacebookAppLogic;
+﻿using System;
+using FacebookAppLogic;
 using FacebookWrapper.ObjectModel;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -37,7 +37,6 @@ namespace BasicFacebookFeatures
             }
         }
 
-
         internal FacebookObjectCollection<User> UsersFriends
         {
             get
@@ -71,7 +70,7 @@ namespace BasicFacebookFeatures
         {
             foreach (Control control in this.panelYearChoosing.Controls)
             {
-                if (control is ComboBox) // check if control is comboBOx
+                if (control is ComboBox)
                 {
                     ComboBox cmBox = control as ComboBox;
 
@@ -279,7 +278,7 @@ namespace BasicFacebookFeatures
 
             foreach (string year in HasTheYearBeenChosen.Keys)
             {
-                r_YearsChoosenByUser.Add(Int32.Parse(year));
+                r_YearsChoosenByUser.Add(int.Parse(year));
             }
 
             r_YearsChoosenByUser.Sort();
@@ -308,7 +307,7 @@ namespace BasicFacebookFeatures
 
         private void listBoxUsersFriends_SelectedIndexChanged(object sender, EventArgs e)
         {
-            PreferredUser = ((sender as ListBox).SelectedItem) as User;
+            PreferredUser = (sender as ListBox).SelectedItem as User;
         }
 
         private void comboBoxFirstChoice_SelectedIndexChanged(object sender, EventArgs e)
