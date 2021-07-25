@@ -55,7 +55,6 @@ namespace FacebookAppLogic
             {
                 using (Stream stream = new FileStream(k_AppSettingsFilePath, FileMode.Open))
                 {
-                    Console.WriteLine("Test");
                     XmlSerializer serializer = new XmlSerializer(typeof(AppSettings));
                     obj = serializer.Deserialize(stream) as AppSettings;
                 }
