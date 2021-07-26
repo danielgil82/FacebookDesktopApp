@@ -130,7 +130,7 @@ namespace BasicFacebookFeatures
         {
             if (m_FacebookAppManager.LoggedInUser.Location.Name != null)
             {
-                labelLocation.Text = labelLocation.Text + " " + m_FacebookAppManager.LoggedInUser.Location.Name.ToString();
+                labelLocation.Text = labelLocation.Text + " " + m_FacebookAppManager.LoggedInUser.Location.Name;
             }
             else
             {
