@@ -19,7 +19,7 @@ namespace FacebookAppLogic
             r_LoggedInUser = i_LoggedInUser;
         }
 
-        public string UsersBirthday
+        public string GetBirthday
         { 
             get
             {
@@ -96,6 +96,44 @@ namespace FacebookAppLogic
                 }
 
                 return userFriends;
+            }
+        }
+
+        public FacebookObjectCollection<Event> GetEvents
+        {
+            get
+            {
+                FacebookObjectCollection<Event> userEvents;
+
+                try
+                {
+                    userEvents = r_LoggedInUser.Events;
+                }
+                catch (Exception)
+                {
+                    throw new ArgumentException("Couldn't fetch user's events");
+                }
+
+                return userEvents;
+            }
+        }
+
+        public FacebookObjectCollection<Group> GetGroups
+        {
+            get
+            {
+                FacebookObjectCollection<Group> userGroups;
+
+                try
+                {
+                    userGroups = r_LoggedInUser.Groups;
+                }
+                catch (Exception)
+                {
+                    throw new ArgumentException("Couldn't fetch user's groups");
+                }
+
+                return userGroups;
             }
         }
     }

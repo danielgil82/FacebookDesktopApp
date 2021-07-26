@@ -118,7 +118,7 @@ namespace BasicFacebookFeatures
         {
             if (m_FacebookAppManager.LoggedInUser.Location.Name != null)
             {
-                labelBirthday.Text = labelBirthday.Text + " " + m_FacebookAppManager.UsersBirthday;
+                labelBirthday.Text = labelBirthday.Text + " " + m_FacebookAppManager.GetBirthday;
             }
             else
             {
@@ -166,13 +166,19 @@ namespace BasicFacebookFeatures
         {
             listBoxFriends.Items.Clear();
             listBoxFriends.DisplayMember = "Name";
-
-            foreach (User friend in m_FacebookAppManager.GetFriends)
+            try
             {
-                listBoxFriends.Items.Add(friend);
-                friend.ReFetch(DynamicWrapper.eLoadOptions.Full);
+                foreach (User friend in m_FacebookAppManager.GetFriends)
+                {
+                    listBoxFriends.Items.Add(friend);
+                    friend.ReFetch(DynamicWrapper.eLoadOptions.Full);
+                }
             }
-
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+           
             if (m_FacebookAppManager.GetFriends.Count == 0)
             {
                 MessageBox.Show("Sorry, no friends to retrieve.");
@@ -183,15 +189,14 @@ namespace BasicFacebookFeatures
         {
             listBoxGroups.Items.Clear();
             listBoxGroups.DisplayMember = "Name";
-
             try
             {
-                foreach (Group group in m_FacebookAppManager.LoggedInUser.Groups)
+                foreach (Group group in m_FacebookAppManager.GetGroups)
                 {
                     listBoxGroups.Items.Add(group);
                 }
             }
-            catch (Exception ex)
+            catch (ArgumentException ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -206,9 +211,16 @@ namespace BasicFacebookFeatures
         {
             listBoxEvents.Items.Clear();
             listBoxEvents.DisplayMember = "Name";
-            foreach (Event fbEvent in m_FacebookAppManager.LoggedInUser.Events)
+            try
             {
-                listBoxEvents.Items.Add(fbEvent);
+                foreach (Event fbEvent in m_FacebookAppManager.GetEvents)
+                {
+                    listBoxEvents.Items.Add(fbEvent);
+                }
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
             if (listBoxEvents.Items.Count == 0)
