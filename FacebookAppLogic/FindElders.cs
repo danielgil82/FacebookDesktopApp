@@ -62,7 +62,7 @@ namespace FacebookAppLogic
             {
                 r_PotentialElderToHelp.Clear();
             }
-           
+
             ageConversionFromString(i_PreferredAgeRange);
             eldersThatMatchUsersPreferredGender(i_PreferredGender);
             fetchDataFromElderListTypeToUserListType(PotentialElders);
@@ -83,7 +83,7 @@ namespace FacebookAppLogic
             }
         }
 
-        internal class ElderUser 
+        internal class ElderUser
         {
             internal string Name { get; set; }
 
@@ -99,7 +99,7 @@ namespace FacebookAppLogic
         private void ageConversionFromString(string i_AgeRange)
         {
             string[] ageRange = i_AgeRange.Split('-');
-         
+
             if (!(byte.TryParse(ageRange[0], out m_LowerAgeRange) && byte.TryParse(ageRange[1], out m_UpperAgeRange)))
             {
                 throw new ArgumentException("Couldn't convert the age !");
@@ -158,14 +158,12 @@ namespace FacebookAppLogic
             int elderAge = 0;
 
             string[] usersBirthYear = i_CurrentUser.Birthday.Split('/');
-            try
+
+            if (int.TryParse(usersBirthYear[2], out yearToParse))
             {
-                if (int.TryParse(usersBirthYear[2], out yearToParse))
-                {
-                    elderAge = currentYear - yearToParse;
-                }
+                elderAge = currentYear - yearToParse;
             }
-            catch (Exception ex)
+            else
             {
                 throw new ArgumentException("Couldn't calculate the users age.");
             }

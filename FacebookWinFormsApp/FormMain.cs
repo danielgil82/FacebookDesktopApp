@@ -161,7 +161,7 @@ namespace BasicFacebookFeatures
         {
             fetchGroups();
         }
-
+        
         private void fetchFriends()
         {
             listBoxFriends.Items.Clear();
