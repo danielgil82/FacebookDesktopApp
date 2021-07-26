@@ -247,7 +247,7 @@ namespace BasicFacebookFeatures
         private void buttonTimeLine_Click(object sender, EventArgs e)
         {
             this.Hide();
-            FormHowYouChanged timeLineInfo = new FormHowYouChanged(this);
+            FormHowSomeoneChanged timeLineInfo = new FormHowSomeoneChanged(this);
             timeLineInfo.ShowDialog();
             this.Show();
         }

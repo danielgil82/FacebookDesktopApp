@@ -1,6 +1,6 @@
 ﻿namespace BasicFacebookFeatures
 {
-    internal partial class FormHowYouChanged
+    internal partial class FormHowSomeoneChanged
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormHowYouChanged));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormHowSomeoneChanged));
             this.panelDescription = new System.Windows.Forms.Panel();
             this.label19 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();

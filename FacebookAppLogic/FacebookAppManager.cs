@@ -50,14 +50,14 @@ namespace FacebookAppLogic
             }
         }
 
-        public FacebookObjectCollection<User> FindEldersThatMatchUsersConditions(string i_PreferredGender, string i_PreferredAgeRange)
+        public FacebookObjectCollection<User> GetPotentialElders(string i_PreferredGender, string i_PreferredAgeRange)
         {
             if (m_FindElders == null)
             {
                 m_FindElders = new FindElders(r_LoggedInUser);
             }
 
-            return m_FindElders.FindEldersThatMatchUsersConditions(i_PreferredGender, i_PreferredAgeRange);
+            return m_FindElders.FindPotentialEldershUsersConditions(i_PreferredGender, i_PreferredAgeRange);
         }
 
         public User LoggedInUser

@@ -69,7 +69,7 @@ namespace BasicFacebookFeatures
             {
                 try
                 {
-                    m_PotentialEldersList = r_FacebookAppManager.FindEldersThatMatchUsersConditions(PreferredGender, PreferredAgeRange);
+                    m_PotentialEldersList = r_FacebookAppManager.GetPotentialElders(PreferredGender, PreferredAgeRange);
                     fetchPotentialElders();
                     displaySelectedElderUser();
                     PreferredGender = string.Empty;

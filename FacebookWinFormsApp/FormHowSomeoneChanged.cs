@@ -8,7 +8,7 @@ using static FacebookAppLogic.LookHowSomeoneChange;
 
 namespace BasicFacebookFeatures
 {
-    internal partial class FormHowYouChanged : Form
+    internal partial class FormHowSomeoneChanged : Form
     {
         private const string k_ChooseAUser = "You must choose a friend, via Display Friends Button!!";
         private const string k_FiveDifferentYears = "Oops you must select 5 different options in the years section";
@@ -57,7 +57,7 @@ namespace BasicFacebookFeatures
             }
         }
 
-        internal FormHowYouChanged(FormMain i_MainForm)
+        internal FormHowSomeoneChanged(FormMain i_MainForm)
         {
             InitializeComponent();
             r_FacebookAppManager = i_MainForm.FacebookAppManager;

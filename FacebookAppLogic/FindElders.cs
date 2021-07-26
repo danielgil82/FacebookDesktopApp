@@ -54,7 +54,7 @@ namespace FacebookAppLogic
             }
         }
 
-        internal FacebookObjectCollection<User> FindEldersThatMatchUsersConditions(string i_PreferredGender, string i_PreferredAgeRange)
+        internal FacebookObjectCollection<User> FindPotentialEldershUsersConditions(string i_PreferredGender, string i_PreferredAgeRange)
         {
             FacebookObjectCollection<User> PotentialElders = new FacebookObjectCollection<User>();
 
@@ -65,12 +65,12 @@ namespace FacebookAppLogic
 
             ageConversionFromString(i_PreferredAgeRange);
             eldersThatMatchUsersPreferredGender(i_PreferredGender);
-            fetchDataFromElderListTypeToUserListType(PotentialElders);
+            addPotentialUsers(PotentialElders);
 
             return PotentialElders;
         }
 
-        private void fetchDataFromElderListTypeToUserListType(FacebookObjectCollection<User> io_PotentialEldersList)
+        private void addPotentialUsers(FacebookObjectCollection<User> io_PotentialEldersList)
         {
             foreach (ElderUser CurrenUserToAdd in r_PotentialElderToHelp)
             {

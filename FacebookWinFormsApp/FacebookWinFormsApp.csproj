@@ -104,11 +104,11 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormHowYouChanged.cs">
+    <Compile Include="FormHowSomeoneChanged.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormHowYouChanged.Designer.cs">
-      <DependentUpon>FormHowYouChanged.cs</DependentUpon>
+    <Compile Include="FormHowSomeoneChanged.Designer.cs">
+      <DependentUpon>FormHowSomeoneChanged.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -118,8 +118,8 @@
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormHowYouChanged.resx">
-      <DependentUpon>FormHowYouChanged.cs</DependentUpon>
+    <EmbeddedResource Include="FormHowSomeoneChanged.resx">
+      <DependentUpon>FormHowSomeoneChanged.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
