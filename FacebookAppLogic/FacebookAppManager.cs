@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using FacebookWrapper.ObjectModel;
 using FacebookWrapper;
-using static FacebookAppLogic.TimeLineChange;
+using static FacebookAppLogic.LookHowSomeoneChange;
 
 namespace FacebookAppLogic
 {
@@ -12,7 +12,7 @@ namespace FacebookAppLogic
     {
         private readonly User r_LoggedInUser;
         private FindElders m_FindElders;
-        private TimeLineChange m_TimeLineInfo;
+        private LookHowSomeoneChange m_TimeLineInfo;
 
         public FacebookAppManager(User i_LoggedInUser)
         {
@@ -72,7 +72,7 @@ namespace FacebookAppLogic
         {
             if (m_TimeLineInfo == null)
             {
-                m_TimeLineInfo = new TimeLineChange();
+                m_TimeLineInfo = new LookHowSomeoneChange();
             }
 
             m_TimeLineInfo.FetchTimeLinePhotos(i_ChosenUser, i_YearsChoosen);

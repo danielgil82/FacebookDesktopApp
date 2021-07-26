@@ -4,7 +4,7 @@ using FacebookWrapper.ObjectModel;
 using System.Collections;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using static FacebookAppLogic.TimeLineChange;
+using static FacebookAppLogic.LookHowSomeoneChange;
 
 namespace BasicFacebookFeatures
 {

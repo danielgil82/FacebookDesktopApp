@@ -117,7 +117,7 @@
             this.buttonTimeLine.Name = "buttonTimeLine";
             this.buttonTimeLine.Size = new System.Drawing.Size(157, 84);
             this.buttonTimeLine.TabIndex = 67;
-            this.buttonTimeLine.Text = "See How You Changed";
+            this.buttonTimeLine.Text = "How Somene Changed:";
             this.buttonTimeLine.UseVisualStyleBackColor = false;
             this.buttonTimeLine.Click += new System.EventHandler(this.buttonTimeLine_Click);
             // 

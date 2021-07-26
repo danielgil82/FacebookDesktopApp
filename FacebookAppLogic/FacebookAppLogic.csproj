@@ -41,7 +41,7 @@
     <Compile Include="AppSettings.cs" />
     <Compile Include="FacebookAppManager.cs" />
     <Compile Include="FindElders.cs" />
-    <Compile Include="TimeLineChange.cs" />
+    <Compile Include="LookHowSomeoneChange.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Facebook">

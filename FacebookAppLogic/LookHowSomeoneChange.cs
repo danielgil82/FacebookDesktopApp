@@ -8,7 +8,7 @@ using FacebookWrapper.ObjectModel;
 
 namespace FacebookAppLogic
 {
-    public class TimeLineChange
+    public class LookHowSomeoneChange
     {
         private readonly List<int> m_ChoosenYears = new List<int>();
         private readonly Dictionary<int, UserPhotoInfo> r_UserPhotosInfo = new Dictionary<int, UserPhotoInfo>();
@@ -42,7 +42,7 @@ namespace FacebookAppLogic
             }
         }
 
-        internal TimeLineChange()
+        internal LookHowSomeoneChange()
         {
         }
         
