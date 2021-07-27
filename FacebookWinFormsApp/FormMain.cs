@@ -85,13 +85,38 @@ namespace BasicFacebookFeatures
             fetchLoggedInUser();
         }
 
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+
+            if(r_AppSettings.RememberUser && !string.IsNullOrEmpty(r_AppSettings.LastAccessToken))
+            {
+                m_LoginResult = FacebookService.Connect(r_AppSettings.LastAccessToken);
+                fetchLoggedInUser();
+                buttonLogin.Text = "Logged In";
+                buttonLogout.Enabled = true;
+                checkBoxRememberMe.Enabled = true;
+                buttonLogin.Enabled = false;
+                buttonHelpToElder.Enabled = true;
+                radioButtonEvents.Enabled = true;
+                radioButtonFriends.Enabled = true;
+                radioButtonGroups.Enabled = true;
+                buttonFetchData.Enabled = true;
+                buttonTimeLine.Enabled = true;
+            }
+        }
+
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
             base.OnFormClosing(e);
             r_AppSettings.LastWindowSize = this.Size;
             r_AppSettings.LastWindowLocation = this.Location;
             r_AppSettings.RememberUser = this.checkBoxRememberMe.Checked;
-            r_AppSettings.LastAccessToken = r_AppSettings.RememberUser ? m_LoginResult.AccessToken : null;
+            if(r_AppSettings.RememberUser)
+            {
+                r_AppSettings.LastAccessToken = m_LoginResult.AccessToken;
+            }
+
             r_AppSettings.SaveToFile();
         }
 

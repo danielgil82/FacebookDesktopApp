@@ -11,6 +11,15 @@ namespace FacebookAppLogic
     public sealed class AppSettings
     {
         private const string k_AppSettingsFilePath = @"AppSettings.xml";
+        private static AppSettings s_TheAndOnlyInstance = null;
+
+        private AppSettings()
+        {
+            LastWindowSize = new Size(1141, 856);
+            LastWindowLocation = new Point(50, 50);
+            RememberUser = false;
+            LastAccessToken = null;
+        }
 
         public static AppSettings LoadFromFile()
         {
@@ -26,13 +35,18 @@ namespace FacebookAppLogic
 
             return obj;
         }
-
-        private AppSettings()
+       
+        public static AppSettings GetTheOneAndOnlyInstanceOfAppSettings 
         {
-           LastWindowSize = new Size(1141, 856);
-           LastWindowLocation = new Point(50, 50);
-           RememberUser = false;
-           LastAccessToken = null;
+            get
+            {
+                if(s_TheAndOnlyInstance == null)
+                {
+                    s_TheAndOnlyInstance = new AppSettings();
+                }
+
+                return s_TheAndOnlyInstance;
+            }
         }
 
         public bool RememberUser { get; set; }
