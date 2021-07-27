@@ -64,9 +64,7 @@ namespace BasicFacebookFeatures
             Clipboard.SetText("design.patterns21c"); /// the current password for Desig Patter
 
             m_LoginResult = FacebookService.Login(
-                "452659572840281",
-                ///requested permissions:
-                
+                "452659572840281",                
                 "email",
                 "public_profile",
                 "user_age_range",
