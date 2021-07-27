@@ -16,7 +16,7 @@ namespace BasicFacebookFeatures
 {
     internal partial class FormMain : Form
     {
-        private const string k_UnknownMessage = "Uknown";
+        private const string k_UnknownMessage = "Unknown";
         private readonly AppSettings r_AppSettings;
         private FacebookAppManager m_FacebookAppManager;
         private LoginResult m_LoginResult;
