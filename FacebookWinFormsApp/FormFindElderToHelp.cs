@@ -18,7 +18,7 @@ namespace BasicFacebookFeatures
     internal partial class FormFindElderToHelp : Form
     {
         private readonly FacebookAppManager r_FacebookAppManager;
-        private readonly List<string> m_AgeRangeList;
+        private readonly List<string> r_AgeRangeList;
         private FacebookObjectCollection<User> m_PotentialEldersList = null;
 
         internal string PreferredAgeRange { get; private set; }
@@ -29,7 +29,7 @@ namespace BasicFacebookFeatures
         {
             InitializeComponent();
             r_FacebookAppManager = i_FormMain.FacebookAppManager;
-            m_AgeRangeList = new List<string>();
+            r_AgeRangeList = new List<string>();
             initAgeRangeList();
         }
 
@@ -37,10 +37,10 @@ namespace BasicFacebookFeatures
         {
             for (int i = 65 ; i < 125 ; i += 5)
             {
-                m_AgeRangeList.Add(string.Format("{0} - {1}", i + 1, i + 5));
+                r_AgeRangeList.Add(string.Format("{0} - {1}", i + 1, i + 5));
             }
             
-            checkedListBoxAgeRange.DataSource = m_AgeRangeList;
+            checkedListBoxAgeRange.DataSource = r_AgeRangeList;
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
