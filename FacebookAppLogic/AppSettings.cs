@@ -24,6 +24,7 @@ namespace FacebookAppLogic
         public static AppSettings LoadFromFile()
         {
             AppSettings obj = new AppSettings();
+
             if (File.Exists(k_AppSettingsFilePath))
             {
                 using (Stream stream = new FileStream(k_AppSettingsFilePath, FileMode.Open))
