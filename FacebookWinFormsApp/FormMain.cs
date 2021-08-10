@@ -6,6 +6,7 @@ using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 using CefSharp.DevTools.LayerTree;
 using FacebookAppLogic;
@@ -17,6 +18,7 @@ namespace BasicFacebookFeatures
     internal partial class FormMain : Form
     {
         private const string k_UnknownMessage = "Unknown";
+        private const string k_LoggedInUser = "Logged In";
         private readonly AppSettings r_AppSettings;
         private FacebookAppManager m_FacebookAppManager;
         private LoginResult m_LoginResult;
@@ -34,7 +36,58 @@ namespace BasicFacebookFeatures
             InitializeComponent();
             FacebookWrapper.FacebookService.s_CollectionLimit = 100;
             r_AppSettings = AppSettings.LoadFromFile();
+        }
+
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
             fetchFormSettings();
+            if (r_AppSettings.RememberUser && !string.IsNullOrEmpty(r_AppSettings.LastAccessToken))
+            {
+                new Thread(autoLogin).Start();
+            }
+        }
+
+        public User User { get; private set; }
+
+        private void autoLogin()
+        {
+            m_LoginResult = FacebookService.Connect(r_AppSettings.LastAccessToken);
+            User = m_LoginResult.LoggedInUser;
+            fetchLoggedInUser();
+            enablingAndDisablingButtonsWhenLoggedIn();
+        }
+
+        private void enablingAndDisablingButtonsWhenLoggedIn()
+        {
+            this.Invoke(
+                new Action(
+                    () =>
+                          {
+                              buttonLogout.Enabled = true;
+                              checkBoxRememberMe.Enabled = true;
+                              buttonLogin.Enabled = false;
+                              buttonHelpToElder.Enabled = true;
+                              radioButtonEvents.Enabled = true;
+                              radioButtonFriends.Enabled = true;
+                              radioButtonGroups.Enabled = true;
+                              buttonFetchData.Enabled = true;
+                              buttonTimeLine.Enabled = true;
+                          }));
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+            r_AppSettings.LastWindowSize = this.Size;
+            r_AppSettings.LastWindowLocation = this.Location;
+            r_AppSettings.RememberUser = this.checkBoxRememberMe.Checked;
+            if (r_AppSettings.RememberUser)
+            {
+                r_AppSettings.LastAccessToken = m_LoginResult.AccessToken;
+            }
+
+            r_AppSettings.SaveToFile();
         }
 
         private void fetchFormSettings()
@@ -64,7 +117,7 @@ namespace BasicFacebookFeatures
             Clipboard.SetText("design.patterns21c"); /// the current password for Desig Patter
 
             m_LoginResult = FacebookService.Login(
-                "452659572840281",                
+                "452659572840281",
                 "email",
                 "public_profile",
                 "user_age_range",
@@ -83,58 +136,29 @@ namespace BasicFacebookFeatures
             fetchLoggedInUser();
         }
 
-        protected override void OnShown(EventArgs e)
-        {
-            base.OnShown(e);
-
-            if(r_AppSettings.RememberUser && !string.IsNullOrEmpty(r_AppSettings.LastAccessToken))
-            {
-                m_LoginResult = FacebookService.Connect(r_AppSettings.LastAccessToken);
-                fetchLoggedInUser();
-                buttonLogin.Text = "Logged In";
-                buttonLogout.Enabled = true;
-                checkBoxRememberMe.Enabled = true;
-                buttonLogin.Enabled = false;
-                buttonHelpToElder.Enabled = true;
-                radioButtonEvents.Enabled = true;
-                radioButtonFriends.Enabled = true;
-                radioButtonGroups.Enabled = true;
-                buttonFetchData.Enabled = true;
-                buttonTimeLine.Enabled = true;
-            }
-        }
-
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-            base.OnFormClosing(e);
-            r_AppSettings.LastWindowSize = this.Size;
-            r_AppSettings.LastWindowLocation = this.Location;
-            r_AppSettings.RememberUser = this.checkBoxRememberMe.Checked;
-            if(r_AppSettings.RememberUser)
-            {
-                r_AppSettings.LastAccessToken = m_LoginResult.AccessToken;
-            }
-
-            r_AppSettings.SaveToFile();
-        }
-
         private void fetchLoggedInUser()
         {
-            this.Text = "Welcome to our Desktop Facebook app";
-            m_FacebookAppManager = new FacebookAppManager(m_LoginResult.LoggedInUser);
-            buttonLogin.ForeColor = Color.White;
-            pictureBoxProfile.LoadAsync(m_FacebookAppManager.LoggedInUser.PictureNormalURL);
-            labelCurrentDate.Text = DateTime.Now.ToLongDateString();
-            labelFullName.Text = labelFullName.Text + " " + m_FacebookAppManager.LoggedInUser.Name;
-            try
-            {
-                fetchUsersLocation();
-                fetchUsersBirthday();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            this.Invoke(
+                new Action(
+                    () =>
+                          {
+                              this.Text = "Welcome To Our Desktop Facebook App";
+                              buttonLogin.Text = k_LoggedInUser;
+                              m_FacebookAppManager = new FacebookAppManager(m_LoginResult.LoggedInUser);
+                              buttonLogin.ForeColor = Color.White;
+                              pictureBoxProfile.LoadAsync(m_FacebookAppManager.LoggedInUser.PictureNormalURL);
+                              labelCurrentDate.Text = DateTime.Now.ToLongDateString();
+                              labelFullName.Text = labelFullName.Text + " " + m_FacebookAppManager.LoggedInUser.Name;
+                              try
+                              {
+                                  fetchUsersLivingLocation();
+                                  fetchUsersBirthday();
+                              }
+                              catch (Exception ex)
+                              {
+                                  MessageBox.Show(ex.Message);
+                              }
+                          }));
         }
 
         private void fetchUsersBirthday()
@@ -149,7 +173,7 @@ namespace BasicFacebookFeatures
             }
         }
 
-        private void fetchUsersLocation()
+        private void fetchUsersLivingLocation()
         {
             if (m_FacebookAppManager.LoggedInUser.Location.Name != null)
             {
@@ -172,83 +196,87 @@ namespace BasicFacebookFeatures
 
         private void radioButtonFriends_Click(object sender, EventArgs e)
         {
-            fetchFriends();
+            new Thread(fetchFriends).Start();
         }
 
         private void radioButtonEvents_Click(object sender, EventArgs e)
         {
-            fetchEvents();
+            new Thread(fetchEvents).Start();
         }
 
         private void radioButtonGroups_Click(object sender, EventArgs e)
         {
-            fetchGroups();
+            new Thread(fetchGroups).Start();
         }
-        
+
         private void fetchFriends()
         {
-            listBoxFriends.Items.Clear();
+            this.Invoke(new Action(() => listBoxFriends.Items.Clear()));
             listBoxFriends.DisplayMember = "Name";
             try
             {
                 foreach (User friend in m_FacebookAppManager.GetFriends)
                 {
-                    listBoxFriends.Items.Add(friend);
-                    friend.ReFetch(DynamicWrapper.eLoadOptions.Full);
+                    //listBoxFriends.Items.Add(friend);
+                    listBoxFriends.Invoke(new Action(() => listBoxFriends.Items.Add(friend)));
+                    //   friend.ReFetch(DynamicWrapper.eLoadOptions.Full);
                 }
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                this.Invoke(new Action(() => MessageBox.Show(ex.Message)));
             }
-           
+
             if (m_FacebookAppManager.GetFriends.Count == 0)
             {
-                MessageBox.Show("Sorry, no friends to retrieve.");
+                this.Invoke(new Action(() => MessageBox.Show("Sorry, no friends to retrieve.")));
             }
         }
 
         private void fetchGroups()
         {
-            listBoxGroups.Items.Clear();
+
+            this.Invoke(new Action(() => listBoxGroups.Items.Clear()));
             listBoxGroups.DisplayMember = "Name";
             try
             {
                 foreach (Group group in m_FacebookAppManager.GetGroups)
                 {
-                    listBoxGroups.Items.Add(group);
+                    listBoxGroups.Invoke(new Action(() => listBoxGroups.Items.Add(group)));
                 }
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                // MessageBox.Show(ex.Message);
+                this.Invoke(new Action(() => MessageBox.Show(ex.Message)));
             }
 
             if (listBoxGroups.Items.Count == 0)
             {
-                MessageBox.Show("Sorry, no groups to retrieve.");
+                this.Invoke(new Action(() => MessageBox.Show("Sorry, no groups to retrieve.")));
             }
         }
 
         private void fetchEvents()
         {
-            listBoxEvents.Items.Clear();
+            this.Invoke(new Action(() => listBoxEvents.Items.Clear()));
             listBoxEvents.DisplayMember = "Name";
             try
             {
                 foreach (Event fbEvent in m_FacebookAppManager.GetEvents)
                 {
-                    listBoxEvents.Items.Add(fbEvent);
+                    listBoxEvents.Invoke(new Action(() => listBoxEvents.Items.Add(fbEvent)));
                 }
             }
             catch (ArgumentException ex)
             {
-                MessageBox.Show(ex.Message);
+                // MessageBox.Show(ex.Message);
+                this.Invoke(new Action(() => MessageBox.Show(ex.Message)));
             }
 
             if (listBoxEvents.Items.Count == 0)
             {
-                MessageBox.Show("Sorry, no events to retrieve.");
+                this.Invoke(new Action(() => MessageBox.Show("Sorry, no events to retrieve.")));
             }
         }
 
@@ -262,9 +290,9 @@ namespace BasicFacebookFeatures
 
         private void buttonFetchData_Click(object sender, EventArgs e)
         {
-            fetchFriends();
-            fetchEvents();
-            fetchGroups();
+            new Thread(fetchFriends).Start();
+            new Thread(fetchEvents).Start();
+            new Thread(fetchGroups).Start();
         }
 
         private void buttonTimeLine_Click(object sender, EventArgs e)
