@@ -35,6 +35,8 @@ namespace BasicFacebookFeatures
 
         private void initAgeRangeList()
         {
+            /// Checking wether me and sigalit we'll be shown
+            r_AgeRangeList.Add("20 - 25");
             for (int i = 65 ; i < 125 ; i += 5)
             {
                 r_AgeRangeList.Add(string.Format("{0} - {1}", i + 1, i + 5));
@@ -60,10 +62,10 @@ namespace BasicFacebookFeatures
                 pictureBoxElderPicture.Image = null;
             }
 
-            if (listBoxPotentialElders.Items.Count > 0)
-            {
-                listBoxPotentialElders.Items.Clear();
-            }
+            //if (listBoxPotentialElders.Items.Count > 0)
+            //{
+            //    listBoxPotentialElders.Items.Clear();
+            //}
 
             if (!string.IsNullOrEmpty(PreferredGender) && !string.IsNullOrEmpty(PreferredAgeRange))
             {
@@ -71,7 +73,7 @@ namespace BasicFacebookFeatures
                 {
                     m_PotentialEldersList = r_FacebookAppManager.GetPotentialElders(PreferredGender, PreferredAgeRange);
                     fetchPotentialElders();
-                    displaySelectedElderUser();
+                    //displaySelectedElderUser();
                     PreferredGender = string.Empty;
                 }
                 catch (ArgumentException ex)
@@ -94,6 +96,7 @@ namespace BasicFacebookFeatures
                 if (SelectedUser.PictureNormalURL != null)
                 {
                     pictureBoxElderPicture.LoadAsync(SelectedUser.PictureNormalURL);
+                    //photoBindingSource.DataSource = (listBoxPotentialElders.SelectedItem as User).PictureNormalURL;
                 }
                 else
                 {
@@ -101,21 +104,23 @@ namespace BasicFacebookFeatures
                 }
             }
         }
-
+        /// <summary>
+        /// using the data source of photoBindingSource 
+        /// </summary>
         private void fetchPotentialElders()
         {
-            listBoxPotentialElders.Items.Clear();
-            listBoxPotentialElders.DisplayMember = "Name";
+            //listBoxPotentialElders.Items.Clear();
+            //listBoxPotentialElders.DisplayMember = "Name";
+            photoBindingSource.DataSource = m_PotentialEldersList;
+            //foreach (User user in m_PotentialEldersList)
+            //{
+            //    listBoxPotentialElders.Items.Add(user);
+            //}
 
-            foreach (User user in m_PotentialEldersList)
-            {
-                listBoxPotentialElders.Items.Add(user);
-            }
-
-            if (listBoxPotentialElders.Items.Count == 0)
-            {
-                MessageBox.Show("No potential elders to retrieve");
-            }
+            //if (listBoxPotentialElders.Items.Count == 0)
+            //{
+            //    MessageBox.Show("No potential elders to retrieve");
+            //}
         }
 
         private void checkedListBoxGender_SelectedIndexChanged(object sender, EventArgs e)
@@ -151,7 +156,7 @@ namespace BasicFacebookFeatures
 
         private void listBoxPotentialElders_SelectedIndexChanged(object sender, EventArgs e)
         {
-            displaySelectedElderUser();
+            //displaySelectedElderUser();
             string name = (sender as ListBox).SelectedItem.ToString();
             MessageBox.Show("Good luck with the helping this elderly " + name);
         }

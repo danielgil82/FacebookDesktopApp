@@ -29,19 +29,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormFindElderToHelp));
             this.labelFindElderTitle = new System.Windows.Forms.Label();
             this.labelGenderInterest = new System.Windows.Forms.Label();
             this.panelElederly = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.imageNormalPictureBox = new System.Windows.Forms.PictureBox();
+            this.photoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.listBoxPotentialElders = new System.Windows.Forms.ListBox();
             this.buttonFindElderToHelp = new System.Windows.Forms.Button();
             this.buttonBack = new System.Windows.Forms.Button();
-            this.pictureBoxElderPicture = new System.Windows.Forms.PictureBox();
             this.labelOptionalElders = new System.Windows.Forms.Label();
             this.checkedListBoxGender = new System.Windows.Forms.CheckedListBox();
             this.checkedListBoxAgeRange = new System.Windows.Forms.CheckedListBox();
             this.labelElderAge = new System.Windows.Forms.Label();
+            this.pictureBoxElderPicture = new System.Windows.Forms.PictureBox();
             this.panelElederly.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imageNormalPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.photoBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxElderPicture)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,10 +77,11 @@
             // panelElederly
             // 
             this.panelElederly.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panelElederly.BackgroundImage")));
+            this.panelElederly.Controls.Add(this.panel1);
+            this.panelElederly.Controls.Add(this.pictureBoxElderPicture);
             this.panelElederly.Controls.Add(this.listBoxPotentialElders);
             this.panelElederly.Controls.Add(this.buttonFindElderToHelp);
             this.panelElederly.Controls.Add(this.buttonBack);
-            this.panelElederly.Controls.Add(this.pictureBoxElderPicture);
             this.panelElederly.Controls.Add(this.labelOptionalElders);
             this.panelElederly.Controls.Add(this.checkedListBoxGender);
             this.panelElederly.Controls.Add(this.checkedListBoxAgeRange);
@@ -85,8 +93,34 @@
             this.panelElederly.Size = new System.Drawing.Size(935, 656);
             this.panelElederly.TabIndex = 5;
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.imageNormalPictureBox);
+            this.panel1.Location = new System.Drawing.Point(620, 473);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(150, 129);
+            this.panel1.TabIndex = 15;
+            // 
+            // imageNormalPictureBox
+            // 
+            this.imageNormalPictureBox.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.photoBindingSource, "ImageNormal", true));
+            this.imageNormalPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.imageNormalPictureBox.Location = new System.Drawing.Point(0, 0);
+            this.imageNormalPictureBox.Name = "imageNormalPictureBox";
+            this.imageNormalPictureBox.Size = new System.Drawing.Size(150, 129);
+            this.imageNormalPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imageNormalPictureBox.TabIndex = 1;
+            this.imageNormalPictureBox.TabStop = false;
+            // 
+            // photoBindingSource
+            // 
+            this.photoBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Photo);
+            // 
             // listBoxPotentialElders
             // 
+            this.listBoxPotentialElders.DataSource = this.photoBindingSource;
+            this.listBoxPotentialElders.DisplayMember = "Name";
             this.listBoxPotentialElders.FormattingEnabled = true;
             this.listBoxPotentialElders.ItemHeight = 16;
             this.listBoxPotentialElders.Location = new System.Drawing.Point(56, 473);
@@ -119,16 +153,6 @@
             this.buttonBack.Text = "Back";
             this.buttonBack.UseVisualStyleBackColor = false;
             this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
-            // 
-            // pictureBoxElderPicture
-            // 
-            this.pictureBoxElderPicture.BackColor = System.Drawing.Color.White;
-            this.pictureBoxElderPicture.Location = new System.Drawing.Point(606, 447);
-            this.pictureBoxElderPicture.Name = "pictureBoxElderPicture";
-            this.pictureBoxElderPicture.Size = new System.Drawing.Size(160, 142);
-            this.pictureBoxElderPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxElderPicture.TabIndex = 9;
-            this.pictureBoxElderPicture.TabStop = false;
             // 
             // labelOptionalElders
             // 
@@ -174,12 +198,22 @@
             this.labelElderAge.TabIndex = 5;
             this.labelElderAge.Text = "Choose an age range:";
             // 
+            // pictureBoxElderPicture
+            // 
+            this.pictureBoxElderPicture.BackColor = System.Drawing.Color.White;
+            this.pictureBoxElderPicture.Location = new System.Drawing.Point(491, 352);
+            this.pictureBoxElderPicture.Name = "pictureBoxElderPicture";
+            this.pictureBoxElderPicture.Size = new System.Drawing.Size(123, 105);
+            this.pictureBoxElderPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxElderPicture.TabIndex = 9;
+            this.pictureBoxElderPicture.TabStop = false;
+            // 
             // FormFindElderToHelp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
-            this.ClientSize = new System.Drawing.Size(912, 629);
+            this.ClientSize = new System.Drawing.Size(935, 656);
             this.Controls.Add(this.panelElederly);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FormFindElderToHelp";
@@ -188,6 +222,9 @@
             this.Text = "FormFindElderToHelp";
             this.panelElederly.ResumeLayout(false);
             this.panelElederly.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.imageNormalPictureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.photoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxElderPicture)).EndInit();
             this.ResumeLayout(false);
 
@@ -200,11 +237,14 @@
         private System.Windows.Forms.Panel panelElederly;
         private System.Windows.Forms.CheckedListBox checkedListBoxAgeRange;
         private System.Windows.Forms.Label labelElderAge;
-        private System.Windows.Forms.PictureBox pictureBoxElderPicture;
         private System.Windows.Forms.Label labelOptionalElders;
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.CheckedListBox checkedListBoxGender;
         private System.Windows.Forms.Button buttonFindElderToHelp;
         private System.Windows.Forms.ListBox listBoxPotentialElders;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox imageNormalPictureBox;
+        private System.Windows.Forms.BindingSource photoBindingSource;
+        private System.Windows.Forms.PictureBox pictureBoxElderPicture;
     }
 }
