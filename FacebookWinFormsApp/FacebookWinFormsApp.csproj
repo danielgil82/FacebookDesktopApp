@@ -17,6 +17,21 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -133,7 +148,6 @@
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\FacebookWrapper.ObjectModel.Event.datasource" />
-    <None Include="Properties\DataSources\FacebookWrapper.ObjectModel.Group.datasource" />
     <None Include="Properties\DataSources\FacebookWrapper.ObjectModel.User.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -149,13 +163,49 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Images\" />
+    <None Include="Images\data_transfer.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FacebookAppLogic\FacebookAppLogic.csproj">
       <Project>{345e08b3-4671-4253-8f8d-c6c9bc639c88}</Project>
       <Name>FacebookAppLogic</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\EventsLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\facebookIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\FriendsLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\GroupsLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\icons8-elderly-person-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\icons8-elderly-person-60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\TimeLine.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\volunteers-helping-elderly-people-pack_23-2148578042.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

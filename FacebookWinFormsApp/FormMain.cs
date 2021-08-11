@@ -23,7 +23,7 @@ namespace BasicFacebookFeatures
         private FacebookAppManager m_FacebookAppManager;
         private LoginResult m_LoginResult;
 
-        //public User User { get; private set; }
+        public User CurrentUser { get; private set; }
 
         internal FacebookAppManager FacebookAppManager
         {
@@ -221,56 +221,39 @@ namespace BasicFacebookFeatures
                         userBindingSource.DataSource = m_FacebookAppManager.GetFriends;
                         if (m_FacebookAppManager.GetFriends.Count == 0)
                         {
-                            this.Invoke(new Action(() => MessageBox.Show("Sorry, no friends to retrieve.")));
+                            MessageBox.Show("Sorry, no friends to retrieve.");
                         }
                     }));
         }
 
         private void fetchGroups()
         {
-
-            this.Invoke(new Action(() => listBoxGroups.Items.Clear()));
-            listBoxGroups.DisplayMember = "Name";
-            try
-            {
-                foreach (Group group in m_FacebookAppManager.GetGroups)
+            listBoxGroups.Invoke(
+                new Action(() =>
                 {
-                    listBoxGroups.Invoke(new Action(() => listBoxGroups.Items.Add(group)));
-                }
-            }
-            catch (ArgumentException ex)
-            {
-                // MessageBox.Show(ex.Message);
-                this.Invoke(new Action(() => MessageBox.Show(ex.Message)));
-            }
-
-            if (listBoxGroups.Items.Count == 0)
-            {
-                this.Invoke(new Action(() => MessageBox.Show("Sorry, no groups to retrieve.")));
-            }
+                    foreach (Group group in m_FacebookAppManager.GetGroups)
+                    {
+                        listBoxGroups.Items.Add(group);
+                    }
+                    if (listBoxGroups.Items.Count == 0)
+                    {
+                        MessageBox.Show("Sorry, no groups to retrieve.");
+                    }
+                }));
         }
 
         private void fetchEvents()
         {
-            listBoxEvents.Invoke(new Action(() => listBoxEvents.Items.Clear()));
-            listBoxEvents.DisplayMember = "Name";
-            try
-            {
-                foreach (Event fbEvent in m_FacebookAppManager.GetEvents)
-                {
-                    listBoxEvents.Invoke(new Action(() => listBoxEvents.Items.Add(fbEvent)));
-                }
-            }
-            catch (ArgumentException ex)
-            {
-                // MessageBox.Show(ex.Message);
-                this.Invoke(new Action(() => MessageBox.Show(ex.Message)));
-            }
-
-            if (m_FacebookAppManager.GetEvents.Count == 0)
-            {
-                this.Invoke(new Action(() => MessageBox.Show("Sorry, no events to retrieve.")));
-            }
+            listBoxEvents.Invoke(
+               new Action(() =>
+                   {
+                       eventBindingSource.DataSource = m_FacebookAppManager.GetEvents;
+                       if (listBoxEvents.Items.Count == 0)
+                       {
+                           MessageBox.Show("Sorry, no events to retrieve.");
+                       }
+                   }
+                   ));
         }
 
         private void buttonHelpToElder_Click(object sender, EventArgs e)
