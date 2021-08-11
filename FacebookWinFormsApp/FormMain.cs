@@ -54,7 +54,7 @@ namespace BasicFacebookFeatures
         private void autoLogin()
         {
             m_LoginResult = FacebookService.Connect(r_AppSettings.LastAccessToken);
-           // User = m_LoginResult.LoggedInUser;
+            // User = m_LoginResult.LoggedInUser;
             fetchLoggedInUser();
             enablingAndDisablingButtonsWhenLoggedIn();
         }
@@ -144,7 +144,7 @@ namespace BasicFacebookFeatures
                 new Action(
                     () =>
                           {
-                            //  User = m_LoginResult.LoggedInUser;
+                              //User = m_LoginResult.LoggedInUser;
                               this.Text = "Welcome To Our Desktop Facebook App";
                               buttonLogin.Text = k_LoggedInUser;
                               m_FacebookAppManager = new FacebookAppManager(m_LoginResult.LoggedInUser);
@@ -224,28 +224,7 @@ namespace BasicFacebookFeatures
                             this.Invoke(new Action(() => MessageBox.Show("Sorry, no friends to retrieve.")));
                         }
                     }));
-
         }
-
-        //try
-        //{
-        //this.Invoke(() => userBindingSource.DataSource = m_FacebookAppManager.GetFriends);
-        //foreach (User friend in m_FacebookAppManager.GetFriends)
-        //{
-        //listBoxFriends.Items.Add(friend);
-        // listBoxFriends.Invoke(new Action(() => listBoxFriends.Items.Add(friend)));
-        //   friend.ReFetch(DynamicWrapper.eLoadOptions.Full);
-        //}
-        //}
-        //catch (ArgumentException ex)
-        //{
-        //    this.Invoke(new Action(() => MessageBox.Show(ex.Message)));
-        //}
-
-        //if (m_FacebookAppManager.GetFriends.Count == 0)
-        //{
-        //    this.Invoke(new Action(() => MessageBox.Show("Sorry, no friends to retrieve.")));
-        //}
 
         private void fetchGroups()
         {
@@ -273,7 +252,7 @@ namespace BasicFacebookFeatures
 
         private void fetchEvents()
         {
-            this.Invoke(new Action(() => listBoxEvents.Items.Clear()));
+            listBoxEvents.Invoke(new Action(() => listBoxEvents.Items.Clear()));
             listBoxEvents.DisplayMember = "Name";
             try
             {
@@ -288,7 +267,7 @@ namespace BasicFacebookFeatures
                 this.Invoke(new Action(() => MessageBox.Show(ex.Message)));
             }
 
-            if (listBoxEvents.Items.Count == 0)
+            if (m_FacebookAppManager.GetEvents.Count == 0)
             {
                 this.Invoke(new Action(() => MessageBox.Show("Sorry, no events to retrieve.")));
             }
