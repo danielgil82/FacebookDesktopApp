@@ -30,6 +30,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.Label birthdayLabel;
+            System.Windows.Forms.Label emailLabel;
+            System.Windows.Forms.Label localeLabel;
+            System.Windows.Forms.Label religionLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.buttonLogin = new System.Windows.Forms.Button();
             this.buttonLogout = new System.Windows.Forms.Button();
@@ -45,6 +49,7 @@
             this.labelCurrentDate = new System.Windows.Forms.Label();
             this.pictureBoxFbLogo = new System.Windows.Forms.PictureBox();
             this.listBoxFriends = new System.Windows.Forms.ListBox();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.listBoxEvents = new System.Windows.Forms.ListBox();
             this.listBoxGroups = new System.Windows.Forms.ListBox();
             this.checkBoxRememberMe = new System.Windows.Forms.CheckBox();
@@ -55,14 +60,63 @@
             this.radioButtonFriends = new System.Windows.Forms.RadioButton();
             this.radioButtonEvents = new System.Windows.Forms.RadioButton();
             this.radioButtonGroups = new System.Windows.Forms.RadioButton();
+            this.panelCurrentFriendDetails = new System.Windows.Forms.Panel();
+            this.birthdayLabel1 = new System.Windows.Forms.Label();
+            this.emailLabel1 = new System.Windows.Forms.Label();
+            this.imageNormalPictureBox = new System.Windows.Forms.PictureBox();
+            this.localeLabel1 = new System.Windows.Forms.Label();
+            this.religionLabel1 = new System.Windows.Forms.Label();
+            birthdayLabel = new System.Windows.Forms.Label();
+            emailLabel = new System.Windows.Forms.Label();
+            localeLabel = new System.Windows.Forms.Label();
+            religionLabel = new System.Windows.Forms.Label();
             this.panelOptions.SuspendLayout();
             this.panelForUserInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFbLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriendsLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGroupsLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEventsLogo)).BeginInit();
+            this.panelCurrentFriendDetails.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imageNormalPictureBox)).BeginInit();
             this.SuspendLayout();
+            // 
+            // birthdayLabel
+            // 
+            birthdayLabel.AutoSize = true;
+            birthdayLabel.Location = new System.Drawing.Point(25, 97);
+            birthdayLabel.Name = "birthdayLabel";
+            birthdayLabel.Size = new System.Drawing.Size(64, 17);
+            birthdayLabel.TabIndex = 0;
+            birthdayLabel.Text = "Birthday:";
+            // 
+            // emailLabel
+            // 
+            emailLabel.AutoSize = true;
+            emailLabel.Location = new System.Drawing.Point(25, 120);
+            emailLabel.Name = "emailLabel";
+            emailLabel.Size = new System.Drawing.Size(46, 17);
+            emailLabel.TabIndex = 2;
+            emailLabel.Text = "Email:";
+            // 
+            // localeLabel
+            // 
+            localeLabel.AutoSize = true;
+            localeLabel.Location = new System.Drawing.Point(25, 143);
+            localeLabel.Name = "localeLabel";
+            localeLabel.Size = new System.Drawing.Size(54, 17);
+            localeLabel.TabIndex = 8;
+            localeLabel.Text = "Locale:";
+            // 
+            // religionLabel
+            // 
+            religionLabel.AutoSize = true;
+            religionLabel.Location = new System.Drawing.Point(25, 166);
+            religionLabel.Name = "religionLabel";
+            religionLabel.Size = new System.Drawing.Size(63, 17);
+            religionLabel.TabIndex = 10;
+            religionLabel.Text = "Religion:";
             // 
             // buttonLogin
             // 
@@ -218,7 +272,7 @@
             // 
             this.pictureBoxFbLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxFbLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxFbLogo.Image")));
-            this.pictureBoxFbLogo.Location = new System.Drawing.Point(984, 27);
+            this.pictureBoxFbLogo.Location = new System.Drawing.Point(1214, 27);
             this.pictureBoxFbLogo.Name = "pictureBoxFbLogo";
             this.pictureBoxFbLogo.Size = new System.Drawing.Size(102, 98);
             this.pictureBoxFbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -228,19 +282,25 @@
             // listBoxFriends
             // 
             this.listBoxFriends.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxFriends.DataSource = this.userBindingSource;
+            this.listBoxFriends.DisplayMember = "Name";
             this.listBoxFriends.FormattingEnabled = true;
             this.listBoxFriends.ItemHeight = 16;
-            this.listBoxFriends.Location = new System.Drawing.Point(333, 482);
+            this.listBoxFriends.Location = new System.Drawing.Point(353, 467);
             this.listBoxFriends.Name = "listBoxFriends";
             this.listBoxFriends.Size = new System.Drawing.Size(171, 228);
             this.listBoxFriends.TabIndex = 2;
+            // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.User);
             // 
             // listBoxEvents
             // 
             this.listBoxEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxEvents.FormattingEnabled = true;
             this.listBoxEvents.ItemHeight = 16;
-            this.listBoxEvents.Location = new System.Drawing.Point(625, 482);
+            this.listBoxEvents.Location = new System.Drawing.Point(853, 467);
             this.listBoxEvents.Name = "listBoxEvents";
             this.listBoxEvents.Size = new System.Drawing.Size(171, 228);
             this.listBoxEvents.TabIndex = 57;
@@ -250,7 +310,7 @@
             this.listBoxGroups.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxGroups.FormattingEnabled = true;
             this.listBoxGroups.ItemHeight = 16;
-            this.listBoxGroups.Location = new System.Drawing.Point(899, 482);
+            this.listBoxGroups.Location = new System.Drawing.Point(1095, 467);
             this.listBoxGroups.Name = "listBoxGroups";
             this.listBoxGroups.Size = new System.Drawing.Size(171, 228);
             this.listBoxGroups.TabIndex = 58;
@@ -271,10 +331,10 @@
             // 
             this.pictureBoxFriendsLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxFriendsLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxFriendsLogo.Image")));
-            this.pictureBoxFriendsLogo.Location = new System.Drawing.Point(356, 416);
+            this.pictureBoxFriendsLogo.Location = new System.Drawing.Point(381, 396);
             this.pictureBoxFriendsLogo.Name = "pictureBoxFriendsLogo";
             this.pictureBoxFriendsLogo.Size = new System.Drawing.Size(113, 32);
-            this.pictureBoxFriendsLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxFriendsLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxFriendsLogo.TabIndex = 3;
             this.pictureBoxFriendsLogo.TabStop = false;
             // 
@@ -282,10 +342,10 @@
             // 
             this.pictureBoxGroupsLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxGroupsLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxGroupsLogo.Image")));
-            this.pictureBoxGroupsLogo.Location = new System.Drawing.Point(917, 417);
+            this.pictureBoxGroupsLogo.Location = new System.Drawing.Point(1113, 396);
             this.pictureBoxGroupsLogo.Name = "pictureBoxGroupsLogo";
             this.pictureBoxGroupsLogo.Size = new System.Drawing.Size(107, 31);
-            this.pictureBoxGroupsLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureBoxGroupsLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxGroupsLogo.TabIndex = 61;
             this.pictureBoxGroupsLogo.TabStop = false;
             // 
@@ -293,7 +353,7 @@
             // 
             this.pictureBoxEventsLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxEventsLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxEventsLogo.Image")));
-            this.pictureBoxEventsLogo.Location = new System.Drawing.Point(641, 417);
+            this.pictureBoxEventsLogo.Location = new System.Drawing.Point(869, 396);
             this.pictureBoxEventsLogo.Name = "pictureBoxEventsLogo";
             this.pictureBoxEventsLogo.Size = new System.Drawing.Size(119, 32);
             this.pictureBoxEventsLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -311,7 +371,7 @@
             this.radioButtonFriends.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButtonFriends.AutoSize = true;
             this.radioButtonFriends.Enabled = false;
-            this.radioButtonFriends.Location = new System.Drawing.Point(356, 454);
+            this.radioButtonFriends.Location = new System.Drawing.Point(369, 440);
             this.radioButtonFriends.Name = "radioButtonFriends";
             this.radioButtonFriends.Size = new System.Drawing.Size(140, 21);
             this.radioButtonFriends.TabIndex = 63;
@@ -325,7 +385,7 @@
             this.radioButtonEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButtonEvents.AutoSize = true;
             this.radioButtonEvents.Enabled = false;
-            this.radioButtonEvents.Location = new System.Drawing.Point(641, 454);
+            this.radioButtonEvents.Location = new System.Drawing.Point(864, 440);
             this.radioButtonEvents.Name = "radioButtonEvents";
             this.radioButtonEvents.Size = new System.Drawing.Size(136, 21);
             this.radioButtonEvents.TabIndex = 64;
@@ -339,7 +399,7 @@
             this.radioButtonGroups.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.radioButtonGroups.AutoSize = true;
             this.radioButtonGroups.Enabled = false;
-            this.radioButtonGroups.Location = new System.Drawing.Point(917, 454);
+            this.radioButtonGroups.Location = new System.Drawing.Point(1108, 440);
             this.radioButtonGroups.Name = "radioButtonGroups";
             this.radioButtonGroups.Size = new System.Drawing.Size(140, 21);
             this.radioButtonGroups.TabIndex = 65;
@@ -348,12 +408,77 @@
             this.radioButtonGroups.UseVisualStyleBackColor = true;
             this.radioButtonGroups.Click += new System.EventHandler(this.radioButtonGroups_Click);
             // 
+            // panelCurrentFriendDetails
+            // 
+            this.panelCurrentFriendDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelCurrentFriendDetails.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.panelCurrentFriendDetails.Controls.Add(birthdayLabel);
+            this.panelCurrentFriendDetails.Controls.Add(this.birthdayLabel1);
+            this.panelCurrentFriendDetails.Controls.Add(emailLabel);
+            this.panelCurrentFriendDetails.Controls.Add(this.emailLabel1);
+            this.panelCurrentFriendDetails.Controls.Add(this.imageNormalPictureBox);
+            this.panelCurrentFriendDetails.Controls.Add(localeLabel);
+            this.panelCurrentFriendDetails.Controls.Add(this.localeLabel1);
+            this.panelCurrentFriendDetails.Controls.Add(religionLabel);
+            this.panelCurrentFriendDetails.Controls.Add(this.religionLabel1);
+            this.panelCurrentFriendDetails.Location = new System.Drawing.Point(566, 467);
+            this.panelCurrentFriendDetails.Name = "panelCurrentFriendDetails";
+            this.panelCurrentFriendDetails.Size = new System.Drawing.Size(230, 228);
+            this.panelCurrentFriendDetails.TabIndex = 69;
+            // 
+            // birthdayLabel1
+            // 
+            this.birthdayLabel1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "Birthday", true));
+            this.birthdayLabel1.Location = new System.Drawing.Point(130, 97);
+            this.birthdayLabel1.Name = "birthdayLabel1";
+            this.birthdayLabel1.Size = new System.Drawing.Size(100, 23);
+            this.birthdayLabel1.TabIndex = 1;
+            this.birthdayLabel1.Text = "label1";
+            // 
+            // emailLabel1
+            // 
+            this.emailLabel1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "Email", true));
+            this.emailLabel1.Location = new System.Drawing.Point(130, 120);
+            this.emailLabel1.Name = "emailLabel1";
+            this.emailLabel1.Size = new System.Drawing.Size(100, 23);
+            this.emailLabel1.TabIndex = 3;
+            this.emailLabel1.Text = "label1";
+            // 
+            // imageNormalPictureBox
+            // 
+            this.imageNormalPictureBox.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.userBindingSource, "ImageNormal", true));
+            this.imageNormalPictureBox.Location = new System.Drawing.Point(28, 28);
+            this.imageNormalPictureBox.Name = "imageNormalPictureBox";
+            this.imageNormalPictureBox.Size = new System.Drawing.Size(61, 50);
+            this.imageNormalPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imageNormalPictureBox.TabIndex = 7;
+            this.imageNormalPictureBox.TabStop = false;
+            // 
+            // localeLabel1
+            // 
+            this.localeLabel1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "Locale", true));
+            this.localeLabel1.Location = new System.Drawing.Point(130, 143);
+            this.localeLabel1.Name = "localeLabel1";
+            this.localeLabel1.Size = new System.Drawing.Size(100, 23);
+            this.localeLabel1.TabIndex = 9;
+            this.localeLabel1.Text = "label1";
+            // 
+            // religionLabel1
+            // 
+            this.religionLabel1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "Religion", true));
+            this.religionLabel1.Location = new System.Drawing.Point(130, 166);
+            this.religionLabel1.Name = "religionLabel1";
+            this.religionLabel1.Size = new System.Drawing.Size(100, 23);
+            this.religionLabel1.TabIndex = 11;
+            this.religionLabel1.Text = "label1";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
-            this.ClientSize = new System.Drawing.Size(1098, 762);
+            this.ClientSize = new System.Drawing.Size(1328, 785);
+            this.Controls.Add(this.panelCurrentFriendDetails);
             this.Controls.Add(this.radioButtonGroups);
             this.Controls.Add(this.radioButtonEvents);
             this.Controls.Add(this.radioButtonFriends);
@@ -377,9 +502,13 @@
             this.panelForUserInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFbLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFriendsLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGroupsLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxEventsLogo)).EndInit();
+            this.panelCurrentFriendDetails.ResumeLayout(false);
+            this.panelCurrentFriendDetails.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imageNormalPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -411,5 +540,12 @@
         private System.Windows.Forms.Label labelFullName;
         private System.Windows.Forms.Button buttonFetchData;
         private System.Windows.Forms.Button buttonTimeLine;
+        private System.Windows.Forms.Panel panelCurrentFriendDetails;
+        private System.Windows.Forms.Label birthdayLabel1;
+        private System.Windows.Forms.BindingSource userBindingSource;
+        private System.Windows.Forms.Label emailLabel1;
+        private System.Windows.Forms.PictureBox imageNormalPictureBox;
+        private System.Windows.Forms.Label localeLabel1;
+        private System.Windows.Forms.Label religionLabel1;
     }
 }

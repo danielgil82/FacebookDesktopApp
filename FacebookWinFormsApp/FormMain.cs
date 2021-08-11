@@ -23,6 +23,8 @@ namespace BasicFacebookFeatures
         private FacebookAppManager m_FacebookAppManager;
         private LoginResult m_LoginResult;
 
+        //public User User { get; private set; }
+
         internal FacebookAppManager FacebookAppManager
         {
             get
@@ -48,12 +50,11 @@ namespace BasicFacebookFeatures
             }
         }
 
-        public User User { get; private set; }
 
         private void autoLogin()
         {
             m_LoginResult = FacebookService.Connect(r_AppSettings.LastAccessToken);
-            User = m_LoginResult.LoggedInUser;
+           // User = m_LoginResult.LoggedInUser;
             fetchLoggedInUser();
             enablingAndDisablingButtonsWhenLoggedIn();
         }
@@ -133,6 +134,7 @@ namespace BasicFacebookFeatures
                 "user_posts",
                 "user_videos");
             buttonLogin.Text = $"Logged in as {m_LoginResult.LoggedInUser.Name}";
+            //User = m_LoginResult.LoggedInUser;
             fetchLoggedInUser();
         }
 
@@ -142,6 +144,7 @@ namespace BasicFacebookFeatures
                 new Action(
                     () =>
                           {
+                            //  User = m_LoginResult.LoggedInUser;
                               this.Text = "Welcome To Our Desktop Facebook App";
                               buttonLogin.Text = k_LoggedInUser;
                               m_FacebookAppManager = new FacebookAppManager(m_LoginResult.LoggedInUser);
@@ -211,27 +214,38 @@ namespace BasicFacebookFeatures
 
         private void fetchFriends()
         {
-            this.Invoke(new Action(() => listBoxFriends.Items.Clear()));
-            listBoxFriends.DisplayMember = "Name";
-            try
-            {
-                foreach (User friend in m_FacebookAppManager.GetFriends)
-                {
-                    //listBoxFriends.Items.Add(friend);
-                    listBoxFriends.Invoke(new Action(() => listBoxFriends.Items.Add(friend)));
-                    //   friend.ReFetch(DynamicWrapper.eLoadOptions.Full);
-                }
-            }
-            catch (ArgumentException ex)
-            {
-                this.Invoke(new Action(() => MessageBox.Show(ex.Message)));
-            }
+            listBoxFriends.Invoke(
+                new Action(
+                    () =>
+                    {
+                        userBindingSource.DataSource = m_FacebookAppManager.GetFriends;
+                        if (m_FacebookAppManager.GetFriends.Count == 0)
+                        {
+                            this.Invoke(new Action(() => MessageBox.Show("Sorry, no friends to retrieve.")));
+                        }
+                    }));
 
-            if (m_FacebookAppManager.GetFriends.Count == 0)
-            {
-                this.Invoke(new Action(() => MessageBox.Show("Sorry, no friends to retrieve.")));
-            }
         }
+
+        //try
+        //{
+        //this.Invoke(() => userBindingSource.DataSource = m_FacebookAppManager.GetFriends);
+        //foreach (User friend in m_FacebookAppManager.GetFriends)
+        //{
+        //listBoxFriends.Items.Add(friend);
+        // listBoxFriends.Invoke(new Action(() => listBoxFriends.Items.Add(friend)));
+        //   friend.ReFetch(DynamicWrapper.eLoadOptions.Full);
+        //}
+        //}
+        //catch (ArgumentException ex)
+        //{
+        //    this.Invoke(new Action(() => MessageBox.Show(ex.Message)));
+        //}
+
+        //if (m_FacebookAppManager.GetFriends.Count == 0)
+        //{
+        //    this.Invoke(new Action(() => MessageBox.Show("Sorry, no friends to retrieve.")));
+        //}
 
         private void fetchGroups()
         {
