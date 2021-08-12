@@ -214,46 +214,38 @@ namespace BasicFacebookFeatures
 
         private void fetchFriends()
         {
-            listBoxFriends.Invoke(
-                new Action(
-                    () =>
-                    {
-                        userBindingSource.DataSource = m_FacebookAppManager.GetFriends;
-                        if (m_FacebookAppManager.GetFriends.Count == 0)
-                        {
-                            MessageBox.Show("Sorry, no friends to retrieve.");
-                        }
-                    }));
+            listBoxFriends.Invoke(new Action(() =>
+            {
+                userBindingSource.DataSource = m_FacebookAppManager.GetFriends;
+                if (m_FacebookAppManager.GetFriends.Count == 0)
+                {
+                    MessageBox.Show("Sorry, no friends to retrieve.");
+                }
+            }));
         }
 
         private void fetchGroups()
         {
-            listBoxGroups.Invoke(
-                new Action(() =>
+            listBoxGroups.Invoke(new Action(() =>
+            {
+                groupBindingSource.DataSource = m_FacebookAppManager.GetGroups;
+                if (listBoxGroups.Items.Count == 0)
                 {
-                    foreach (Group group in m_FacebookAppManager.GetGroups)
-                    {
-                        listBoxGroups.Items.Add(group);
-                    }
-                    if (listBoxGroups.Items.Count == 0)
-                    {
-                        MessageBox.Show("Sorry, no groups to retrieve.");
-                    }
-                }));
+                    MessageBox.Show("Sorry, no groups to retrieve.");
+                }
+            }));
         }
 
         private void fetchEvents()
         {
-            listBoxEvents.Invoke(
-               new Action(() =>
-                   {
-                       eventBindingSource.DataSource = m_FacebookAppManager.GetEvents;
-                       if (listBoxEvents.Items.Count == 0)
-                       {
-                           MessageBox.Show("Sorry, no events to retrieve.");
-                       }
-                   }
-                   ));
+            listBoxEvents.Invoke(new Action(() =>
+            {
+                eventBindingSource.DataSource = m_FacebookAppManager.GetEvents;
+                if (listBoxEvents.Items.Count == 0)
+                {
+                    MessageBox.Show("Sorry, no events to retrieve.");
+                }
+            }));
         }
 
         private void buttonHelpToElder_Click(object sender, EventArgs e)

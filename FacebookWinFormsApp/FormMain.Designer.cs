@@ -34,10 +34,10 @@
             System.Windows.Forms.Label emailLabel;
             System.Windows.Forms.Label localeLabel;
             System.Windows.Forms.Label religionLabel;
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             System.Windows.Forms.Label descriptionLabel;
             System.Windows.Forms.Label endTimeLabel;
             System.Windows.Forms.Label startTimeLabel;
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.buttonLogin = new System.Windows.Forms.Button();
             this.buttonLogout = new System.Windows.Forms.Button();
             this.panelOptions = new System.Windows.Forms.Panel();
@@ -75,6 +75,7 @@
             this.endTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.imageNormalPictureBox1 = new System.Windows.Forms.PictureBox();
             this.startTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.groupBindingSource = new System.Windows.Forms.BindingSource(this.components);
             birthdayLabel = new System.Windows.Forms.Label();
             emailLabel = new System.Windows.Forms.Label();
             localeLabel = new System.Windows.Forms.Label();
@@ -95,6 +96,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageNormalPictureBox)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageNormalPictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // birthdayLabel
@@ -132,6 +134,33 @@
             religionLabel.Size = new System.Drawing.Size(63, 17);
             religionLabel.TabIndex = 10;
             religionLabel.Text = "Religion:";
+            // 
+            // descriptionLabel
+            // 
+            descriptionLabel.AutoSize = true;
+            descriptionLabel.Location = new System.Drawing.Point(28, 97);
+            descriptionLabel.Name = "descriptionLabel";
+            descriptionLabel.Size = new System.Drawing.Size(83, 17);
+            descriptionLabel.TabIndex = 0;
+            descriptionLabel.Text = "Description:";
+            // 
+            // endTimeLabel
+            // 
+            endTimeLabel.AutoSize = true;
+            endTimeLabel.Location = new System.Drawing.Point(28, 176);
+            endTimeLabel.Name = "endTimeLabel";
+            endTimeLabel.Size = new System.Drawing.Size(72, 17);
+            endTimeLabel.TabIndex = 2;
+            endTimeLabel.Text = "End Time:";
+            // 
+            // startTimeLabel
+            // 
+            startTimeLabel.AutoSize = true;
+            startTimeLabel.Location = new System.Drawing.Point(28, 148);
+            startTimeLabel.Name = "startTimeLabel";
+            startTimeLabel.Size = new System.Drawing.Size(77, 17);
+            startTimeLabel.TabIndex = 6;
+            startTimeLabel.Text = "Start Time:";
             // 
             // buttonLogin
             // 
@@ -329,12 +358,15 @@
             // listBoxGroups
             // 
             this.listBoxGroups.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxGroups.DataSource = this.groupBindingSource;
+            this.listBoxGroups.DisplayMember = "Name";
             this.listBoxGroups.FormattingEnabled = true;
             this.listBoxGroups.ItemHeight = 16;
             this.listBoxGroups.Location = new System.Drawing.Point(1349, 527);
             this.listBoxGroups.Name = "listBoxGroups";
             this.listBoxGroups.Size = new System.Drawing.Size(171, 228);
             this.listBoxGroups.TabIndex = 58;
+            this.listBoxGroups.ValueMember = "Description";
             // 
             // checkBoxRememberMe
             // 
@@ -509,15 +541,6 @@
             this.panel1.Size = new System.Drawing.Size(324, 228);
             this.panel1.TabIndex = 70;
             // 
-            // descriptionLabel
-            // 
-            descriptionLabel.AutoSize = true;
-            descriptionLabel.Location = new System.Drawing.Point(28, 97);
-            descriptionLabel.Name = "descriptionLabel";
-            descriptionLabel.Size = new System.Drawing.Size(83, 17);
-            descriptionLabel.TabIndex = 0;
-            descriptionLabel.Text = "Description:";
-            // 
             // descriptionTextBox
             // 
             this.descriptionTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.eventBindingSource, "Description", true));
@@ -526,15 +549,6 @@
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.Size = new System.Drawing.Size(200, 41);
             this.descriptionTextBox.TabIndex = 1;
-            // 
-            // endTimeLabel
-            // 
-            endTimeLabel.AutoSize = true;
-            endTimeLabel.Location = new System.Drawing.Point(28, 176);
-            endTimeLabel.Name = "endTimeLabel";
-            endTimeLabel.Size = new System.Drawing.Size(72, 17);
-            endTimeLabel.TabIndex = 2;
-            endTimeLabel.Text = "End Time:";
             // 
             // endTimeDateTimePicker
             // 
@@ -553,15 +567,6 @@
             this.imageNormalPictureBox1.TabIndex = 5;
             this.imageNormalPictureBox1.TabStop = false;
             // 
-            // startTimeLabel
-            // 
-            startTimeLabel.AutoSize = true;
-            startTimeLabel.Location = new System.Drawing.Point(28, 148);
-            startTimeLabel.Name = "startTimeLabel";
-            startTimeLabel.Size = new System.Drawing.Size(77, 17);
-            startTimeLabel.TabIndex = 6;
-            startTimeLabel.Text = "Start Time:";
-            // 
             // startTimeDateTimePicker
             // 
             this.startTimeDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.eventBindingSource, "StartTime", true));
@@ -569,6 +574,10 @@
             this.startTimeDateTimePicker.Name = "startTimeDateTimePicker";
             this.startTimeDateTimePicker.Size = new System.Drawing.Size(200, 22);
             this.startTimeDateTimePicker.TabIndex = 7;
+            // 
+            // groupBindingSource
+            // 
+            this.groupBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Group);
             // 
             // FormMain
             // 
@@ -612,6 +621,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageNormalPictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -656,5 +666,6 @@
         private System.Windows.Forms.DateTimePicker endTimeDateTimePicker;
         private System.Windows.Forms.PictureBox imageNormalPictureBox1;
         private System.Windows.Forms.DateTimePicker startTimeDateTimePicker;
+        private System.Windows.Forms.BindingSource groupBindingSource;
     }
 }
