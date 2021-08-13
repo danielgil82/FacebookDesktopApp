@@ -102,7 +102,7 @@
             this.panel1.Size = new System.Drawing.Size(150, 129);
             this.panel1.TabIndex = 15;
             // 
-            // imageNormalElderPictureBox
+            // PictureBoxImageNormalElder
             // 
             this.PictureBoxImageNormalElder.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.photoBindingSource, "ImageNormal", true));
             this.PictureBoxImageNormalElder.Dock = System.Windows.Forms.DockStyle.Fill;
