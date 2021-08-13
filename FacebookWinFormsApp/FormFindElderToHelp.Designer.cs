@@ -37,7 +37,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.PictureBoxImageNormalElder = new System.Windows.Forms.PictureBox();
             this.photoBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pictureBoxElderPicture = new System.Windows.Forms.PictureBox();
             this.listBoxPotentialElders = new System.Windows.Forms.ListBox();
             this.buttonFindElderToHelp = new System.Windows.Forms.Button();
             this.buttonBack = new System.Windows.Forms.Button();
@@ -49,7 +48,6 @@
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxImageNormalElder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.photoBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxElderPicture)).BeginInit();
             this.SuspendLayout();
             // 
             // labelFindElderTitle
@@ -78,7 +76,6 @@
             // 
             this.panelElederly.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panelElederly.BackgroundImage")));
             this.panelElederly.Controls.Add(this.panel1);
-            this.panelElederly.Controls.Add(this.pictureBoxElderPicture);
             this.panelElederly.Controls.Add(this.listBoxPotentialElders);
             this.panelElederly.Controls.Add(this.buttonFindElderToHelp);
             this.panelElederly.Controls.Add(this.buttonBack);
@@ -102,7 +99,7 @@
             this.panel1.Size = new System.Drawing.Size(150, 129);
             this.panel1.TabIndex = 15;
             // 
-            // imageNormalElderPictureBox
+            // PictureBoxImageNormalElder
             // 
             this.PictureBoxImageNormalElder.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.photoBindingSource, "ImageNormal", true));
             this.PictureBoxImageNormalElder.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -116,16 +113,6 @@
             // photoBindingSource
             // 
             this.photoBindingSource.DataSource = typeof(FacebookWrapper.ObjectModel.Photo);
-            // 
-            // pictureBoxElderPicture
-            // 
-            this.pictureBoxElderPicture.BackColor = System.Drawing.Color.White;
-            this.pictureBoxElderPicture.Location = new System.Drawing.Point(491, 352);
-            this.pictureBoxElderPicture.Name = "pictureBoxElderPicture";
-            this.pictureBoxElderPicture.Size = new System.Drawing.Size(123, 105);
-            this.pictureBoxElderPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBoxElderPicture.TabIndex = 9;
-            this.pictureBoxElderPicture.TabStop = false;
             // 
             // listBoxPotentialElders
             // 
@@ -225,7 +212,6 @@
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxImageNormalElder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.photoBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxElderPicture)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -245,6 +231,5 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox PictureBoxImageNormalElder;
         private System.Windows.Forms.BindingSource photoBindingSource;
-        private System.Windows.Forms.PictureBox pictureBoxElderPicture;
     }
 }

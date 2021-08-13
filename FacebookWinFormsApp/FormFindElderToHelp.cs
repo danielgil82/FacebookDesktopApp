@@ -101,34 +101,16 @@ namespace BasicFacebookFeatures
             photoBindingSource.ResetBindings(false);
         }
 
-        //private void displaySelectedElderUser()
-        //{
-        //    if (listBoxPotentialElders.SelectedItems.Count == 1)
-        //    {
-        //        User SelectedUser = listBoxPotentialElders.SelectedItem as User;
-
-        //        if (SelectedUser.PictureNormalURL != null)
-        //        {
-        //            pictureBoxElderPicture.LoadAsync(SelectedUser.PictureNormalURL);
-        //            //photoBindingSource.DataSource = (listBoxPotentialElders.SelectedItem as User).PictureNormalURL;
-        //        }
-        //        else
-        //        {
-        //            pictureBoxElderPicture.Image = pictureBoxElderPicture.ErrorImage;
-        //        }
-        //    }
-        //}
-
         /// <summary>
         /// using the data source of photoBindingSource 
         /// </summary>
         private void fetchPotentialElders()
-        { 
+        {
             listBoxPotentialElders.Invoke(
-                new Action(
-                    () => 
-                        photoBindingSource.DataSource = m_PotentialEldersList
-                        ));
+            new Action(
+               () =>
+           photoBindingSource.DataSource = m_PotentialEldersList
+                    ));
         }
 
         private void checkedListBoxGender_SelectedIndexChanged(object sender, EventArgs e)
