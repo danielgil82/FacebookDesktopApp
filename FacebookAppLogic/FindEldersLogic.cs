@@ -11,7 +11,7 @@ using FacebookWrapper.ObjectModel;
 
 namespace FacebookAppLogic
 {
-    internal class FindElders
+    internal class FindEldersLogic
     {
         private readonly FacebookObjectCollection<ElderUser> r_PotentialElderToHelp;
         private readonly User r_User;
@@ -27,7 +27,7 @@ namespace FacebookAppLogic
             both
         }
 
-        internal FindElders(User i_User)
+        internal FindEldersLogic(User i_User)
         {
             r_User = i_User;
             UsersCurrentCity = r_User.Hometown;

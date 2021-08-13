@@ -40,8 +40,8 @@
   <ItemGroup>
     <Compile Include="AppSettings.cs" />
     <Compile Include="FacebookAppManager.cs" />
-    <Compile Include="FindElders.cs" />
-    <Compile Include="LookHowSomeoneChange.cs" />
+    <Compile Include="FindEldersLogic.cs" />
+    <Compile Include="LookHowSomeoneChangeLogic.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Facebook">

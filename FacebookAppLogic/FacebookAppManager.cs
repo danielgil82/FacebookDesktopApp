@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using FacebookWrapper.ObjectModel;
 using FacebookWrapper;
-using static FacebookAppLogic.LookHowSomeoneChange;
+using static FacebookAppLogic.LookHowSomeoneChangeLogic;
 
 namespace FacebookAppLogic
 {
     public class FacebookAppManager
     {
         private readonly User r_LoggedInUser;
-        private FindElders m_FindElders;
-        private LookHowSomeoneChange m_TimeLineInfo;
+        private FindEldersLogic m_FindEldersLogic;
+        private LookHowSomeoneChangeLogic m_LookHowSomeoneChangedLogic;
 
         public FacebookAppManager(User i_LoggedInUser)
         {
@@ -52,12 +52,12 @@ namespace FacebookAppLogic
 
         public FacebookObjectCollection<User> GetPotentialElders(string i_PreferredGender, string i_PreferredAgeRange)
         {
-            if (m_FindElders == null)
+            if (m_FindEldersLogic == null)
             {
-                m_FindElders = new FindElders(r_LoggedInUser);
+                m_FindEldersLogic = new FindEldersLogic(r_LoggedInUser);
             }
 
-            return m_FindElders.FindPotentialEldershUsersConditions(i_PreferredGender, i_PreferredAgeRange);
+            return m_FindEldersLogic.FindPotentialEldershUsersConditions(i_PreferredGender, i_PreferredAgeRange);
         }
 
         public User LoggedInUser
@@ -68,16 +68,17 @@ namespace FacebookAppLogic
             }
         }
 
-        public Dictionary<int, UserPhotoInfo> GetTimeLinePictures(User i_ChosenUser, List<int> i_YearsChoosen)
+        // todo: make a list of photos
+        public List<Photo> GetChosenFriendProfilePictures(User i_ChosenUser, List<int> i_YearsChosen)
         {
-            if (m_TimeLineInfo == null)
+            if (m_LookHowSomeoneChangedLogic == null)
             {
-                m_TimeLineInfo = new LookHowSomeoneChange();
+                m_LookHowSomeoneChangedLogic = new LookHowSomeoneChangeLogic();
             }
 
-            m_TimeLineInfo.FetchTimeLinePhotos(i_ChosenUser, i_YearsChoosen);
+            m_LookHowSomeoneChangedLogic.FetchFriendTimeLinePictures(i_ChosenUser, i_YearsChosen);
 
-            return m_TimeLineInfo.UserPhotosInfo;
+            return m_LookHowSomeoneChangedLogic.FriendProfilePictures;
         }
 
         public FacebookObjectCollection<User> GetFriends
