@@ -15,47 +15,28 @@ namespace BasicFacebookFeatures
         private const string k_NoneStr = "None";
         private const string k_DateLabel = "Creation Date:";
         private readonly FacebookAppManager r_FacebookAppManager;
-        private readonly FacebookObjectCollection<User> r_UsersFriends = null;
         private readonly Hashtable r_HasTheYearBeenChosen = new Hashtable();
-        private readonly List<int> r_YearsChoosenByUser;
-        private User m_PreferredUser;
+        private readonly List<int> r_YearsChosenByUser = new List<int>();
 
-        public List<Photo> UserProfilePictures { get; internal set; }
+        public List<Photo> UserProfilePictures { get; private set; }
 
-        internal Hashtable HasTheYearBeenChosen
+        internal FacebookObjectCollection<User> UsersFriends { get; private set; }
+        
+        internal User PreferredUser { get; private set; }
+        
+        internal Hashtable HasTheYearBeenChosen 
         {
             get
             {
                 return r_HasTheYearBeenChosen;
             }
         }
-
-        internal FacebookObjectCollection<User> UsersFriends
-        {
-            get
-            {
-                return r_UsersFriends;
-            }
-        }
-
-        internal User PreferredUser
-        {
-            get
-            {
-                return m_PreferredUser;
-            }
-            private set
-            {
-                m_PreferredUser = value;
-            }
-        }
-
+        
         internal FormHowSomeoneChanged(FormMain i_MainForm)
         {
             InitializeComponent();
             r_FacebookAppManager = i_MainForm.FacebookAppManager;
-            r_UsersFriends = r_FacebookAppManager.GetFriends;
-            r_YearsChoosenByUser = new List<int>();
+            UsersFriends = r_FacebookAppManager.GetFriends;
             fetchYearsToChooseInTheComboBoxes();
         }
 
@@ -105,7 +86,7 @@ namespace BasicFacebookFeatures
                     Thread fetchUserProfilePicturesThread = new Thread((() =>
                     {
                         UserProfilePictures =
-                            r_FacebookAppManager.GetChosenFriendProfilePictures(PreferredUser, r_YearsChoosenByUser);
+                            r_FacebookAppManager.GetChosenFriendProfilePictures(PreferredUser, r_YearsChosenByUser);
                     }));
                     fetchUserProfilePicturesThread.Start();
                     fetchUserProfilePicturesThread.Join();
@@ -136,9 +117,6 @@ namespace BasicFacebookFeatures
             fetchPhotosDescriptions(i_TimeLineProfilePictures);
             fetchPhotosDates(i_TimeLineProfilePictures);
         }
-
-
-
         private void resetTextBoxesTexts()
         {
             foreach (Control control in panelDescription.Controls)
@@ -263,17 +241,17 @@ namespace BasicFacebookFeatures
 
         private void fetchChoosenYearsFromTheHastable()
         {
-            if (r_YearsChoosenByUser.Count != 0)
+            if (r_YearsChosenByUser.Count != 0)
             {
-                r_YearsChoosenByUser.Clear();
+                r_YearsChosenByUser.Clear();
             }
 
             foreach (string year in HasTheYearBeenChosen.Keys)
             {
-                r_YearsChoosenByUser.Add(int.Parse(year));
+                r_YearsChosenByUser.Add(int.Parse(year));
             }
 
-            r_YearsChoosenByUser.Sort();
+            r_YearsChosenByUser.Sort();
         }
 
         private bool areTheComboBoxesChecked()
@@ -370,7 +348,7 @@ namespace BasicFacebookFeatures
                     }
                 }
 
-                r_YearsChoosenByUser.Clear();
+                r_YearsChosenByUser.Clear();
                 HasTheYearBeenChosen.Clear();
             }
         }
