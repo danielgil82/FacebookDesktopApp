@@ -20,16 +20,14 @@ namespace BasicFacebookFeatures
         private const string k_UnknownMessage = "Unknown";
         private const string k_LoggedInUser = "Logged In";
         private readonly AppSettings r_AppSettings;
-        private FacebookAppManager m_FacebookAppManager;
+        private FacebookAppManagerFacade m_FacebookAppManagerFacade;
         private LoginResult m_LoginResult;
 
-        public User CurrentUser { get; private set; }
-
-        internal FacebookAppManager FacebookAppManager
+        internal FacebookAppManagerFacade FacebookAppManagerFacade
         {
             get
             {
-                return m_FacebookAppManager;
+                return m_FacebookAppManagerFacade;
             }
         }
 
@@ -54,7 +52,6 @@ namespace BasicFacebookFeatures
         private void autoLogin()
         {
             m_LoginResult = FacebookService.Connect(r_AppSettings.LastAccessToken);
-            // User = m_LoginResult.LoggedInUser;
             fetchLoggedInUser();
             enablingAndDisablingButtonsWhenLoggedIn();
         }
@@ -134,7 +131,6 @@ namespace BasicFacebookFeatures
                 "user_posts",
                 "user_videos");
             buttonLogin.Text = $"Logged in as {m_LoginResult.LoggedInUser.Name}";
-            //User = m_LoginResult.LoggedInUser;
             fetchLoggedInUser();
         }
 
@@ -144,14 +140,13 @@ namespace BasicFacebookFeatures
                 new Action(
                     () =>
                           {
-                              //User = m_LoginResult.LoggedInUser;
                               this.Text = "Welcome To Our Desktop Facebook App";
                               buttonLogin.Text = k_LoggedInUser;
-                              m_FacebookAppManager = new FacebookAppManager(m_LoginResult.LoggedInUser);
+                              m_FacebookAppManagerFacade = new FacebookAppManagerFacade(m_LoginResult.LoggedInUser) {};
                               buttonLogin.ForeColor = Color.White;
-                              pictureBoxProfile.LoadAsync(m_FacebookAppManager.LoggedInUser.PictureNormalURL);
+                              pictureBoxProfile.LoadAsync(m_FacebookAppManagerFacade.LoggedInUser.PictureNormalURL);
                               labelCurrentDate.Text = DateTime.Now.ToLongDateString();
-                              labelFullName.Text = labelFullName.Text + " " + m_FacebookAppManager.LoggedInUser.Name;
+                              labelFullName.Text = labelFullName.Text + " " + m_FacebookAppManagerFacade.LoggedInUser.Name;
                               try
                               {
                                   fetchUsersLivingLocation();
@@ -166,9 +161,9 @@ namespace BasicFacebookFeatures
 
         private void fetchUsersBirthday()
         {
-            if (m_FacebookAppManager.LoggedInUser.Location.Name != null)
+            if (m_FacebookAppManagerFacade.LoggedInUser.Location.Name != null)
             {
-                labelBirthday.Text = labelBirthday.Text + " " + m_FacebookAppManager.GetBirthday;
+                labelBirthday.Text = labelBirthday.Text + " " + m_FacebookAppManagerFacade.GetBirthday;
             }
             else
             {
@@ -178,9 +173,9 @@ namespace BasicFacebookFeatures
 
         private void fetchUsersLivingLocation()
         {
-            if (m_FacebookAppManager.LoggedInUser.Location.Name != null)
+            if (m_FacebookAppManagerFacade.LoggedInUser.Location.Name != null)
             {
-                labelLocation.Text = labelLocation.Text + " " + m_FacebookAppManager.LoggedInUser.Location.Name;
+                labelLocation.Text = labelLocation.Text + " " + m_FacebookAppManagerFacade.LoggedInUser.Location.Name;
             }
             else
             {
@@ -190,7 +185,7 @@ namespace BasicFacebookFeatures
 
         private void buttonLogout_Click(object sender, EventArgs e)
         {
-            m_FacebookAppManager.Logout();
+            m_FacebookAppManagerFacade.Logout();
             buttonLogin.Enabled = true;
             buttonLogin.Text = "Login To Facebook";
             buttonLogin.ForeColor = Color.WhiteSmoke;
@@ -216,8 +211,8 @@ namespace BasicFacebookFeatures
         {
             listBoxFriends.Invoke(new Action(() =>
             {
-                userBindingSource.DataSource = m_FacebookAppManager.GetFriends;
-                if (m_FacebookAppManager.GetFriends.Count == 0)
+                userBindingSource.DataSource = m_FacebookAppManagerFacade.GetFriends;
+                if (m_FacebookAppManagerFacade.GetFriends.Count == 0)
                 {
                     MessageBox.Show("Sorry, no friends to retrieve.");
                 }
@@ -228,7 +223,7 @@ namespace BasicFacebookFeatures
         {
             listBoxGroups.Invoke(new Action(() =>
             {
-                groupBindingSource.DataSource = m_FacebookAppManager.GetGroups;
+                groupBindingSource.DataSource = m_FacebookAppManagerFacade.GetGroups;
                 if (listBoxGroups.Items.Count == 0)
                 {
                     MessageBox.Show("Sorry, no groups to retrieve.");
@@ -240,7 +235,7 @@ namespace BasicFacebookFeatures
         {
             listBoxEvents.Invoke(new Action(() =>
             {
-                eventBindingSource.DataSource = m_FacebookAppManager.GetEvents;
+                eventBindingSource.DataSource = m_FacebookAppManagerFacade.GetEvents;
                 if (listBoxEvents.Items.Count == 0)
                 {
                     MessageBox.Show("Sorry, no events to retrieve.");

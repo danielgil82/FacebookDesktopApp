@@ -18,7 +18,7 @@ namespace BasicFacebookFeatures
 {
     internal partial class FormFindElderToHelp : Form
     {
-        private readonly FacebookAppManager r_FacebookAppManager;
+        private readonly FacebookAppManagerFacade r_FacebookAppManager;
         private readonly List<string> r_AgeRangeList;
         private FacebookObjectCollection<User> m_PotentialEldersList = null;
 
@@ -29,7 +29,7 @@ namespace BasicFacebookFeatures
         internal FormFindElderToHelp(FormMain i_FormMain)
         {
             InitializeComponent();
-            r_FacebookAppManager = i_FormMain.FacebookAppManager;
+            r_FacebookAppManager = i_FormMain.FacebookAppManagerFacade;
             r_AgeRangeList = new List<string>();
             initAgeRangeList();
         }

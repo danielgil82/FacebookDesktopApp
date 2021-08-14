@@ -8,15 +8,22 @@ using static FacebookAppLogic.LookHowSomeoneChangeLogic;
 
 namespace FacebookAppLogic
 {
-    public class FacebookAppManager
+    public class FacebookAppManagerFacade
     {
         private readonly User r_LoggedInUser;
         private FindEldersLogic m_FindEldersLogic;
         private LookHowSomeoneChangeLogic m_LookHowSomeoneChangedLogic;
 
-        public FacebookAppManager(User i_LoggedInUser)
+        public FacebookAppManagerFacade(User i_LoggedInUser)
         {
             r_LoggedInUser = i_LoggedInUser;
+        }
+        public User LoggedInUser
+        {
+            get
+            {
+                return r_LoggedInUser;
+            }
         }
 
         public string GetBirthday
@@ -48,37 +55,6 @@ namespace FacebookAppLogic
             {
                 throw new Exception("Couldn't log out successfully.");
             }
-        }
-
-        public FacebookObjectCollection<User> GetPotentialElders(string i_PreferredGender, string i_PreferredAgeRange)
-        {
-            if (m_FindEldersLogic == null)
-            {
-                m_FindEldersLogic = new FindEldersLogic(r_LoggedInUser);
-            }
-
-            return m_FindEldersLogic.FindPotentialEldershUsersConditions(i_PreferredGender, i_PreferredAgeRange);
-        }
-
-        public User LoggedInUser
-        {
-            get
-            {
-                return r_LoggedInUser;
-            }
-        }
-
-        // todo: make a list of photos
-        public List<Photo> GetChosenFriendProfilePictures(User i_ChosenUser, List<int> i_YearsChosen)
-        {
-            if (m_LookHowSomeoneChangedLogic == null)
-            {
-                m_LookHowSomeoneChangedLogic = new LookHowSomeoneChangeLogic();
-            }
-
-            m_LookHowSomeoneChangedLogic.FetchFriendTimeLinePictures(i_ChosenUser, i_YearsChosen);
-
-            return m_LookHowSomeoneChangedLogic.FriendProfilePictures;
         }
 
         public FacebookObjectCollection<User> GetFriends
@@ -136,6 +112,29 @@ namespace FacebookAppLogic
 
                 return userGroups;
             }
+        }
+
+        public FacebookObjectCollection<User> GetPotentialElders(string i_PreferredGender, string i_PreferredAgeRange)
+        {
+            if (m_FindEldersLogic == null)
+            {
+                m_FindEldersLogic = new FindEldersLogic(r_LoggedInUser);
+            }
+
+            return m_FindEldersLogic.FindPotentialEldershUsersConditions(i_PreferredGender, i_PreferredAgeRange);
+        }
+
+        // todo: make a list of photos
+        public List<Photo> GetChosenFriendProfilePictures(User i_ChosenUser, List<int> i_YearsChosen)
+        {
+            if (m_LookHowSomeoneChangedLogic == null)
+            {
+                m_LookHowSomeoneChangedLogic = new LookHowSomeoneChangeLogic();
+            }
+
+            m_LookHowSomeoneChangedLogic.FetchFriendTimeLinePictures(i_ChosenUser, i_YearsChosen);
+
+            return m_LookHowSomeoneChangedLogic.FriendProfilePictures;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace BasicFacebookFeatures
         private const string k_FiveDifferentYears = "Oops you must select 5 different options in the years section";
         private const string k_NoneStr = "None";
         private const string k_DateLabel = "Creation Date:";
-        private readonly FacebookAppManager r_FacebookAppManager;
+        private readonly FacebookAppManagerFacade r_FacebookAppManager;
         private readonly Hashtable r_HasTheYearBeenChosen = new Hashtable();
         private readonly List<int> r_YearsChosenByUser = new List<int>();
 
@@ -35,7 +35,7 @@ namespace BasicFacebookFeatures
         internal FormHowSomeoneChanged(FormMain i_MainForm)
         {
             InitializeComponent();
-            r_FacebookAppManager = i_MainForm.FacebookAppManager;
+            r_FacebookAppManager = i_MainForm.FacebookAppManagerFacade;
             UsersFriends = r_FacebookAppManager.GetFriends;
             fetchYearsToChooseInTheComboBoxes();
         }
