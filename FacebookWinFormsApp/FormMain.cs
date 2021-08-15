@@ -142,7 +142,7 @@ namespace BasicFacebookFeatures
                           {
                               this.Text = "Welcome To Our Desktop Facebook App";
                               buttonLogin.Text = k_LoggedInUser;
-                              m_FacebookAppManagerFacade = new FacebookAppManagerFacade(m_LoginResult.LoggedInUser) {};
+                              m_FacebookAppManagerFacade = new FacebookAppManagerFacade(m_LoginResult.LoggedInUser);
                               buttonLogin.ForeColor = Color.White;
                               pictureBoxProfile.LoadAsync(m_FacebookAppManagerFacade.LoggedInUser.PictureNormalURL);
                               labelCurrentDate.Text = DateTime.Now.ToLongDateString();
