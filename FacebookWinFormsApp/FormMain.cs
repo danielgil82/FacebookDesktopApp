@@ -254,7 +254,8 @@ namespace BasicFacebookFeatures
             try
             {
                 this.Hide();
-                FormFindElderToHelp helpToElderly = FormFactory.CreateForm(k_FormFindElderToHelp) as FormFindElderToHelp;
+                FormFindElderToHelp helpToElderly =
+                    FormFactory.CreateForm(k_FormFindElderToHelp) as FormFindElderToHelp;
                 helpToElderly.ShowDialog();
                 this.Show();
             }
@@ -273,7 +274,8 @@ namespace BasicFacebookFeatures
             try
             {
                 this.Hide();
-                FormHowSomeoneChanged timeLineInfo = FormFactory.CreateForm(k_FormHowSomeoneChanged) as FormHowSomeoneChanged;
+                FormHowSomeoneChanged timeLineInfo
+                    = FormFactory.CreateForm(k_FormHowSomeoneChanged) as FormHowSomeoneChanged;
                 timeLineInfo.ShowDialog();
                 this.Show();
             }

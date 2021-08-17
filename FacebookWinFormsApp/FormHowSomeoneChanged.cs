@@ -73,7 +73,9 @@ namespace BasicFacebookFeatures
                 }
             })));
         }
-
+        
+        // todo: think if eventually implement the new thread this way, or maybe with the join line
+        // todo: in the end of this method..
         private void buttonFetchPictures_Click(object sender, EventArgs e)
         {
             if (HasTheYearBeenChosen.Count == 5)
@@ -83,15 +85,17 @@ namespace BasicFacebookFeatures
 
                     fetchChoosenYearsFromTheHastable();
 
-                    Thread fetchUserProfilePicturesThread = new Thread((() =>
+                    //Thread fetchUserProfilePicturesThread =
+                        new Thread((() =>
                     {
                         UserProfilePictures =
                             r_FacebookAppManager.GetChosenFriendProfilePictures(PreferredUser, r_YearsChosenByUser);
-                    }));
-                    fetchUserProfilePicturesThread.Start();
-                    fetchUserProfilePicturesThread.Join();
-                    resetDataAboutPhotosAndPicturBoxes();
-                    fetchProfilePicturesAndDataAboutThem(UserProfilePictures);
+                        resetDataAboutPhotosAndPicturBoxes();
+                        fetchProfilePicturesAndDataAboutThem(UserProfilePictures);
+                    })).Start();
+                   // fetchUserProfilePicturesThread.Start();
+                 //   fetchUserProfilePicturesThread.Join();
+                    
                 }
                 else
                 {
@@ -119,53 +123,62 @@ namespace BasicFacebookFeatures
         }
         private void resetTextBoxesTexts()
         {
-            foreach (Control control in panelDescription.Controls)
+            this.Invoke(new Action((() =>
             {
-                if (control is TextBox)
+                foreach (Control control in panelDescription.Controls)
                 {
-                    if ((control as TextBox).Text != string.Empty)
+                    if (control is TextBox)
                     {
-                        (control as TextBox).Text = string.Empty;
+                        if ((control as TextBox).Text != string.Empty)
+                        {
+                            (control as TextBox).Text = string.Empty;
+                        }
                     }
                 }
-            }
+            })));
         }
 
         private void resetDatesInTheLables()
         {
-            foreach (Control control in panelDescription.Controls)
+            this.Invoke(new Action((() =>
             {
-                if (control is Label)
+                foreach (Control control in panelDescription.Controls)
                 {
-                    if ((control as Label).Text.Contains(k_DateLabel))
+                    if (control is Label)
                     {
-                        Label currentLabel = control as Label;
-
-                        if (currentLabel.Text.Length != k_DateLabel.Length)
+                        if ((control as Label).Text.Contains(k_DateLabel))
                         {
-                            currentLabel.Text = k_DateLabel;
+                            Label currentLabel = control as Label;
+
+                            if (currentLabel.Text.Length != k_DateLabel.Length)
+                            {
+                                currentLabel.Text = k_DateLabel;
+                            }
                         }
                     }
                 }
-            }
+            })));
         }
 
         private void displayThePicturesInThePictureBoxes(List<Photo> i_TimeLineProfilePictures)
         {
-            foreach (Photo photo in i_TimeLineProfilePictures)
+            this.Invoke(new Action((() =>
             {
-                foreach (Control control in this.splitContainer1.Panel1.Controls)
+                foreach (Photo photo in i_TimeLineProfilePictures)
                 {
-                    if (control is PictureBox)
+                    foreach (Control control in this.splitContainer1.Panel1.Controls)
                     {
-                        if ((control as PictureBox).Image == null)
+                        if (control is PictureBox)
                         {
-                            (control as PictureBox).LoadAsync(photo.PictureNormalURL);
-                            break;
+                            if ((control as PictureBox).Image == null)
+                            {
+                                (control as PictureBox).LoadAsync(photo.PictureNormalURL);
+                                break;
+                            }
                         }
                     }
                 }
-            }
+            })));
         }
 
         /// <summary>
@@ -226,17 +239,20 @@ namespace BasicFacebookFeatures
 
         private void resetTheImagesInThePictureBoxes()
         {
-            foreach (Control control in this.splitContainer1.Panel1.Controls)
+            this.Invoke(new Action((() =>
             {
-                if (control is PictureBox && control.Name != "pictureBoxTimeLine")
+                foreach (Control control in this.splitContainer1.Panel1.Controls)
                 {
-                    if ((control as PictureBox).Image != null)
+                    if (control is PictureBox && control.Name != "pictureBoxTimeLine")
                     {
-                        PictureBox pic = control as PictureBox;
-                        pic.Image = null;
+                        if ((control as PictureBox).Image != null)
+                        {
+                            PictureBox pic = control as PictureBox;
+                            pic.Image = null;
+                        }
                     }
                 }
-            }
+            })));
         }
 
         private void fetchChoosenYearsFromTheHastable()
