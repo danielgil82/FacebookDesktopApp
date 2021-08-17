@@ -107,6 +107,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormFactory.cs" />
     <Compile Include="FormFindElderToHelp.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using CefSharp.DevTools.LayerTree;
 using FacebookAppLogic;
-using FacebookWrapper.ObjectModel;
 using FacebookWrapper;
 
 namespace BasicFacebookFeatures
@@ -19,6 +15,9 @@ namespace BasicFacebookFeatures
     {
         private const string k_UnknownMessage = "Unknown";
         private const string k_LoggedInUser = "Logged In";
+        private const string k_FormFindElderToHelp = "FormFindElderToHelp";
+        private const string k_FormHowSomeoneChanged = "FormHowSomeoneChanged";
+        private const string k_CannotRetrieveData = "Sorry, could not retrieve any ";
         private readonly AppSettings r_AppSettings;
         private FacebookAppManagerFacade m_FacebookAppManagerFacade;
         private LoginResult m_LoginResult;
@@ -112,7 +111,7 @@ namespace BasicFacebookFeatures
 
         private void loginAndInit()
         {
-            Clipboard.SetText("design.patterns21c"); /// the current password for Desig Patter
+            Clipboard.SetText("design.patterns.c21"); /// the current password for Desig Patter
 
             m_LoginResult = FacebookService.Login(
                 "452659572840281",
@@ -214,7 +213,7 @@ namespace BasicFacebookFeatures
                 userBindingSource.DataSource = m_FacebookAppManagerFacade.GetFriends;
                 if (m_FacebookAppManagerFacade.GetFriends.Count == 0)
                 {
-                    MessageBox.Show("Sorry, no friends to retrieve.");
+                    MessageBox.Show(string.Format(k_CannotRetrieveData + "Friends"));
                 }
             }));
         }
@@ -226,7 +225,7 @@ namespace BasicFacebookFeatures
                 groupBindingSource.DataSource = m_FacebookAppManagerFacade.GetGroups;
                 if (listBoxGroups.Items.Count == 0)
                 {
-                    MessageBox.Show("Sorry, no groups to retrieve.");
+                    MessageBox.Show(string.Format(k_CannotRetrieveData + "Groups"));
                 }
             }));
         }
@@ -238,17 +237,9 @@ namespace BasicFacebookFeatures
                 eventBindingSource.DataSource = m_FacebookAppManagerFacade.GetEvents;
                 if (listBoxEvents.Items.Count == 0)
                 {
-                    MessageBox.Show("Sorry, no events to retrieve.");
+                    MessageBox.Show(string.Format(k_CannotRetrieveData + "Events"));
                 }
             }));
-        }
-
-        private void buttonHelpToElder_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            FormFindElderToHelp helpToElderly = new FormFindElderToHelp(this);
-            helpToElderly.ShowDialog();
-            this.Show();
         }
 
         private void buttonFetchData_Click(object sender, EventArgs e)
@@ -258,12 +249,42 @@ namespace BasicFacebookFeatures
             new Thread(fetchGroups).Start();
         }
 
+        private void buttonHelpToElder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Hide();
+                FormFindElderToHelp helpToElderly = FormFactory.CreateForm(k_FormFindElderToHelp) as FormFindElderToHelp;
+                helpToElderly.ShowDialog();
+                this.Show();
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void buttonTimeLine_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            FormHowSomeoneChanged timeLineInfo = new FormHowSomeoneChanged(this);
-            timeLineInfo.ShowDialog();
-            this.Show();
+            try
+            {
+                this.Hide();
+                FormHowSomeoneChanged timeLineInfo = FormFactory.CreateForm(k_FormHowSomeoneChanged) as FormHowSomeoneChanged;
+                timeLineInfo.ShowDialog();
+                this.Show();
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

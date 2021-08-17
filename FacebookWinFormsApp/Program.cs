@@ -8,17 +8,18 @@ namespace BasicFacebookFeatures
 {
     public static class Program
     {
+        private const string k_FormMain = "FormMain";
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         public static void Main()
         {
-            Clipboard.SetText("design.patterns.c21");
             FacebookService.s_UseForamttedToStrings = true;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormMain());
+            Application.Run(FormFactory.CreateForm(k_FormMain));
         }
     }
 }
