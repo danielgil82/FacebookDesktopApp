@@ -255,7 +255,7 @@
             this.panelForUserInfo.Controls.Add(this.pictureBoxProfile);
             this.panelForUserInfo.Location = new System.Drawing.Point(297, 37);
             this.panelForUserInfo.Name = "panelForUserInfo";
-            this.panelForUserInfo.Size = new System.Drawing.Size(499, 199);
+            this.panelForUserInfo.Size = new System.Drawing.Size(513, 199);
             this.panelForUserInfo.TabIndex = 54;
             // 
             // labelBirthday
@@ -549,7 +549,7 @@
             this.descriptionTextBox.Multiline = true;
             this.descriptionTextBox.Name = "descriptionTextBox";
             this.descriptionTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.descriptionTextBox.Size = new System.Drawing.Size(200, 64);
+            this.descriptionTextBox.Size = new System.Drawing.Size(200, 68);
             this.descriptionTextBox.TabIndex = 1;
             // 
             // endTimeDateTimePicker

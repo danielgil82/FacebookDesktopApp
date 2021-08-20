@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Speech.Synthesis;
 using System.Threading;
 using FacebookAppLogic;
 using FacebookWrapper.ObjectModel;
@@ -21,17 +22,17 @@ namespace BasicFacebookFeatures
         public List<Photo> UserProfilePictures { get; private set; }
 
         internal FacebookObjectCollection<User> UsersFriends { get; private set; }
-        
+
         internal User PreferredUser { get; private set; }
-        
-        internal Hashtable HasTheYearBeenChosen 
+
+        internal Hashtable HasTheYearBeenChosen
         {
             get
             {
                 return r_HasTheYearBeenChosen;
             }
         }
-        
+
         internal FormHowSomeoneChanged(FormMain i_MainForm)
         {
             InitializeComponent();
@@ -59,21 +60,62 @@ namespace BasicFacebookFeatures
         private void buttonFetchFriends_Click(object sender, EventArgs e)
         {
             new Thread(fetchUserFriends).Start();
+            //fetchUserFriends();
         }
-
+        
         private void fetchUserFriends()
         {
             listBoxUsersFriends.Invoke(new Action((() =>
-            {
-                listBoxUsersFriends.DisplayMember = "Name";
-                listBoxUsersFriends.DataSource = UsersFriends;
-                if (listBoxUsersFriends.Items.Count == 0)
-                {
-                    MessageBox.Show("No friends to retrieve");
-                }
-            })));
+             {
+                 if (listBoxUsersFriends.Items.Count != 0)
+                 {
+                     listBoxUsersFriends.Items.Clear();
+                 }
+
+                 //listBoxUsersFriends.DisplayMember = "Name";
+                 //listBoxUsersFriends.DataSource = UsersFriends;
+                 foreach (User friend in UsersFriends)
+                 {
+                     listBoxUsersFriends.Items.Add(new UserAdapter { User = friend });
+                 }
+
+                 if (listBoxUsersFriends.Items.Count == 0)
+                 {
+                     MessageBox.Show("No friends to retrieve");
+                 }
+             })));
         }
-        
+
+        //public class UserAdapter2 : ITextToSpeech2 
+        //{
+        //    public User User { get; set; }
+
+        //    public override string ToString()
+        //    {
+        //        return string.Format("{0}", User.Name);
+        //    }
+
+        //    public void Speak()
+        //    {
+        //        SpeechSynthesizer synthesizer = new SpeechSynthesizer();
+        //        synthesizer.SetOutputToDefaultAudioDevice();
+        //        synthesizer.SpeakAsync(User.ToString());
+        //    }
+        //}
+
+        private void listBoxUsersFriends_DoubleClick(object sender, EventArgs e)
+        {
+            ((sender as ListBox).SelectedItem as UserAdapter).Speak();
+        }
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var synthesizer = new SpeechSynthesizer();
+            synthesizer.SetOutputToDefaultAudioDevice();
+            synthesizer.SpeakAsync("All we need to do is to make sure we keep talking");
+        }
+
         // todo: think if eventually implement the new thread this way, or maybe with the join line
         // todo: in the end of this method..
         private void buttonFetchPictures_Click(object sender, EventArgs e)
@@ -83,19 +125,19 @@ namespace BasicFacebookFeatures
                 if (PreferredUser != null)
                 {
 
-                    fetchChoosenYearsFromTheHastable();
+                    fetchChosenYearsFromTheHashtable();
 
                     //Thread fetchUserProfilePicturesThread =
-                        new Thread((() =>
-                    {
-                        UserProfilePictures =
-                            r_FacebookAppManager.GetChosenFriendProfilePictures(PreferredUser, r_YearsChosenByUser);
-                        resetDataAboutPhotosAndPicturBoxes();
-                        fetchProfilePicturesAndDataAboutThem(UserProfilePictures);
-                    })).Start();
-                   // fetchUserProfilePicturesThread.Start();
-                 //   fetchUserProfilePicturesThread.Join();
-                    
+                    new Thread((() =>
+                {
+                    UserProfilePictures =
+                        r_FacebookAppManager.GetChosenFriendProfilePictures(PreferredUser, r_YearsChosenByUser);
+                    resetDataAboutPhotosAndPictureBoxes();
+                    fetchProfilePicturesAndDataAboutThem(UserProfilePictures);
+                })).Start();
+                    // fetchUserProfilePicturesThread.Start();
+                    //   fetchUserProfilePicturesThread.Join();
+
                 }
                 else
                 {
@@ -108,7 +150,7 @@ namespace BasicFacebookFeatures
             }
         }
 
-        private void resetDataAboutPhotosAndPicturBoxes()
+        private void resetDataAboutPhotosAndPictureBoxes()
         {
             resetTheImagesInThePictureBoxes();
             resetDatesInTheLables();
@@ -255,7 +297,7 @@ namespace BasicFacebookFeatures
             })));
         }
 
-        private void fetchChoosenYearsFromTheHastable()
+        private void fetchChosenYearsFromTheHashtable()
         {
             if (r_YearsChosenByUser.Count != 0)
             {
@@ -293,40 +335,40 @@ namespace BasicFacebookFeatures
 
         private void listBoxUsersFriends_SelectedIndexChanged(object sender, EventArgs e)
         {
-            PreferredUser = (sender as ListBox).SelectedItem as User;
+            PreferredUser = ((sender as ListBox).SelectedItem as UserAdapter).User;
         }
 
         private void comboBoxFirstChoice_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBox cmBox = sender as ComboBox;
-            reasureAboutTheChosenYearThatItsAUniqeYear(cmBox);
+            reasureAboutTheChosenYearThatItsAUniqueYear(cmBox);
         }
 
         private void comboBoxSecondChoice_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBox cmBox = sender as ComboBox;
-            reasureAboutTheChosenYearThatItsAUniqeYear(cmBox);
+            reasureAboutTheChosenYearThatItsAUniqueYear(cmBox);
         }
 
         private void comboBoxThirdChoice_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBox cmBox = sender as ComboBox;
-            reasureAboutTheChosenYearThatItsAUniqeYear(cmBox);
+            reasureAboutTheChosenYearThatItsAUniqueYear(cmBox);
         }
 
         private void comboBoxFourthChoice_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBox cmBox = sender as ComboBox;
-            reasureAboutTheChosenYearThatItsAUniqeYear(cmBox);
+            reasureAboutTheChosenYearThatItsAUniqueYear(cmBox);
         }
 
         private void comboBoxFifthChoice_SelectedIndexChanged(object sender, EventArgs e)
         {
             ComboBox cmBox = sender as ComboBox;
-            reasureAboutTheChosenYearThatItsAUniqeYear(cmBox);
+            reasureAboutTheChosenYearThatItsAUniqueYear(cmBox);
         }
 
-        private void reasureAboutTheChosenYearThatItsAUniqeYear(ComboBox i_CmBox)
+        private void reasureAboutTheChosenYearThatItsAUniqueYear(ComboBox i_CmBox)
         {
             if (!HasTheYearBeenChosen.Contains(i_CmBox.SelectedItem.ToString()))
             {

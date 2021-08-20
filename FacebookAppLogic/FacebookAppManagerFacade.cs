@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using FacebookWrapper.ObjectModel;
 using FacebookWrapper;
-using static FacebookAppLogic.LookHowSomeoneChangeLogic;
 
 namespace FacebookAppLogic
 {
@@ -18,6 +17,7 @@ namespace FacebookAppLogic
         {
             r_LoggedInUser = i_LoggedInUser;
         }
+
         public User LoggedInUser
         {
             get
@@ -26,8 +26,20 @@ namespace FacebookAppLogic
             }
         }
 
+        public void Logout()
+        {
+            try
+            {
+                FacebookService.LogoutWithUI();
+            }
+            catch (Exception)
+            {
+                throw new Exception("Couldn't log out successfully.");
+            }
+        }
+
         public string GetBirthday
-        { 
+        {
             get
             {
                 string birthday = string.Empty;
@@ -42,18 +54,6 @@ namespace FacebookAppLogic
                 }
 
                 return birthday;
-            }
-        }
-
-        public void Logout()
-        {
-            try
-            {
-                FacebookService.LogoutWithUI();
-            }
-            catch (Exception)
-            {
-                throw new Exception("Couldn't log out successfully.");
             }
         }
 

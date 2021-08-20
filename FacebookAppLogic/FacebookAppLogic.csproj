@@ -41,7 +41,9 @@
     <Compile Include="AppSettings.cs" />
     <Compile Include="FacebookAppManagerFacade.cs" />
     <Compile Include="FindEldersLogic.cs" />
+    <Compile Include="ITextToSpeech.cs" />
     <Compile Include="LookHowSomeoneChangeLogic.cs" />
+    <Compile Include="UserAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Facebook">
@@ -52,6 +54,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Speech" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />

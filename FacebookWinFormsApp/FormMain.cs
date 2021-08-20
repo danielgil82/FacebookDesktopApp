@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -24,10 +25,7 @@ namespace BasicFacebookFeatures
 
         internal FacebookAppManagerFacade FacebookAppManagerFacade
         {
-            get
-            {
-                return m_FacebookAppManagerFacade;
-            }
+            get { return m_FacebookAppManagerFacade; }
         }
 
         internal FormMain()
@@ -60,17 +58,17 @@ namespace BasicFacebookFeatures
             this.Invoke(
                 new Action(
                     () =>
-                          {
-                              buttonLogout.Enabled = true;
-                              checkBoxRememberMe.Enabled = true;
-                              buttonLogin.Enabled = false;
-                              buttonHelpToElder.Enabled = true;
-                              radioButtonEvents.Enabled = true;
-                              radioButtonFriends.Enabled = true;
-                              radioButtonGroups.Enabled = true;
-                              buttonFetchData.Enabled = true;
-                              buttonTimeLine.Enabled = true;
-                          }));
+                    {
+                        buttonLogout.Enabled = true;
+                        checkBoxRememberMe.Enabled = true;
+                        buttonLogin.Enabled = false;
+                        buttonHelpToElder.Enabled = true;
+                        radioButtonEvents.Enabled = true;
+                        radioButtonFriends.Enabled = true;
+                        radioButtonGroups.Enabled = true;
+                        buttonFetchData.Enabled = true;
+                        buttonTimeLine.Enabled = true;
+                    }));
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -112,7 +110,6 @@ namespace BasicFacebookFeatures
         private void loginAndInit()
         {
             Clipboard.SetText("design.patterns.c21"); /// the current password for Desig Patter
-
             m_LoginResult = FacebookService.Login(
                 "452659572840281",
                 "email",
@@ -130,7 +127,7 @@ namespace BasicFacebookFeatures
                 "user_posts",
                 "user_videos");
             buttonLogin.Text = $"Logged in as {m_LoginResult.LoggedInUser.Name}";
-            fetchLoggedInUser();
+            new Thread(fetchLoggedInUser).Start();
         }
 
         private void fetchLoggedInUser()
@@ -138,31 +135,31 @@ namespace BasicFacebookFeatures
             this.Invoke(
                 new Action(
                     () =>
-                          {
-                              this.Text = "Welcome To Our Desktop Facebook App";
-                              buttonLogin.Text = k_LoggedInUser;
-                              m_FacebookAppManagerFacade = new FacebookAppManagerFacade(m_LoginResult.LoggedInUser);
-                              buttonLogin.ForeColor = Color.White;
-                              pictureBoxProfile.LoadAsync(m_FacebookAppManagerFacade.LoggedInUser.PictureNormalURL);
-                              labelCurrentDate.Text = DateTime.Now.ToLongDateString();
-                              labelFullName.Text = labelFullName.Text + " " + m_FacebookAppManagerFacade.LoggedInUser.Name;
-                              try
-                              {
-                                  fetchUsersLivingLocation();
-                                  fetchUsersBirthday();
-                              }
-                              catch (Exception ex)
-                              {
-                                  MessageBox.Show(ex.Message);
-                              }
-                          }));
+                    {
+                        this.Text = "Welcome To Our Desktop Facebook App";
+                        buttonLogin.Text = k_LoggedInUser;
+                        m_FacebookAppManagerFacade = new FacebookAppManagerFacade(m_LoginResult.LoggedInUser);
+                        buttonLogin.BackColor = Color.BlueViolet;
+                        pictureBoxProfile.LoadAsync(m_FacebookAppManagerFacade.LoggedInUser.PictureNormalURL);
+                        labelCurrentDate.Text = DateTime.Now.ToLongDateString();
+                        labelFullName.Text += " " + m_FacebookAppManagerFacade.LoggedInUser.Name;
+                        try
+                        {
+                            fetchUsersLivingLocation();
+                            fetchUsersBirthday();
+                        }
+                        catch (NullReferenceException ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                    }));
         }
 
         private void fetchUsersBirthday()
         {
             if (m_FacebookAppManagerFacade.LoggedInUser.Location.Name != null)
             {
-                labelBirthday.Text = labelBirthday.Text + " " + m_FacebookAppManagerFacade.GetBirthday;
+                labelBirthday.Text += " " + m_FacebookAppManagerFacade.GetBirthday;
             }
             else
             {
@@ -174,7 +171,7 @@ namespace BasicFacebookFeatures
         {
             if (m_FacebookAppManagerFacade.LoggedInUser.Location.Name != null)
             {
-                labelLocation.Text = labelLocation.Text + " " + m_FacebookAppManagerFacade.LoggedInUser.Location.Name;
+                labelLocation.Text += " " + m_FacebookAppManagerFacade.LoggedInUser.Location.Name;
             }
             else
             {
@@ -187,7 +184,7 @@ namespace BasicFacebookFeatures
             m_FacebookAppManagerFacade.Logout();
             buttonLogin.Enabled = true;
             buttonLogin.Text = "Login To Facebook";
-            buttonLogin.ForeColor = Color.WhiteSmoke;
+            buttonLogin.BackColor = Color.MidnightBlue;
             (sender as Button).Enabled = false;
         }
 
@@ -254,7 +251,7 @@ namespace BasicFacebookFeatures
             try
             {
                 this.Hide();
-                FormFindElderToHelp helpToElderly =
+                FormFindElderToHelp helpToElderly = 
                     FormFactory.CreateForm(k_FormFindElderToHelp) as FormFindElderToHelp;
                 helpToElderly.ShowDialog();
                 this.Show();

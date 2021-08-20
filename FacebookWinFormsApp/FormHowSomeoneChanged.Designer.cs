@@ -75,6 +75,7 @@
             this.buttonFetchPictures = new System.Windows.Forms.Button();
             this.buttonDifferentYears = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.button1 = new System.Windows.Forms.Button();
             this.panelDescription.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTimeLine)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPicture1)).BeginInit();
@@ -410,6 +411,7 @@
             this.listBoxUsersFriends.Size = new System.Drawing.Size(229, 340);
             this.listBoxUsersFriends.TabIndex = 14;
             this.listBoxUsersFriends.SelectedIndexChanged += new System.EventHandler(this.listBoxUsersFriends_SelectedIndexChanged);
+            this.listBoxUsersFriends.DoubleClick += new System.EventHandler(this.listBoxUsersFriends_DoubleClick);
             // 
             // buttonFetchFriends
             // 
@@ -574,6 +576,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.button1);
             this.splitContainer1.Panel1.Controls.Add(this.buttonDifferentYears);
             this.splitContainer1.Panel1.Controls.Add(this.buttonFetchPictures);
             this.splitContainer1.Panel1.Controls.Add(this.panelYearChoosing);
@@ -598,6 +601,16 @@
             this.splitContainer1.Size = new System.Drawing.Size(1231, 784);
             this.splitContainer1.SplitterDistance = 790;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(381, 292);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FormHowSomeoneChanged
             // 
@@ -675,5 +688,6 @@
         private System.Windows.Forms.TextBox textBoxDescriptionSecond;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Button button1;
     }
 }
