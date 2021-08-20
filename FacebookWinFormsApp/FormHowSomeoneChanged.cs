@@ -60,7 +60,6 @@ namespace BasicFacebookFeatures
         private void buttonFetchFriends_Click(object sender, EventArgs e)
         {
             new Thread(fetchUserFriends).Start();
-            //fetchUserFriends();
         }
 
         private void fetchUserFriends()
@@ -84,14 +83,11 @@ namespace BasicFacebookFeatures
              })));
         }
 
-
         private void listBoxUsersFriends_DoubleClick(object sender, EventArgs e)
         {
             ((sender as ListBox).SelectedItem as UserAdapter).Speak();
         }
 
-        // todo: think if eventually implement the new thread this way, or maybe with the join line
-        // todo: in the end of this method..
         private void buttonFetchPictures_Click(object sender, EventArgs e)
         {
             if (HasTheYearBeenChosen.Count == 5)

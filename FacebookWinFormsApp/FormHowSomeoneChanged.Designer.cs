@@ -75,6 +75,7 @@
             this.buttonFetchPictures = new System.Windows.Forms.Button();
             this.buttonDifferentYears = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.label20 = new System.Windows.Forms.Label();
             this.panelDescription.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTimeLine)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPicture1)).BeginInit();
@@ -404,7 +405,7 @@
             // 
             this.listBoxUsersFriends.FormattingEnabled = true;
             this.listBoxUsersFriends.ItemHeight = 16;
-            this.listBoxUsersFriends.Location = new System.Drawing.Point(523, 374);
+            this.listBoxUsersFriends.Location = new System.Drawing.Point(523, 387);
             this.listBoxUsersFriends.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBoxUsersFriends.Name = "listBoxUsersFriends";
             this.listBoxUsersFriends.Size = new System.Drawing.Size(229, 340);
@@ -415,7 +416,7 @@
             // buttonFetchFriends
             // 
             this.buttonFetchFriends.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonFetchFriends.Location = new System.Drawing.Point(563, 292);
+            this.buttonFetchFriends.Location = new System.Drawing.Point(566, 282);
             this.buttonFetchFriends.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonFetchFriends.Name = "buttonFetchFriends";
             this.buttonFetchFriends.Size = new System.Drawing.Size(112, 66);
@@ -575,6 +576,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.label20);
             this.splitContainer1.Panel1.Controls.Add(this.buttonDifferentYears);
             this.splitContainer1.Panel1.Controls.Add(this.buttonFetchPictures);
             this.splitContainer1.Panel1.Controls.Add(this.panelYearChoosing);
@@ -599,6 +601,18 @@
             this.splitContainer1.Size = new System.Drawing.Size(1231, 784);
             this.splitContainer1.SplitterDistance = 790;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.BackColor = System.Drawing.SystemColors.Info;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.Color.Coral;
+            this.label20.Location = new System.Drawing.Point(524, 360);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(226, 18);
+            this.label20.TabIndex = 18;
+            this.label20.Text = "Click twice on One of the names:";
             // 
             // FormHowSomeoneChanged
             // 
@@ -676,5 +690,6 @@
         private System.Windows.Forms.TextBox textBoxDescriptionSecond;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
     }
 }
