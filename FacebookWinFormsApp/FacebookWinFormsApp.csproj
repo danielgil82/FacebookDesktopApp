@@ -126,7 +126,6 @@
     <Compile Include="FormHowSomeoneChanged.Designer.cs">
       <DependentUpon>FormHowSomeoneChanged.cs</DependentUpon>
     </Compile>
-    <Compile Include="ITextToSpeech2.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormFindElderToHelp.resx">

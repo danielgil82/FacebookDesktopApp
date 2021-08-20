@@ -62,7 +62,7 @@ namespace BasicFacebookFeatures
             new Thread(fetchUserFriends).Start();
             //fetchUserFriends();
         }
-        
+
         private void fetchUserFriends()
         {
             listBoxUsersFriends.Invoke(new Action((() =>
@@ -72,8 +72,6 @@ namespace BasicFacebookFeatures
                      listBoxUsersFriends.Items.Clear();
                  }
 
-                 //listBoxUsersFriends.DisplayMember = "Name";
-                 //listBoxUsersFriends.DataSource = UsersFriends;
                  foreach (User friend in UsersFriends)
                  {
                      listBoxUsersFriends.Items.Add(new UserAdapter { User = friend });
@@ -86,34 +84,10 @@ namespace BasicFacebookFeatures
              })));
         }
 
-        //public class UserAdapter2 : ITextToSpeech2 
-        //{
-        //    public User User { get; set; }
-
-        //    public override string ToString()
-        //    {
-        //        return string.Format("{0}", User.Name);
-        //    }
-
-        //    public void Speak()
-        //    {
-        //        SpeechSynthesizer synthesizer = new SpeechSynthesizer();
-        //        synthesizer.SetOutputToDefaultAudioDevice();
-        //        synthesizer.SpeakAsync(User.ToString());
-        //    }
-        //}
 
         private void listBoxUsersFriends_DoubleClick(object sender, EventArgs e)
         {
             ((sender as ListBox).SelectedItem as UserAdapter).Speak();
-        }
-
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            var synthesizer = new SpeechSynthesizer();
-            synthesizer.SetOutputToDefaultAudioDevice();
-            synthesizer.SpeakAsync("All we need to do is to make sure we keep talking");
         }
 
         // todo: think if eventually implement the new thread this way, or maybe with the join line
@@ -124,20 +98,14 @@ namespace BasicFacebookFeatures
             {
                 if (PreferredUser != null)
                 {
-
                     fetchChosenYearsFromTheHashtable();
-
-                    //Thread fetchUserProfilePicturesThread =
                     new Thread((() =>
-                {
-                    UserProfilePictures =
-                        r_FacebookAppManager.GetChosenFriendProfilePictures(PreferredUser, r_YearsChosenByUser);
-                    resetDataAboutPhotosAndPictureBoxes();
-                    fetchProfilePicturesAndDataAboutThem(UserProfilePictures);
-                })).Start();
-                    // fetchUserProfilePicturesThread.Start();
-                    //   fetchUserProfilePicturesThread.Join();
-
+                    {
+                        UserProfilePictures =
+                            r_FacebookAppManager.GetChosenFriendProfilePictures(PreferredUser, r_YearsChosenByUser);
+                        resetDataAboutPhotosAndPictureBoxes();
+                        fetchProfilePicturesAndDataAboutThem(UserProfilePictures);
+                    })).Start();
                 }
                 else
                 {
@@ -163,6 +131,7 @@ namespace BasicFacebookFeatures
             fetchPhotosDescriptions(i_TimeLineProfilePictures);
             fetchPhotosDates(i_TimeLineProfilePictures);
         }
+
         private void resetTextBoxesTexts()
         {
             this.Invoke(new Action((() =>
