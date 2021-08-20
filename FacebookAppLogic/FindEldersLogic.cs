@@ -15,9 +15,9 @@ namespace FacebookAppLogic
     {
         private readonly FacebookObjectCollection<ElderUser> r_PotentialElderToHelp;
         private readonly User r_User;
-        private City m_UsersCurrentCity;
         private byte m_UpperAgeRange;
         private byte m_LowerAgeRange;
+        private City m_UsersCurrentCity;
         private eGender m_PreferredGender;
 
         internal enum eGender
@@ -54,7 +54,7 @@ namespace FacebookAppLogic
             }
         }
 
-        internal FacebookObjectCollection<User> FindPotentialEldershUsersConditions(string i_PreferredGender, string i_PreferredAgeRange)
+        internal FacebookObjectCollection<User> FindPotentialEldersUsersConditions(string i_PreferredGender, string i_PreferredAgeRange)
         {
             FacebookObjectCollection<User> PotentialElders = new FacebookObjectCollection<User>();
 

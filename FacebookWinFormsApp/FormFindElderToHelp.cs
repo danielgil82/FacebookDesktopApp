@@ -1,18 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Text;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using CefSharp.DevTools.LayerTree;
 using FacebookAppLogic;
 using FacebookWrapper.ObjectModel;
-using Microsoft.Win32;
 
 namespace BasicFacebookFeatures
 {
@@ -58,13 +50,6 @@ namespace BasicFacebookFeatures
 
         private void buttonFindElderToHelp_Click(object sender, EventArgs e)
         {
-            /// in line 70 the call for clear the data source already clearing everything.
-            /// 
-            //if(PictureBoxImageNormalElder.Image != null)
-            //{
-            //    PictureBoxImageNormalElder.Image = null;
-            //}
-
             if (listBoxPotentialElders.Items.Count != 0)
             {
                 clearTheDataSourceAndEldersList();
@@ -79,9 +64,6 @@ namespace BasicFacebookFeatures
 
                            m_PotentialEldersList = r_FacebookAppManager.GetPotentialElders(PreferredGender, PreferredAgeRange);
                            fetchPotentialElders();
-                           //photoBindingSource.DataSource = m_PotentialEldersList;
-                           //displaySelectedElderUser();
-                           //PreferredGender = string.Empty;
                        }
                        catch (ArgumentException ex)
                        {

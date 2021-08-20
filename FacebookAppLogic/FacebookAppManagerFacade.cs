@@ -121,7 +121,7 @@ namespace FacebookAppLogic
                 m_FindEldersLogic = new FindEldersLogic(r_LoggedInUser);
             }
 
-            return m_FindEldersLogic.FindPotentialEldershUsersConditions(i_PreferredGender, i_PreferredAgeRange);
+            return m_FindEldersLogic.FindPotentialEldersUsersConditions(i_PreferredGender, i_PreferredAgeRange);
         }
 
         // todo: make a list of photos

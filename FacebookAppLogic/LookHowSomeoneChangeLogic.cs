@@ -10,7 +10,7 @@ namespace FacebookAppLogic
 {
     internal class LookHowSomeoneChangeLogic
     {
-        private readonly List<int> m_ChoosenYears = new List<int>();
+        private readonly List<int> m_ChosenYears = new List<int>();
         private readonly List<Photo> r_FriendProfilePictures = new List<Photo>();
         private User m_ChosenUser;
 
@@ -21,11 +21,12 @@ namespace FacebookAppLogic
                 return r_FriendProfilePictures;
             }
         }
+
         internal List<int> ChosenYears
         {
             get
             {
-                return m_ChoosenYears;
+                return m_ChosenYears;
             }
         }
 
@@ -35,15 +36,11 @@ namespace FacebookAppLogic
             set { m_ChosenUser = value; }
         }
 
-        internal LookHowSomeoneChangeLogic()
-        {
-        }
-
         private void FetchYears(List<int> i_ChoosesYearsByUser)
         {
             foreach (int year in i_ChoosesYearsByUser)
             {
-                m_ChoosenYears.Add(year);
+                m_ChosenYears.Add(year);
             }
         }
 
@@ -53,9 +50,9 @@ namespace FacebookAppLogic
             int sizeOfTheAlbum = 0;
             ChosenUser = i_ChosenUser;
             
-            if (m_ChoosenYears.Count != 0)
+            if (m_ChosenYears.Count != 0)
             {
-                m_ChoosenYears.Clear();
+                m_ChosenYears.Clear();
             }
 
             FetchYears(i_YearsChosen);
@@ -67,7 +64,7 @@ namespace FacebookAppLogic
             foreach (Album album in ChosenUser.Albums)
             {
                 Photo newPhotoToAdd = new Photo();
-                //  FriendProfilePictures = new List<Photo>();
+
                 if (album.Name == "Profile Pictures")
                 {
                     sizeOfTheAlbum = (int)album.Photos.Count;
@@ -89,7 +86,6 @@ namespace FacebookAppLogic
                             }
                         }
                     }
-
                     break;
                 }
             }

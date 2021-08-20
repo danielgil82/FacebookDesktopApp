@@ -19,11 +19,6 @@ namespace BasicFacebookFeatures
             FormHowSomeoneChanged
         }
 
-        static FormFactory()
-        {
-            s_FormMain = new FormMain();
-        }
-
         public static Form CreateForm(string i_FormToCreate)
         {
             Form formToCreate;

@@ -251,7 +251,7 @@ namespace BasicFacebookFeatures
             try
             {
                 this.Hide();
-                FormFindElderToHelp helpToElderly = 
+                FormFindElderToHelp helpToElderly =
                     FormFactory.CreateForm(k_FormFindElderToHelp) as FormFindElderToHelp;
                 helpToElderly.ShowDialog();
                 this.Show();
