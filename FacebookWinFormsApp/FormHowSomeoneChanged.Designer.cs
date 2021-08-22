@@ -416,7 +416,7 @@
             // buttonFetchFriends
             // 
             this.buttonFetchFriends.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonFetchFriends.Location = new System.Drawing.Point(566, 282);
+            this.buttonFetchFriends.Location = new System.Drawing.Point(566, 268);
             this.buttonFetchFriends.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonFetchFriends.Name = "buttonFetchFriends";
             this.buttonFetchFriends.Size = new System.Drawing.Size(112, 66);
@@ -608,11 +608,11 @@
             this.label20.BackColor = System.Drawing.SystemColors.Info;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.Color.Coral;
-            this.label20.Location = new System.Drawing.Point(524, 360);
+            this.label20.Location = new System.Drawing.Point(524, 346);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(226, 18);
+            this.label20.Size = new System.Drawing.Size(222, 36);
             this.label20.TabIndex = 18;
-            this.label20.Text = "Click twice on One of the names:";
+            this.label20.Text = "Click twice on One of the names\r\n and wait:";
             // 
             // FormHowSomeoneChanged
             // 

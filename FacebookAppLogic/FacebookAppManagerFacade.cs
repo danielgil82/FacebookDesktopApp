@@ -124,7 +124,6 @@ namespace FacebookAppLogic
             return m_FindEldersLogic.FindPotentialEldersUsersConditions(i_PreferredGender, i_PreferredAgeRange);
         }
 
-        // todo: make a list of photos
         public List<Photo> GetChosenFriendProfilePictures(User i_ChosenUser, List<int> i_YearsChosen)
         {
             if (m_LookHowSomeoneChangedLogic == null)

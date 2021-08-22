@@ -12,7 +12,7 @@ namespace FacebookAppLogic
     {
         private const string k_AppSettingsFilePath = @"AppSettings.xml";
         private static AppSettings s_TheOneAndOnlyInstance = null;
-
+         
         public bool RememberUser { get; set; }
 
         public Point LastWindowLocation { get; set; }
