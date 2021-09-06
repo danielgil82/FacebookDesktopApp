@@ -109,7 +109,7 @@ namespace BasicFacebookFeatures
 
         private void loginAndInit()
         {
-            Clipboard.SetText("design.patterns.c21"); /// the current password for Desig Patter
+            Clipboard.SetText("design.patterns.c21ב"); /// the current password for Desig Patter
             m_LoginResult = FacebookService.Login(
                 "452659572840281",
                 "email",

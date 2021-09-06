@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FacebookAppLogic
 {
-    interface ITextToSpeech
+    public interface ITextToSpeech
     {
         void Speak();
     }

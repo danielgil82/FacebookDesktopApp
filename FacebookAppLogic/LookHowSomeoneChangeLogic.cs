@@ -49,7 +49,7 @@ namespace FacebookAppLogic
             int i = 0;
             int sizeOfTheAlbum = 0;
             ChosenUser = i_ChosenUser;
-            
+
             if (m_ChosenYears.Count != 0)
             {
                 m_ChosenYears.Clear();
@@ -86,6 +86,7 @@ namespace FacebookAppLogic
                             }
                         }
                     }
+
                     break;
                 }
             }
