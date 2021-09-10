@@ -8,11 +8,13 @@ using FacebookWrapper.ObjectModel;
 
 namespace BasicFacebookFeatures
 {
-    internal partial class FormFindElderToHelp : Form
+    internal partial class FormFindElderToHelp : Form 
     {
         private readonly FacebookAppManagerFacade r_FacebookAppManager;
         private readonly List<string> r_AgeRangeList;
         private FacebookObjectCollection<User> m_PotentialEldersList = null;
+
+        public BackableVisitor BackableVisitor { get; set; }
 
         internal string PreferredAgeRange { get; private set; }
 
@@ -24,6 +26,7 @@ namespace BasicFacebookFeatures
             r_FacebookAppManager = i_FormMain.FacebookAppManagerFacade;
             r_AgeRangeList = new List<string>();
             initAgeRangeList();
+            BackableVisitor = new BackableVisitor();
         }
 
         private void initAgeRangeList()
@@ -40,7 +43,8 @@ namespace BasicFacebookFeatures
 
         private void buttonBack_Click(object sender, EventArgs e)
         {
-            Back();
+            BackableVisitor.Back(this);
+           // Back();
         }
 
         private void Back()

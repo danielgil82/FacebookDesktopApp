@@ -17,19 +17,9 @@ namespace BasicFacebookFeatures
         private const string k_FormFindElderToHelp = "FormFindElderToHelp";
         private const string k_FormHowSomeoneChanged = "FormHowSomeoneChanged";
         private const string k_CannotRetrieveData = "Sorry, could not retrieve any ";
-       // private readonly List<string> r_SortingPosts = new List<string>() { "Posts Before 2018" , "Posts After 2018" };
         private readonly AppSettings r_AppSettings;
         private FacebookAppManagerFacade m_FacebookAppManagerFacade;
         private LoginResult m_LoginResult;
-
-
-        //public List<string> SortingPosts
-        //{
-        //    get
-        //    {
-        //        return r_SortingPosts;
-        //    }
-        //}
 
         internal FacebookAppManagerFacade FacebookAppManagerFacade
         {
@@ -41,14 +31,9 @@ namespace BasicFacebookFeatures
             InitializeComponent();
             FacebookWrapper.FacebookService.s_CollectionLimit = 100;
             r_AppSettings = AppSettings.LoadFromFile();
-            fetchSortingPostsEnumIntoAList();
         }
 
-        private void fetchSortingPostsEnumIntoAList()
-        {
-
-        }
-
+     
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
@@ -197,9 +182,15 @@ namespace BasicFacebookFeatures
         {
             m_FacebookAppManagerFacade.Logout();
             buttonLogin.Enabled = true;
+            (sender as Button).Enabled = false;
+            pictureBoxProfile.Image = null;
+            labelBirthday.Text = k_UnknownMessage;
+            labelFullName.Text = k_UnknownMessage;
+            labelLocation.Text = k_UnknownMessage;
+
             buttonLogin.Text = "Login To Facebook";
             buttonLogin.BackColor = Color.MidnightBlue;
-            (sender as Button).Enabled = false;
+           
         }
 
         private void radioButtonFriends_Click(object sender, EventArgs e)
@@ -303,6 +294,8 @@ namespace BasicFacebookFeatures
         private void comboBoxStrategy_SelectedIndexChanged(object sender, EventArgs e)
         {
             new Thread(fetchPostsByDifferentStrategies).Start();
+            //listBoxPostsStrategy.DisplayMember = Name;
+            //listBoxPostsStrategy.DataSource = FacebookAppManagerFacade.GetPosts;
         }
 
         private void fetchPostsByDifferentStrategies()
@@ -310,6 +303,12 @@ namespace BasicFacebookFeatures
             listBoxPostsStrategy.Invoke(new Action(() =>
             {
                 listBoxPostsStrategy.DisplayMember = Name;
+
+                if (listBoxPostsStrategy.Items != null)
+                {
+                    listBoxPostsStrategy.DataSource = null;
+                }
+
                 if (comboBoxStrategy.SelectedItem != null)
                 {
                     string currentStrategy = comboBoxStrategy.SelectedItem.ToString();

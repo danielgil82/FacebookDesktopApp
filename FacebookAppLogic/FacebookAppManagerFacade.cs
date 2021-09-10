@@ -12,31 +12,32 @@ namespace FacebookAppLogic
         private readonly User r_LoggedInUser;
         private FindEldersLogic m_FindEldersLogic;
         private LookHowSomeoneChangeLogic m_LookHowSomeoneChangedLogic;
-        //private Sorter m_PostsSorter;
 
         public FacebookAppManagerFacade(User i_LoggedInUser)
         {
             r_LoggedInUser = i_LoggedInUser;
         }
 
-        internal Sorter Sorter
-        {
-            get;
-            set;
-        }
-
+        internal Sorter Sorter { get; set; }
+        
+        /// <summary>
+        /// Now The we don't even need a class nor a method , i've use lambda expression
+        /// in order to make the same logic.
+        /// </summary>
+        /// <param name="i_KindOfSort"></param>
+        /// <returns></returns>
         public FacebookObjectCollection<Post> GetFilteredPosts(string i_KindOfSort)
         {
             Sorter = new Sorter();
-            PostsConcreteSorter postsConcreteSorter = new PostsConcreteSorter();
+          // ConcretePostsSorter concretePostsSorter = new ConcretePostsSorter();
 
             if (i_KindOfSort == "Posts Before 2018")
             {
-                Sorter.SortStrategyMethod += postsConcreteSorter.ShouldAddPostsWrittenBefore2018;
+                Sorter.SortStrategyMethod = p =>  p.CreatedTime.Value.Year < 2018;
             }
             if (i_KindOfSort == "Posts After 2018")
             {
-                Sorter.SortStrategyMethod += postsConcreteSorter.ShouldAddPostsWrittenAfter2018;
+                Sorter.SortStrategyMethod = p => p.CreatedTime.Value.Year >= 2018;
             }
 
             FacebookObjectCollection<Post> filteredPosts = Sorter.Sort(GetPosts);

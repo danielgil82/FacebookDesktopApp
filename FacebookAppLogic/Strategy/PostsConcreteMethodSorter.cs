@@ -7,14 +7,14 @@ using FacebookWrapper.ObjectModel;
 
 namespace FacebookAppLogic
 {
-    public class PostsConcreteSorter
+    internal class ConcretePostsSorter
     {
-        public bool ShouldAddPostsWrittenAfter2018(Post i_Post)
+        internal bool ShouldAddPostsWrittenAfter2018(Post i_Post)
         {
             return i_Post.CreatedTime.Value.Year >= 2018;
         }
    
-        public bool ShouldAddPostsWrittenBefore2018(Post i_Post)
+        internal bool ShouldAddPostsWrittenBefore2018(Post i_Post)
         {
             return i_Post.CreatedTime.Value.Year < 2018;
         }

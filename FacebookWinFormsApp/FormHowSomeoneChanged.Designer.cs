@@ -31,6 +31,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormHowSomeoneChanged));
             this.panelDescription = new System.Windows.Forms.Panel();
+            this.buttonBack = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.textBoxDescriptionFifth = new System.Windows.Forms.TextBox();
@@ -92,6 +93,7 @@
             // 
             // panelDescription
             // 
+            this.panelDescription.Controls.Add(this.buttonBack);
             this.panelDescription.Controls.Add(this.label19);
             this.panelDescription.Controls.Add(this.label17);
             this.panelDescription.Controls.Add(this.textBoxDescriptionFifth);
@@ -114,6 +116,18 @@
             this.panelDescription.Size = new System.Drawing.Size(437, 784);
             this.panelDescription.TabIndex = 13;
             // 
+            // buttonBack
+            // 
+            this.buttonBack.BackColor = System.Drawing.Color.HotPink;
+            this.buttonBack.Font = new System.Drawing.Font("MV Boli", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonBack.Location = new System.Drawing.Point(324, 6);
+            this.buttonBack.Name = "buttonBack";
+            this.buttonBack.Size = new System.Drawing.Size(93, 58);
+            this.buttonBack.TabIndex = 20;
+            this.buttonBack.Text = "Back";
+            this.buttonBack.UseVisualStyleBackColor = false;
+            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
+            // 
             // label19
             // 
             this.label19.AutoSize = true;
@@ -129,7 +143,7 @@
             this.label17.AutoSize = true;
             this.label17.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.label17.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(37, 118);
+            this.label17.Location = new System.Drawing.Point(31, 150);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(148, 24);
             this.label17.TabIndex = 18;
@@ -137,7 +151,7 @@
             // 
             // textBoxDescriptionFifth
             // 
-            this.textBoxDescriptionFifth.Location = new System.Drawing.Point(223, 61);
+            this.textBoxDescriptionFifth.Location = new System.Drawing.Point(217, 91);
             this.textBoxDescriptionFifth.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxDescriptionFifth.Multiline = true;
             this.textBoxDescriptionFifth.Name = "textBoxDescriptionFifth";
@@ -149,7 +163,7 @@
             this.label18.AutoSize = true;
             this.label18.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.label18.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(37, 64);
+            this.label18.Location = new System.Drawing.Point(31, 96);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(126, 24);
             this.label18.TabIndex = 16;
@@ -160,7 +174,7 @@
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.label15.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(37, 242);
+            this.label15.Location = new System.Drawing.Point(31, 274);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(148, 24);
             this.label15.TabIndex = 15;
@@ -168,7 +182,7 @@
             // 
             // textBoxDescriptionFourth
             // 
-            this.textBoxDescriptionFourth.Location = new System.Drawing.Point(223, 186);
+            this.textBoxDescriptionFourth.Location = new System.Drawing.Point(217, 216);
             this.textBoxDescriptionFourth.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxDescriptionFourth.Multiline = true;
             this.textBoxDescriptionFourth.Name = "textBoxDescriptionFourth";
@@ -180,7 +194,7 @@
             this.label16.AutoSize = true;
             this.label16.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.label16.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(37, 185);
+            this.label16.Location = new System.Drawing.Point(31, 217);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(126, 24);
             this.label16.TabIndex = 13;
@@ -191,7 +205,7 @@
             this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.label13.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(37, 377);
+            this.label13.Location = new System.Drawing.Point(31, 409);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(148, 24);
             this.label13.TabIndex = 12;
@@ -199,7 +213,7 @@
             // 
             // textBoxDescriptionThird
             // 
-            this.textBoxDescriptionThird.Location = new System.Drawing.Point(223, 315);
+            this.textBoxDescriptionThird.Location = new System.Drawing.Point(217, 345);
             this.textBoxDescriptionThird.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxDescriptionThird.Multiline = true;
             this.textBoxDescriptionThird.Name = "textBoxDescriptionThird";
@@ -211,7 +225,7 @@
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.label14.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(37, 324);
+            this.label14.Location = new System.Drawing.Point(31, 356);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(126, 24);
             this.label14.TabIndex = 10;
@@ -222,7 +236,7 @@
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.label11.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(37, 529);
+            this.label11.Location = new System.Drawing.Point(31, 561);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(148, 24);
             this.label11.TabIndex = 9;
@@ -230,7 +244,7 @@
             // 
             // textBoxDescriptionSecond
             // 
-            this.textBoxDescriptionSecond.Location = new System.Drawing.Point(223, 464);
+            this.textBoxDescriptionSecond.Location = new System.Drawing.Point(217, 496);
             this.textBoxDescriptionSecond.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxDescriptionSecond.Multiline = true;
             this.textBoxDescriptionSecond.Name = "textBoxDescriptionSecond";
@@ -242,7 +256,7 @@
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.label12.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(37, 464);
+            this.label12.Location = new System.Drawing.Point(31, 496);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(126, 24);
             this.label12.TabIndex = 7;
@@ -253,7 +267,7 @@
             this.labelPhotoCreationDate.AutoSize = true;
             this.labelPhotoCreationDate.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.labelPhotoCreationDate.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPhotoCreationDate.Location = new System.Drawing.Point(37, 665);
+            this.labelPhotoCreationDate.Location = new System.Drawing.Point(31, 697);
             this.labelPhotoCreationDate.Name = "labelPhotoCreationDate";
             this.labelPhotoCreationDate.Size = new System.Drawing.Size(148, 24);
             this.labelPhotoCreationDate.TabIndex = 6;
@@ -261,7 +275,7 @@
             // 
             // textBoxDescriptionFirst
             // 
-            this.textBoxDescriptionFirst.Location = new System.Drawing.Point(223, 607);
+            this.textBoxDescriptionFirst.Location = new System.Drawing.Point(217, 639);
             this.textBoxDescriptionFirst.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxDescriptionFirst.Multiline = true;
             this.textBoxDescriptionFirst.Name = "textBoxDescriptionFirst";
@@ -273,7 +287,7 @@
             this.labelPhotoDescription.AutoSize = true;
             this.labelPhotoDescription.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.labelPhotoDescription.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPhotoDescription.Location = new System.Drawing.Point(37, 606);
+            this.labelPhotoDescription.Location = new System.Drawing.Point(31, 638);
             this.labelPhotoDescription.Name = "labelPhotoDescription";
             this.labelPhotoDescription.Size = new System.Drawing.Size(126, 24);
             this.labelPhotoDescription.TabIndex = 0;
@@ -691,5 +705,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Button buttonBack;
     }
 }

@@ -26,22 +26,5 @@ namespace FacebookAppLogic
 
             return m_FilteredPosts;
         }
-
-
-        //internal class PostWrittenAfter2018 : ISortStrategy
-        //{
-        //private bool ShouldAddPostsWrittenAfter2018(Post i_Post)
-        //{
-        //    return i_Post.CreatedTime.Value.Year >= 2018;
-        //}
-        ////}
-
-        ////internal class PostWrittenBefore2018 : ISortStrategy
-        ////{
-        //    private bool ShouldAddPostsWrittenBefore2018(Post i_Post)
-        //    {
-        //        return i_Post.CreatedTime.Value.Year < 2018;
-        //    }
-        //}
     }
 }
