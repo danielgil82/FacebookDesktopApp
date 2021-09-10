@@ -1,14 +1,12 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Data;
+using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using System.Xml;
 using FacebookAppLogic;
 using FacebookWrapper;
+using FacebookWrapper.ObjectModel;
 
 namespace BasicFacebookFeatures
 {
@@ -19,9 +17,19 @@ namespace BasicFacebookFeatures
         private const string k_FormFindElderToHelp = "FormFindElderToHelp";
         private const string k_FormHowSomeoneChanged = "FormHowSomeoneChanged";
         private const string k_CannotRetrieveData = "Sorry, could not retrieve any ";
+       // private readonly List<string> r_SortingPosts = new List<string>() { "Posts Before 2018" , "Posts After 2018" };
         private readonly AppSettings r_AppSettings;
         private FacebookAppManagerFacade m_FacebookAppManagerFacade;
         private LoginResult m_LoginResult;
+
+
+        //public List<string> SortingPosts
+        //{
+        //    get
+        //    {
+        //        return r_SortingPosts;
+        //    }
+        //}
 
         internal FacebookAppManagerFacade FacebookAppManagerFacade
         {
@@ -33,6 +41,12 @@ namespace BasicFacebookFeatures
             InitializeComponent();
             FacebookWrapper.FacebookService.s_CollectionLimit = 100;
             r_AppSettings = AppSettings.LoadFromFile();
+            fetchSortingPostsEnumIntoAList();
+        }
+
+        private void fetchSortingPostsEnumIntoAList()
+        {
+
         }
 
         protected override void OnShown(EventArgs e)
@@ -284,6 +298,33 @@ namespace BasicFacebookFeatures
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void comboBoxStrategy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            new Thread(fetchPostsByDifferentStrategies).Start();
+        }
+
+        private void fetchPostsByDifferentStrategies()
+        {
+            listBoxPostsStrategy.Invoke(new Action(() =>
+            {
+                listBoxPostsStrategy.DisplayMember = Name;
+                if (comboBoxStrategy.SelectedItem != null)
+                {
+                    string currentStrategy = comboBoxStrategy.SelectedItem.ToString();
+
+                    FacebookObjectCollection<Post> filteredPosts = FacebookAppManagerFacade.GetFilteredPosts(currentStrategy);
+                    if (filteredPosts.Count == 0)
+                    {
+                        MessageBox.Show("There are zero " + currentStrategy);
+                    }
+                    else
+                    {
+                        listBoxPostsStrategy.DataSource = filteredPosts;
+                    }
+                }
+            }));
         }
     }
 }

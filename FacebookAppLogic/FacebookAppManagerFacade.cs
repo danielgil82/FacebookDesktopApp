@@ -12,10 +12,36 @@ namespace FacebookAppLogic
         private readonly User r_LoggedInUser;
         private FindEldersLogic m_FindEldersLogic;
         private LookHowSomeoneChangeLogic m_LookHowSomeoneChangedLogic;
+        //private Sorter m_PostsSorter;
 
         public FacebookAppManagerFacade(User i_LoggedInUser)
         {
             r_LoggedInUser = i_LoggedInUser;
+        }
+
+        internal Sorter Sorter
+        {
+            get;
+            set;
+        }
+
+        public FacebookObjectCollection<Post> GetFilteredPosts(string i_KindOfSort)
+        {
+            Sorter = new Sorter();
+            PostsConcreteSorter postsConcreteSorter = new PostsConcreteSorter();
+
+            if (i_KindOfSort == "Posts Before 2018")
+            {
+                Sorter.SortStrategyMethod += postsConcreteSorter.ShouldAddPostsWrittenBefore2018;
+            }
+            if (i_KindOfSort == "Posts After 2018")
+            {
+                Sorter.SortStrategyMethod += postsConcreteSorter.ShouldAddPostsWrittenAfter2018;
+            }
+
+            FacebookObjectCollection<Post> filteredPosts = Sorter.Sort(GetPosts);
+        
+            return filteredPosts;
         }
 
         public User LoggedInUser
@@ -94,6 +120,26 @@ namespace FacebookAppLogic
                 return userEvents;
             }
         }
+
+        public FacebookObjectCollection<Post> GetPosts
+        {
+            get
+            {
+                FacebookObjectCollection<Post> userPosts;
+
+                try
+                {
+                    userPosts = r_LoggedInUser.Posts;
+                }
+                catch (Exception)
+                {
+                    throw new ArgumentException("Couldn't fetch user's Posts");
+                }
+
+                return userPosts;
+            }
+        }
+
 
         public FacebookObjectCollection<Group> GetGroups
         {

@@ -41,9 +41,12 @@
     <Compile Include="AppSettings.cs" />
     <Compile Include="FacebookAppManagerFacade.cs" />
     <Compile Include="FindEldersLogic.cs" />
+    <Compile Include="Strategy\ISortStrategy.cs" />
     <Compile Include="ITextToSpeech.cs" />
     <Compile Include="LookHowSomeoneChangeLogic.cs" />
-    <Compile Include="UserAdapter.cs" />
+    <Compile Include="Strategy\PostsConcreteMethodSorter.cs" />
+    <Compile Include="Strategy\Sorter.cs" />
+    <Compile Include="UserProxy.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Facebook">
@@ -60,5 +63,6 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

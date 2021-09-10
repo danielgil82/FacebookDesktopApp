@@ -75,6 +75,9 @@
             this.descriptionTextBox = new System.Windows.Forms.TextBox();
             this.endTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.startTimeDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.listBoxPostsStrategy = new System.Windows.Forms.ListBox();
+            this.comboBoxStrategy = new System.Windows.Forms.ComboBox();
             birthdayLabel = new System.Windows.Forms.Label();
             emailLabel = new System.Windows.Forms.Label();
             localeLabel = new System.Windows.Forms.Label();
@@ -95,10 +98,12 @@
             this.panelCurrentFriendDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imageNormalPictureBox)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // birthdayLabel
             // 
+            birthdayLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             birthdayLabel.AutoSize = true;
             birthdayLabel.Location = new System.Drawing.Point(25, 97);
             birthdayLabel.Name = "birthdayLabel";
@@ -108,6 +113,7 @@
             // 
             // emailLabel
             // 
+            emailLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             emailLabel.AutoSize = true;
             emailLabel.Location = new System.Drawing.Point(25, 120);
             emailLabel.Name = "emailLabel";
@@ -117,6 +123,7 @@
             // 
             // localeLabel
             // 
+            localeLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             localeLabel.AutoSize = true;
             localeLabel.Location = new System.Drawing.Point(25, 143);
             localeLabel.Name = "localeLabel";
@@ -126,6 +133,7 @@
             // 
             // religionLabel
             // 
+            religionLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             religionLabel.AutoSize = true;
             religionLabel.Location = new System.Drawing.Point(25, 166);
             religionLabel.Name = "religionLabel";
@@ -135,6 +143,7 @@
             // 
             // descriptionLabel
             // 
+            descriptionLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             descriptionLabel.AutoSize = true;
             descriptionLabel.Location = new System.Drawing.Point(17, 23);
             descriptionLabel.Name = "descriptionLabel";
@@ -144,6 +153,7 @@
             // 
             // endTimeLabel
             // 
+            endTimeLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             endTimeLabel.AutoSize = true;
             endTimeLabel.Location = new System.Drawing.Point(17, 177);
             endTimeLabel.Name = "endTimeLabel";
@@ -153,6 +163,7 @@
             // 
             // startTimeLabel
             // 
+            startTimeLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             startTimeLabel.AutoSize = true;
             startTimeLabel.Location = new System.Drawing.Point(17, 120);
             startTimeLabel.Name = "startTimeLabel";
@@ -162,8 +173,8 @@
             // 
             // buttonLogin
             // 
+            this.buttonLogin.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonLogin.BackColor = System.Drawing.Color.DarkBlue;
-            this.buttonLogin.Dock = System.Windows.Forms.DockStyle.Top;
             this.buttonLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonLogin.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.buttonLogin.Location = new System.Drawing.Point(0, 0);
@@ -177,8 +188,8 @@
             // 
             // buttonLogout
             // 
+            this.buttonLogout.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonLogout.BackColor = System.Drawing.Color.DarkBlue;
-            this.buttonLogout.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.buttonLogout.Enabled = false;
             this.buttonLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonLogout.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -193,18 +204,20 @@
             // 
             // panelOptions
             // 
+            this.panelOptions.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panelOptions.Controls.Add(this.buttonTimeLine);
             this.panelOptions.Controls.Add(this.buttonFetchData);
             this.panelOptions.Controls.Add(this.buttonHelpToElder);
             this.panelOptions.Controls.Add(this.buttonLogin);
             this.panelOptions.Controls.Add(this.buttonLogout);
-            this.panelOptions.Location = new System.Drawing.Point(12, 37);
+            this.panelOptions.Location = new System.Drawing.Point(-91, 45);
             this.panelOptions.Name = "panelOptions";
             this.panelOptions.Size = new System.Drawing.Size(230, 718);
             this.panelOptions.TabIndex = 53;
             // 
             // buttonTimeLine
             // 
+            this.buttonTimeLine.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonTimeLine.BackColor = System.Drawing.Color.Azure;
             this.buttonTimeLine.Enabled = false;
             this.buttonTimeLine.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -219,6 +232,7 @@
             // 
             // buttonFetchData
             // 
+            this.buttonFetchData.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonFetchData.BackColor = System.Drawing.Color.Azure;
             this.buttonFetchData.Enabled = false;
             this.buttonFetchData.Image = ((System.Drawing.Image)(resources.GetObject("buttonFetchData.Image")));
@@ -233,6 +247,7 @@
             // 
             // buttonHelpToElder
             // 
+            this.buttonHelpToElder.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.buttonHelpToElder.BackColor = System.Drawing.Color.Azure;
             this.buttonHelpToElder.Enabled = false;
             this.buttonHelpToElder.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -249,11 +264,12 @@
             // 
             // panelForUserInfo
             // 
+            this.panelForUserInfo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panelForUserInfo.Controls.Add(this.labelBirthday);
             this.panelForUserInfo.Controls.Add(this.labelLocation);
             this.panelForUserInfo.Controls.Add(this.labelFullName);
             this.panelForUserInfo.Controls.Add(this.pictureBoxProfile);
-            this.panelForUserInfo.Location = new System.Drawing.Point(297, 37);
+            this.panelForUserInfo.Location = new System.Drawing.Point(383, 45);
             this.panelForUserInfo.Name = "panelForUserInfo";
             this.panelForUserInfo.Size = new System.Drawing.Size(513, 199);
             this.panelForUserInfo.TabIndex = 54;
@@ -302,9 +318,10 @@
             // 
             // labelCurrentDate
             // 
+            this.labelCurrentDate.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.labelCurrentDate.AutoSize = true;
             this.labelCurrentDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCurrentDate.Location = new System.Drawing.Point(8, 9);
+            this.labelCurrentDate.Location = new System.Drawing.Point(-95, 9);
             this.labelCurrentDate.Name = "labelCurrentDate";
             this.labelCurrentDate.Size = new System.Drawing.Size(92, 20);
             this.labelCurrentDate.TabIndex = 3;
@@ -312,9 +329,9 @@
             // 
             // pictureBoxFbLogo
             // 
-            this.pictureBoxFbLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxFbLogo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBoxFbLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxFbLogo.Image")));
-            this.pictureBoxFbLogo.Location = new System.Drawing.Point(1346, 37);
+            this.pictureBoxFbLogo.Location = new System.Drawing.Point(1375, 45);
             this.pictureBoxFbLogo.Name = "pictureBoxFbLogo";
             this.pictureBoxFbLogo.Size = new System.Drawing.Size(102, 98);
             this.pictureBoxFbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -323,12 +340,12 @@
             // 
             // listBoxFriends
             // 
-            this.listBoxFriends.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxFriends.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.listBoxFriends.DataSource = this.userBindingSource;
             this.listBoxFriends.DisplayMember = "Name";
             this.listBoxFriends.FormattingEnabled = true;
             this.listBoxFriends.ItemHeight = 16;
-            this.listBoxFriends.Location = new System.Drawing.Point(356, 508);
+            this.listBoxFriends.Location = new System.Drawing.Point(177, 516);
             this.listBoxFriends.Name = "listBoxFriends";
             this.listBoxFriends.Size = new System.Drawing.Size(171, 228);
             this.listBoxFriends.TabIndex = 2;
@@ -339,12 +356,12 @@
             // 
             // listBoxEvents
             // 
-            this.listBoxEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxEvents.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.listBoxEvents.DataSource = this.eventBindingSource;
             this.listBoxEvents.DisplayMember = "Name";
             this.listBoxEvents.FormattingEnabled = true;
             this.listBoxEvents.ItemHeight = 16;
-            this.listBoxEvents.Location = new System.Drawing.Point(788, 508);
+            this.listBoxEvents.Location = new System.Drawing.Point(609, 516);
             this.listBoxEvents.Name = "listBoxEvents";
             this.listBoxEvents.Size = new System.Drawing.Size(171, 228);
             this.listBoxEvents.TabIndex = 57;
@@ -355,12 +372,12 @@
             // 
             // listBoxGroups
             // 
-            this.listBoxGroups.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBoxGroups.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.listBoxGroups.DataSource = this.groupBindingSource;
             this.listBoxGroups.DisplayMember = "Name";
             this.listBoxGroups.FormattingEnabled = true;
             this.listBoxGroups.ItemHeight = 16;
-            this.listBoxGroups.Location = new System.Drawing.Point(1302, 508);
+            this.listBoxGroups.Location = new System.Drawing.Point(1123, 516);
             this.listBoxGroups.Name = "listBoxGroups";
             this.listBoxGroups.Size = new System.Drawing.Size(171, 228);
             this.listBoxGroups.TabIndex = 58;
@@ -372,10 +389,11 @@
             // 
             // checkBoxRememberMe
             // 
+            this.checkBoxRememberMe.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.checkBoxRememberMe.AutoSize = true;
             this.checkBoxRememberMe.Enabled = false;
             this.checkBoxRememberMe.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBoxRememberMe.Location = new System.Drawing.Point(321, 273);
+            this.checkBoxRememberMe.Location = new System.Drawing.Point(383, 282);
             this.checkBoxRememberMe.Name = "checkBoxRememberMe";
             this.checkBoxRememberMe.Size = new System.Drawing.Size(146, 24);
             this.checkBoxRememberMe.TabIndex = 59;
@@ -384,9 +402,9 @@
             // 
             // pictureBoxFriendsLogo
             // 
-            this.pictureBoxFriendsLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxFriendsLogo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBoxFriendsLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxFriendsLogo.Image")));
-            this.pictureBoxFriendsLogo.Location = new System.Drawing.Point(384, 436);
+            this.pictureBoxFriendsLogo.Location = new System.Drawing.Point(205, 444);
             this.pictureBoxFriendsLogo.Name = "pictureBoxFriendsLogo";
             this.pictureBoxFriendsLogo.Size = new System.Drawing.Size(113, 32);
             this.pictureBoxFriendsLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -395,9 +413,9 @@
             // 
             // pictureBoxGroupsLogo
             // 
-            this.pictureBoxGroupsLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxGroupsLogo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBoxGroupsLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxGroupsLogo.Image")));
-            this.pictureBoxGroupsLogo.Location = new System.Drawing.Point(1320, 437);
+            this.pictureBoxGroupsLogo.Location = new System.Drawing.Point(1141, 445);
             this.pictureBoxGroupsLogo.Name = "pictureBoxGroupsLogo";
             this.pictureBoxGroupsLogo.Size = new System.Drawing.Size(107, 31);
             this.pictureBoxGroupsLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -406,9 +424,9 @@
             // 
             // pictureBoxEventsLogo
             // 
-            this.pictureBoxEventsLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxEventsLogo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBoxEventsLogo.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxEventsLogo.Image")));
-            this.pictureBoxEventsLogo.Location = new System.Drawing.Point(803, 435);
+            this.pictureBoxEventsLogo.Location = new System.Drawing.Point(624, 443);
             this.pictureBoxEventsLogo.Name = "pictureBoxEventsLogo";
             this.pictureBoxEventsLogo.Size = new System.Drawing.Size(119, 32);
             this.pictureBoxEventsLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -423,10 +441,10 @@
             // 
             // radioButtonFriends
             // 
-            this.radioButtonFriends.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.radioButtonFriends.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.radioButtonFriends.AutoSize = true;
             this.radioButtonFriends.Enabled = false;
-            this.radioButtonFriends.Location = new System.Drawing.Point(372, 480);
+            this.radioButtonFriends.Location = new System.Drawing.Point(193, 488);
             this.radioButtonFriends.Name = "radioButtonFriends";
             this.radioButtonFriends.Size = new System.Drawing.Size(140, 21);
             this.radioButtonFriends.TabIndex = 63;
@@ -437,10 +455,10 @@
             // 
             // radioButtonEvents
             // 
-            this.radioButtonEvents.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.radioButtonEvents.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.radioButtonEvents.AutoSize = true;
             this.radioButtonEvents.Enabled = false;
-            this.radioButtonEvents.Location = new System.Drawing.Point(798, 479);
+            this.radioButtonEvents.Location = new System.Drawing.Point(619, 487);
             this.radioButtonEvents.Name = "radioButtonEvents";
             this.radioButtonEvents.Size = new System.Drawing.Size(136, 21);
             this.radioButtonEvents.TabIndex = 64;
@@ -451,10 +469,10 @@
             // 
             // radioButtonGroups
             // 
-            this.radioButtonGroups.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.radioButtonGroups.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.radioButtonGroups.AutoSize = true;
             this.radioButtonGroups.Enabled = false;
-            this.radioButtonGroups.Location = new System.Drawing.Point(1315, 481);
+            this.radioButtonGroups.Location = new System.Drawing.Point(1136, 489);
             this.radioButtonGroups.Name = "radioButtonGroups";
             this.radioButtonGroups.Size = new System.Drawing.Size(140, 21);
             this.radioButtonGroups.TabIndex = 65;
@@ -465,7 +483,7 @@
             // 
             // panelCurrentFriendDetails
             // 
-            this.panelCurrentFriendDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelCurrentFriendDetails.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panelCurrentFriendDetails.BackColor = System.Drawing.Color.PaleTurquoise;
             this.panelCurrentFriendDetails.Controls.Add(birthdayLabel);
             this.panelCurrentFriendDetails.Controls.Add(this.birthdayLabel1);
@@ -476,13 +494,14 @@
             this.panelCurrentFriendDetails.Controls.Add(this.localeLabel1);
             this.panelCurrentFriendDetails.Controls.Add(religionLabel);
             this.panelCurrentFriendDetails.Controls.Add(this.religionLabel1);
-            this.panelCurrentFriendDetails.Location = new System.Drawing.Point(543, 508);
+            this.panelCurrentFriendDetails.Location = new System.Drawing.Point(364, 516);
             this.panelCurrentFriendDetails.Name = "panelCurrentFriendDetails";
             this.panelCurrentFriendDetails.Size = new System.Drawing.Size(230, 228);
             this.panelCurrentFriendDetails.TabIndex = 69;
             // 
             // birthdayLabel1
             // 
+            this.birthdayLabel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.birthdayLabel1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "Birthday", true));
             this.birthdayLabel1.Location = new System.Drawing.Point(130, 97);
             this.birthdayLabel1.Name = "birthdayLabel1";
@@ -492,6 +511,7 @@
             // 
             // emailLabel1
             // 
+            this.emailLabel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.emailLabel1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "Email", true));
             this.emailLabel1.Location = new System.Drawing.Point(130, 120);
             this.emailLabel1.Name = "emailLabel1";
@@ -501,6 +521,7 @@
             // 
             // imageNormalPictureBox
             // 
+            this.imageNormalPictureBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.imageNormalPictureBox.DataBindings.Add(new System.Windows.Forms.Binding("Image", this.userBindingSource, "ImageNormal", true));
             this.imageNormalPictureBox.Location = new System.Drawing.Point(12, 10);
             this.imageNormalPictureBox.Name = "imageNormalPictureBox";
@@ -511,6 +532,7 @@
             // 
             // localeLabel1
             // 
+            this.localeLabel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.localeLabel1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "Locale", true));
             this.localeLabel1.Location = new System.Drawing.Point(130, 143);
             this.localeLabel1.Name = "localeLabel1";
@@ -520,6 +542,7 @@
             // 
             // religionLabel1
             // 
+            this.religionLabel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.religionLabel1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.userBindingSource, "Religion", true));
             this.religionLabel1.Location = new System.Drawing.Point(130, 166);
             this.religionLabel1.Name = "religionLabel1";
@@ -529,7 +552,7 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel1.BackColor = System.Drawing.Color.Violet;
             this.panel1.Controls.Add(descriptionLabel);
             this.panel1.Controls.Add(this.descriptionTextBox);
@@ -537,13 +560,14 @@
             this.panel1.Controls.Add(this.endTimeDateTimePicker);
             this.panel1.Controls.Add(startTimeLabel);
             this.panel1.Controls.Add(this.startTimeDateTimePicker);
-            this.panel1.Location = new System.Drawing.Point(969, 508);
+            this.panel1.Location = new System.Drawing.Point(790, 516);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(324, 228);
             this.panel1.TabIndex = 70;
             // 
             // descriptionTextBox
             // 
+            this.descriptionTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.descriptionTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.eventBindingSource, "Description", true));
             this.descriptionTextBox.Location = new System.Drawing.Point(117, 23);
             this.descriptionTextBox.Multiline = true;
@@ -554,6 +578,7 @@
             // 
             // endTimeDateTimePicker
             // 
+            this.endTimeDateTimePicker.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.endTimeDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.eventBindingSource, "EndTime", true));
             this.endTimeDateTimePicker.Location = new System.Drawing.Point(117, 172);
             this.endTimeDateTimePicker.Name = "endTimeDateTimePicker";
@@ -562,18 +587,56 @@
             // 
             // startTimeDateTimePicker
             // 
+            this.startTimeDateTimePicker.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.startTimeDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.eventBindingSource, "StartTime", true));
             this.startTimeDateTimePicker.Location = new System.Drawing.Point(117, 121);
             this.startTimeDateTimePicker.Name = "startTimeDateTimePicker";
             this.startTimeDateTimePicker.Size = new System.Drawing.Size(200, 22);
             this.startTimeDateTimePicker.TabIndex = 7;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(1349, 391);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(114, 44);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 72;
+            this.pictureBox1.TabStop = false;
+            // 
+            // listBoxPostsStrategy
+            // 
+            this.listBoxPostsStrategy.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.listBoxPostsStrategy.FormattingEnabled = true;
+            this.listBoxPostsStrategy.ItemHeight = 16;
+            this.listBoxPostsStrategy.Location = new System.Drawing.Point(1312, 516);
+            this.listBoxPostsStrategy.Name = "listBoxPostsStrategy";
+            this.listBoxPostsStrategy.Size = new System.Drawing.Size(192, 228);
+            this.listBoxPostsStrategy.TabIndex = 71;
+            // 
+            // comboBoxStrategy
+            // 
+            this.comboBoxStrategy.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.comboBoxStrategy.FormattingEnabled = true;
+            this.comboBoxStrategy.Items.AddRange(new object[] {
+            "Posts Before 2018",
+            "Posts After 2018"});
+            this.comboBoxStrategy.Location = new System.Drawing.Point(1321, 452);
+            this.comboBoxStrategy.Name = "comboBoxStrategy";
+            this.comboBoxStrategy.Size = new System.Drawing.Size(167, 24);
+            this.comboBoxStrategy.TabIndex = 73;
+            this.comboBoxStrategy.SelectedIndexChanged += new System.EventHandler(this.comboBoxStrategy_SelectedIndexChanged);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
-            this.ClientSize = new System.Drawing.Size(1537, 775);
+            this.ClientSize = new System.Drawing.Size(1510, 790);
+            this.Controls.Add(this.comboBoxStrategy);
+            this.Controls.Add(this.listBoxPostsStrategy);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelCurrentFriendDetails);
             this.Controls.Add(this.radioButtonGroups);
@@ -610,6 +673,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageNormalPictureBox)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -654,5 +718,8 @@
         private System.Windows.Forms.DateTimePicker endTimeDateTimePicker;
         private System.Windows.Forms.DateTimePicker startTimeDateTimePicker;
         private System.Windows.Forms.BindingSource groupBindingSource;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ListBox listBoxPostsStrategy;
+        private System.Windows.Forms.ComboBox comboBoxStrategy;
     }
 }

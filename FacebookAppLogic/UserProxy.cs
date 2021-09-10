@@ -8,7 +8,7 @@ using FacebookWrapper.ObjectModel;
 
 namespace FacebookAppLogic
 {
-    public class UserAdapter : ITextToSpeech
+    public class UserProxy : ITextToSpeech
     {
         public User User { get; set; }
 

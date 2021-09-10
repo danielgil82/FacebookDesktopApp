@@ -73,7 +73,7 @@ namespace BasicFacebookFeatures
 
                  foreach (User friend in UsersFriends)
                  {
-                     listBoxUsersFriends.Items.Add(new UserAdapter { User = friend });
+                     listBoxUsersFriends.Items.Add(new UserProxy { User = friend });
                  }
 
                  if (listBoxUsersFriends.Items.Count == 0)
@@ -85,7 +85,7 @@ namespace BasicFacebookFeatures
 
         private void listBoxUsersFriends_DoubleClick(object sender, EventArgs e)
         {
-            ((sender as ListBox).SelectedItem as UserAdapter).Speak();
+            ((sender as ListBox).SelectedItem as UserProxy).Speak();
         }
 
         private void buttonFetchPictures_Click(object sender, EventArgs e)
@@ -286,7 +286,7 @@ namespace BasicFacebookFeatures
                 if (control is ComboBox)
                 {
                     ComboBox cmBox = control as ComboBox;
-
+                    
                     if (string.IsNullOrEmpty(cmBox.Text))
                     {
                         areChecked = false;
@@ -300,7 +300,7 @@ namespace BasicFacebookFeatures
 
         private void listBoxUsersFriends_SelectedIndexChanged(object sender, EventArgs e)
         {
-            PreferredUser = ((sender as ListBox).SelectedItem as UserAdapter).User;
+            PreferredUser = ((sender as ListBox).SelectedItem as UserProxy).User;
         }
 
         private void comboBoxFirstChoice_SelectedIndexChanged(object sender, EventArgs e)
