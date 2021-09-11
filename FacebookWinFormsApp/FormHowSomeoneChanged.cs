@@ -19,7 +19,7 @@ namespace BasicFacebookFeatures
         private readonly Hashtable r_HasTheYearBeenChosen = new Hashtable();
         private readonly List<int> r_YearsChosenByUser = new List<int>();
 
-        public BackableVisitor BackableVisitor{ get; set; }
+        public ColorfulBackableVisitor BackableVisitor{ get; set; }
 
         public List<Photo> UserProfilePictures { get; private set; }
 
@@ -41,7 +41,8 @@ namespace BasicFacebookFeatures
             r_FacebookAppManager = i_FormMain.FacebookAppManagerFacade;
             UsersFriends = r_FacebookAppManager.GetFriends;
             fetchYearsToChooseInTheComboBoxes();
-            BackableVisitor = new BackableVisitor();
+            BackableVisitor = new ColorfulBackableVisitor();
+            BackableVisitor.BackButton = buttonBack;
         }
 
         private void fetchYearsToChooseInTheComboBoxes()

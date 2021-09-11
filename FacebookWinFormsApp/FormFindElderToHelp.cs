@@ -14,7 +14,7 @@ namespace BasicFacebookFeatures
         private readonly List<string> r_AgeRangeList;
         private FacebookObjectCollection<User> m_PotentialEldersList = null;
 
-        public BackableVisitor BackableVisitor { get; set; }
+        public ColorfulBackableVisitor BackableVisitor { get; set; }
 
         internal string PreferredAgeRange { get; private set; }
 
@@ -26,7 +26,8 @@ namespace BasicFacebookFeatures
             r_FacebookAppManager = i_FormMain.FacebookAppManagerFacade;
             r_AgeRangeList = new List<string>();
             initAgeRangeList();
-            BackableVisitor = new BackableVisitor();
+            BackableVisitor = new ColorfulBackableVisitor();
+            BackableVisitor.BackButton = buttonBack;
         }
 
         private void initAgeRangeList()

@@ -33,7 +33,7 @@ namespace BasicFacebookFeatures
             r_AppSettings = AppSettings.LoadFromFile();
         }
 
-     
+
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
@@ -190,7 +190,7 @@ namespace BasicFacebookFeatures
 
             buttonLogin.Text = "Login To Facebook";
             buttonLogin.BackColor = Color.MidnightBlue;
-           
+
         }
 
         private void radioButtonFriends_Click(object sender, EventArgs e)
@@ -311,6 +311,8 @@ namespace BasicFacebookFeatures
 
                 if (comboBoxStrategy.SelectedItem != null)
                 {
+
+                   // List<Color> optionalColorForbutton = new List<Color>() { Color.AliceBlue, Color.MintCream };
                     string currentStrategy = comboBoxStrategy.SelectedItem.ToString();
 
                     FacebookObjectCollection<Post> filteredPosts = FacebookAppManagerFacade.GetFilteredPosts(currentStrategy);

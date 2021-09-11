@@ -107,7 +107,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BackableVisitor.cs" />
+    <Compile Include="ColorfulBackableVisitor.cs" />
     <Compile Include="FormFactory.cs" />
     <Compile Include="FormFindElderToHelp.cs">
       <SubType>Form</SubType>
