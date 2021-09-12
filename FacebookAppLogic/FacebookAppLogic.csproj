@@ -41,6 +41,7 @@
     <Compile Include="AppSettings.cs" />
     <Compile Include="FacebookAppManagerFacade.cs" />
     <Compile Include="FindEldersLogic.cs" />
+    <Compile Include="Iterator\UserAggregate.cs" />
     <Compile Include="Strategy\ISortStrategy.cs" />
     <Compile Include="ITextToSpeech.cs" />
     <Compile Include="LookHowSomeoneChangeLogic.cs" />

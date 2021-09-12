@@ -6,6 +6,7 @@ using System.Threading;
 using FacebookAppLogic;
 using FacebookWrapper.ObjectModel;
 using System.Windows.Forms;
+using FacebookAppLogic.Iterator;
 
 namespace BasicFacebookFeatures
 {
@@ -18,8 +19,11 @@ namespace BasicFacebookFeatures
         private readonly FacebookAppManagerFacade r_FacebookAppManager;
         private readonly Hashtable r_HasTheYearBeenChosen = new Hashtable();
         private readonly List<int> r_YearsChosenByUser = new List<int>();
+        private UserAggregate m_UsersAggregate;
 
-        public ColorfulBackableVisitor BackableVisitor{ get; set; }
+        public IEnumerator<User> UserToAdd { get; set; }
+
+        public ColorfulBackableVisitor ColorfulBackableVisitor{ get; set; }
 
         public List<Photo> UserProfilePictures { get; private set; }
 
@@ -41,8 +45,8 @@ namespace BasicFacebookFeatures
             r_FacebookAppManager = i_FormMain.FacebookAppManagerFacade;
             UsersFriends = r_FacebookAppManager.GetFriends;
             fetchYearsToChooseInTheComboBoxes();
-            BackableVisitor = new ColorfulBackableVisitor();
-            BackableVisitor.BackButton = buttonBack;
+            ColorfulBackableVisitor = new ColorfulBackableVisitor();
+            ColorfulBackableVisitor.BackButton = buttonBack;
         }
 
         private void fetchYearsToChooseInTheComboBoxes()
@@ -75,10 +79,20 @@ namespace BasicFacebookFeatures
                      listBoxUsersFriends.Items.Clear();
                  }
 
-                 foreach (User friend in UsersFriends)
+                 m_UsersAggregate = new UserAggregate(UsersFriends);
+                 if (m_UsersAggregate != null)
                  {
-                     listBoxUsersFriends.Items.Add(new UserProxy { User = friend });
+                     UserToAdd = m_UsersAggregate.GetEnumerator();
                  }
+
+                 while (UserToAdd.MoveNext())
+                 {
+                     listBoxUsersFriends.Items.Add(new UserProxy {User = UserToAdd.Current});
+                 }
+                 //foreach (User friend in UsersFriends)
+                 //{
+                 //    listBoxUsersFriends.Items.Add(new UserProxy { User = friend });
+                 //}
 
                  if (listBoxUsersFriends.Items.Count == 0)
                  {
@@ -382,7 +396,7 @@ namespace BasicFacebookFeatures
 
         private void buttonBack_Click(object sender, EventArgs e)
         {
-            BackableVisitor.Back(this);
+            ColorfulBackableVisitor.Back(this);
         }
     }
 }

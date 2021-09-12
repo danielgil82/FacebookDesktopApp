@@ -10,8 +10,11 @@ namespace FacebookAppLogic
     internal class Sorter //Mechanism
     {
         private readonly FacebookObjectCollection<Post> m_FilteredPosts = new FacebookObjectCollection<Post>();
+        /// <summary>
+        /// maybe in the future i'd to make a sort strategy via interface  
+        /// </summary>
+        //public ISortStrategy SortStrategy { get; set; }
 
-     //   public ISortStrategy SortStrategy { get; set; }
         public Func<Post, bool> SortStrategyMethod { get; set; }
 
         public FacebookObjectCollection<Post> Sort(FacebookObjectCollection<Post> i_PostsCollection)

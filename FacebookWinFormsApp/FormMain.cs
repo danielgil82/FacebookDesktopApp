@@ -256,8 +256,7 @@ namespace BasicFacebookFeatures
             try
             {
                 this.Hide();
-                FormFindElderToHelp helpToElderly =
-                    FormFactory.CreateForm(k_FormFindElderToHelp) as FormFindElderToHelp;
+                FormFindElderToHelp helpToElderly = FormFactory.CreateForm(k_FormFindElderToHelp) as FormFindElderToHelp;
                 helpToElderly.ShowDialog();
                 this.Show();
             }
@@ -276,8 +275,7 @@ namespace BasicFacebookFeatures
             try
             {
                 this.Hide();
-                FormHowSomeoneChanged timeLineInfo
-                    = FormFactory.CreateForm(k_FormHowSomeoneChanged) as FormHowSomeoneChanged;
+                FormHowSomeoneChanged timeLineInfo = FormFactory.CreateForm(k_FormHowSomeoneChanged) as FormHowSomeoneChanged;
                 timeLineInfo.ShowDialog();
                 this.Show();
             }
@@ -294,8 +292,6 @@ namespace BasicFacebookFeatures
         private void comboBoxStrategy_SelectedIndexChanged(object sender, EventArgs e)
         {
             new Thread(fetchPostsByDifferentStrategies).Start();
-            //listBoxPostsStrategy.DisplayMember = Name;
-            //listBoxPostsStrategy.DataSource = FacebookAppManagerFacade.GetPosts;
         }
 
         private void fetchPostsByDifferentStrategies()
@@ -311,11 +307,9 @@ namespace BasicFacebookFeatures
 
                 if (comboBoxStrategy.SelectedItem != null)
                 {
-
-                   // List<Color> optionalColorForbutton = new List<Color>() { Color.AliceBlue, Color.MintCream };
                     string currentStrategy = comboBoxStrategy.SelectedItem.ToString();
-
                     FacebookObjectCollection<Post> filteredPosts = FacebookAppManagerFacade.GetFilteredPosts(currentStrategy);
+                 
                     if (filteredPosts.Count == 0)
                     {
                         MessageBox.Show("There are zero " + currentStrategy);

@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Threading;
 using System.Windows.Forms;
 using FacebookAppLogic;
+using FacebookAppLogic.Iterator;
 using FacebookWrapper.ObjectModel;
 
 namespace BasicFacebookFeatures
@@ -13,8 +15,11 @@ namespace BasicFacebookFeatures
         private readonly FacebookAppManagerFacade r_FacebookAppManager;
         private readonly List<string> r_AgeRangeList;
         private FacebookObjectCollection<User> m_PotentialEldersList = null;
+        //private UserAggregate m_UsersAggregate;
 
-        public ColorfulBackableVisitor BackableVisitor { get; set; }
+        //public IEnumerator<User> UserToAdd { get; set; }
+
+        public ColorfulBackableVisitor ColorfulBackableVisitor { get; set; }
 
         internal string PreferredAgeRange { get; private set; }
 
@@ -26,8 +31,8 @@ namespace BasicFacebookFeatures
             r_FacebookAppManager = i_FormMain.FacebookAppManagerFacade;
             r_AgeRangeList = new List<string>();
             initAgeRangeList();
-            BackableVisitor = new ColorfulBackableVisitor();
-            BackableVisitor.BackButton = buttonBack;
+            ColorfulBackableVisitor = new ColorfulBackableVisitor();
+            ColorfulBackableVisitor.BackButton = buttonBack;
         }
 
         private void initAgeRangeList()
@@ -44,7 +49,7 @@ namespace BasicFacebookFeatures
 
         private void buttonBack_Click(object sender, EventArgs e)
         {
-            BackableVisitor.Back(this);
+            ColorfulBackableVisitor.Back(this);
            // Back();
         }
 
@@ -66,9 +71,8 @@ namespace BasicFacebookFeatures
                    {
                        try
                        {
-
-                           m_PotentialEldersList = r_FacebookAppManager.GetPotentialElders(PreferredGender, PreferredAgeRange);
-                           fetchPotentialElders();
+                             m_PotentialEldersList = r_FacebookAppManager.GetPotentialElders(PreferredGender, PreferredAgeRange);
+                             fetchPotentialElders();
                        }
                        catch (ArgumentException ex)
                        {
@@ -96,7 +100,7 @@ namespace BasicFacebookFeatures
             listBoxPotentialElders.Invoke(
             new Action(
                () =>
-           photoBindingSource.DataSource = m_PotentialEldersList
+                   photoBindingSource.DataSource = m_PotentialEldersList
                     ));
         }
 

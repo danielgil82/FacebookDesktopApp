@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using FacebookAppLogic.Iterator;
 using FacebookWrapper.ObjectModel;
 using FacebookWrapper;
 
@@ -21,7 +22,7 @@ namespace FacebookAppLogic
         internal Sorter Sorter { get; set; }
         
         /// <summary>
-        /// Now The we don't even need a class nor a method , i've use lambda expression
+        /// Now The we don't even need a class nor a method across other classes , i've used lambda expressions
         /// in order to make the same logic.
         /// </summary>
         /// <param name="i_KindOfSort"></param>
@@ -167,7 +168,7 @@ namespace FacebookAppLogic
             {
                 m_FindEldersLogic = new FindEldersLogic(r_LoggedInUser);
             }
-
+            
             return m_FindEldersLogic.FindPotentialEldersUsersConditions(i_PreferredGender, i_PreferredAgeRange);
         }
 
@@ -179,7 +180,7 @@ namespace FacebookAppLogic
             }
 
             m_LookHowSomeoneChangedLogic.FetchFriendTimeLinePictures(i_ChosenUser, i_YearsChosen);
-
+            
             return m_LookHowSomeoneChangedLogic.FriendProfilePictures;
         }
     }
