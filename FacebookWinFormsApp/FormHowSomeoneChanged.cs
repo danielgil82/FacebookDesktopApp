@@ -92,6 +92,8 @@ namespace BasicFacebookFeatures
                  //foreach (User friend in UsersFriends)
                  //{
                  //    listBoxUsersFriends.Items.Add(new UserProxy { User = friend });
+                 //
+                 //
                  //}
 
                  if (listBoxUsersFriends.Items.Count == 0)
