@@ -12,7 +12,7 @@ namespace FacebookAppLogic
     {
         private readonly User r_LoggedInUser;
         private FindEldersLogic m_FindEldersLogic;
-        private LookHowSomeoneChangeLogic m_LookHowSomeoneChangedLogic;
+        private LookHowSomeoneChangedLogic m_LookHowSomeoneChangedLogic;
 
         public FacebookAppManagerFacade(User i_LoggedInUser)
         {
@@ -176,7 +176,7 @@ namespace FacebookAppLogic
         {
             if (m_LookHowSomeoneChangedLogic == null)
             {
-                m_LookHowSomeoneChangedLogic = new LookHowSomeoneChangeLogic();
+                m_LookHowSomeoneChangedLogic = new LookHowSomeoneChangedLogic();
             }
 
             m_LookHowSomeoneChangedLogic.FetchFriendTimeLinePictures(i_ChosenUser, i_YearsChosen);

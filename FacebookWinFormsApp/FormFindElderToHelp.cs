@@ -37,7 +37,7 @@ namespace BasicFacebookFeatures
 
         private void initAgeRangeList()
         {
-            // Checking weather me and Sigalit we'll be shown
+            // Added this age manually just to test.
             r_AgeRangeList.Add("20 - 25");
             for (int i = 65; i < 125; i += 5)
             {

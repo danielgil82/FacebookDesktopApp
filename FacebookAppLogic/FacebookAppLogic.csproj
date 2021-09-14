@@ -44,7 +44,7 @@
     <Compile Include="Iterator\UserAggregate.cs" />
     <Compile Include="Strategy\ISortStrategy.cs" />
     <Compile Include="ITextToSpeech.cs" />
-    <Compile Include="LookHowSomeoneChangeLogic.cs" />
+    <Compile Include="LookHowSomeoneChangedLogic.cs" />
     <Compile Include="Strategy\PostsConcreteMethodSorter.cs" />
     <Compile Include="Strategy\Sorter.cs" />
     <Compile Include="UserProxy.cs" />

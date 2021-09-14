@@ -8,7 +8,7 @@ using FacebookWrapper.ObjectModel;
 
 namespace FacebookAppLogic
 {
-    internal class LookHowSomeoneChangeLogic
+    internal class LookHowSomeoneChangedLogic
     {
         private readonly List<int> m_ChosenYears = new List<int>();
         private readonly List<Photo> r_FriendProfilePictures = new List<Photo>();
