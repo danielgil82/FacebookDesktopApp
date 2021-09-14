@@ -16,6 +16,7 @@ Proxy
 Strategy
 Visitor
 Iterator
+Singleton
 ```
 
 # Features Description:
