@@ -11,7 +11,8 @@ namespace FacebookAppLogic
     {
         private readonly FacebookObjectCollection<Post> r_FilteredPosts = new FacebookObjectCollection<Post>();
         /// <summary>
-        /// maybe in the future i'd to make a sort strategy via interface  
+        /// maybe in the future i'd to make a sort strategy via interface
+        /// 
         /// </summary>
         //public ISortStrategy SortStrategy { get; set; }
 
