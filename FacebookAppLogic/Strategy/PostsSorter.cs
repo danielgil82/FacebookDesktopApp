@@ -7,9 +7,9 @@ using FacebookWrapper.ObjectModel;
 
 namespace FacebookAppLogic
 {
-    internal class Sorter //Mechanism
+    internal class PostsSorter //Mechanism
     {
-        private readonly FacebookObjectCollection<Post> m_FilteredPosts = new FacebookObjectCollection<Post>();
+        private readonly FacebookObjectCollection<Post> r_FilteredPosts = new FacebookObjectCollection<Post>();
         /// <summary>
         /// maybe in the future i'd to make a sort strategy via interface  
         /// </summary>
@@ -23,11 +23,11 @@ namespace FacebookAppLogic
             {
                 if (SortStrategyMethod.Invoke(post))
                 {
-                    m_FilteredPosts.Add(post);
+                    r_FilteredPosts.Add(post);
                 }
             }
 
-            return m_FilteredPosts;
+            return r_FilteredPosts;
         }
     }
 }

@@ -46,7 +46,7 @@
     <Compile Include="ITextToSpeech.cs" />
     <Compile Include="LookHowSomeoneChangedLogic.cs" />
     <Compile Include="Strategy\PostsConcreteMethodSorter.cs" />
-    <Compile Include="Strategy\Sorter.cs" />
+    <Compile Include="Strategy\PostsSorter.cs" />
     <Compile Include="UserProxy.cs" />
   </ItemGroup>
   <ItemGroup>

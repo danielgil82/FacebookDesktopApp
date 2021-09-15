@@ -19,7 +19,7 @@ namespace FacebookAppLogic
             r_LoggedInUser = i_LoggedInUser;
         }
 
-        internal Sorter Sorter { get; set; }
+        internal PostsSorter PostsSorter { get; set; }
         
         /// <summary>
         /// Now The we don't even need a class nor a method across other classes , i've used lambda expressions
@@ -29,19 +29,19 @@ namespace FacebookAppLogic
         /// <returns></returns>
         public FacebookObjectCollection<Post> GetFilteredPosts(string i_KindOfSort)
         {
-            Sorter = new Sorter();
+            PostsSorter = new PostsSorter();
           // ConcretePostsSorter concretePostsSorter = new ConcretePostsSorter();
 
             if (i_KindOfSort == "Posts Before 2018")
             {
-                Sorter.SortStrategyMethod = p =>  p.CreatedTime.Value.Year < 2018;
+                PostsSorter.SortStrategyMethod = p =>  p.CreatedTime.Value.Year < 2018;
             }
             if (i_KindOfSort == "Posts After 2018")
             {
-                Sorter.SortStrategyMethod = p => p.CreatedTime.Value.Year >= 2018;
+                PostsSorter.SortStrategyMethod = p => p.CreatedTime.Value.Year >= 2018;
             }
 
-            FacebookObjectCollection<Post> filteredPosts = Sorter.Sort(GetPosts);
+            FacebookObjectCollection<Post> filteredPosts = PostsSorter.Sort(GetPosts);
         
             return filteredPosts;
         }

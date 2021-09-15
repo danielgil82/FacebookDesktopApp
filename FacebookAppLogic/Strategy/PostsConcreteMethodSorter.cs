@@ -7,7 +7,7 @@ using FacebookWrapper.ObjectModel;
 
 namespace FacebookAppLogic
 {
-    internal class ConcretePostsSorter
+    internal class PostsConcreteMethodSorter
     {
         internal bool ShouldAddPostsWrittenAfter2018(Post i_Post)
         {
