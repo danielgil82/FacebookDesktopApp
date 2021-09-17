@@ -31,6 +31,17 @@ namespace BasicFacebookFeatures
             InitializeComponent();
             FacebookWrapper.FacebookService.s_CollectionLimit = 100;
             r_AppSettings = AppSettings.LoadFromFile();
+            fetchYearsToComboBoxStrategy();
+        }
+
+        private void fetchYearsToComboBoxStrategy()
+        {
+            string currentYear = DateTime.Now.Year.ToString();
+
+            for (int i = 2010; i <= Int32.Parse(currentYear); i++)
+            {
+                comboBoxStrategy.Items.Add(i);
+            }
         }
 
 
@@ -307,12 +318,12 @@ namespace BasicFacebookFeatures
 
                 if (comboBoxStrategy.SelectedItem != null)
                 {
-                    string currentStrategy = comboBoxStrategy.SelectedItem.ToString();
-                    FacebookObjectCollection<Post> filteredPosts = FacebookAppManagerFacade.GetFilteredPosts(currentStrategy);
+                    int yearChosenByUserAsPostsFilter = Int32.Parse(comboBoxStrategy.SelectedItem.ToString());
+                    FacebookObjectCollection<Post> filteredPosts = FacebookAppManagerFacade.GetFilteredPosts(yearChosenByUserAsPostsFilter);
                  
                     if (filteredPosts.Count == 0)
                     {
-                        MessageBox.Show("There are zero " + currentStrategy);
+                        MessageBox.Show("There are zero posts at " + yearChosenByUserAsPostsFilter);
                     }
                     else
                     {

@@ -20,29 +20,30 @@ namespace FacebookAppLogic
         }
 
         internal PostsSorter PostsSorter { get; set; }
-        
+
         /// <summary>
         /// Now The we don't even need a class nor a method across other classes , i've used lambda expressions
         /// in order to make the same logic.
         /// </summary>
         /// <param name="i_KindOfSort"></param>
         /// <returns></returns>
-        public FacebookObjectCollection<Post> GetFilteredPosts(string i_KindOfSort)
+        public FacebookObjectCollection<Post> GetFilteredPosts(int i_ChosenYearByTheUser)
         {
             PostsSorter = new PostsSorter();
-          // ConcretePostsSorter concretePostsSorter = new ConcretePostsSorter();
+            PostsConcreteMethodSorter concreteMethodSorter = new PostsConcreteMethodSorter();
+            PostsSorter.SortStrategyFunc += concreteMethodSorter.IsThePostMatchTheYear;
+            
+            //if (i_chosenYearByTheUserForPosts == "Posts Before 2018")
+            //{
+            //    PostsSorter.SortStrategyMethod = p => p.CreatedTime.Value.Year < 2018;
+            //}
+            //if (i_chosenYearByTheUserForPosts == "Posts After 2018")
+            //{
+            //    PostsSorter.SortStrategyMethod = p => p.CreatedTime.Value.Year >= 2018;
+            //}
 
-            if (i_KindOfSort == "Posts Before 2018")
-            {
-                PostsSorter.SortStrategyMethod = p =>  p.CreatedTime.Value.Year < 2018;
-            }
-            if (i_KindOfSort == "Posts After 2018")
-            {
-                PostsSorter.SortStrategyMethod = p => p.CreatedTime.Value.Year >= 2018;
-            }
+            FacebookObjectCollection<Post> filteredPosts = PostsSorter.Filter(GetPosts, i_ChosenYearByTheUser);
 
-            FacebookObjectCollection<Post> filteredPosts = PostsSorter.Sort(GetPosts);
-        
             return filteredPosts;
         }
 
@@ -168,7 +169,7 @@ namespace FacebookAppLogic
             {
                 m_FindEldersLogic = new FindEldersLogic(r_LoggedInUser);
             }
-            
+
             return m_FindEldersLogic.FindPotentialEldersUsersConditions(i_PreferredGender, i_PreferredAgeRange);
         }
 
@@ -180,7 +181,7 @@ namespace FacebookAppLogic
             }
 
             m_LookHowSomeoneChangedLogic.FetchFriendTimeLinePictures(i_ChosenUser, i_YearsChosen);
-            
+
             return m_LookHowSomeoneChangedLogic.FriendProfilePictures;
         }
     }

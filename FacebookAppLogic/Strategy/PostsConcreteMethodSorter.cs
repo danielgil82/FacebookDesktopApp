@@ -9,6 +9,11 @@ namespace FacebookAppLogic
 {
     internal class PostsConcreteMethodSorter
     {
+        internal bool IsThePostMatchTheYear(Post i_Post, int i_ChosenYearByTheUser)
+        {
+            return i_Post.CreatedTime.Value.Year == i_ChosenYearByTheUser;
+        }
+
         internal bool ShouldAddPostsWrittenAfter2018(Post i_Post)
         {
             return i_Post.CreatedTime.Value.Year >= 2018;

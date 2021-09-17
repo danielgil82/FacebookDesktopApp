@@ -619,9 +619,6 @@
             // 
             this.comboBoxStrategy.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.comboBoxStrategy.FormattingEnabled = true;
-            this.comboBoxStrategy.Items.AddRange(new object[] {
-            "Posts Before 2018",
-            "Posts After 2018"});
             this.comboBoxStrategy.Location = new System.Drawing.Point(1321, 452);
             this.comboBoxStrategy.Name = "comboBoxStrategy";
             this.comboBoxStrategy.Size = new System.Drawing.Size(167, 24);

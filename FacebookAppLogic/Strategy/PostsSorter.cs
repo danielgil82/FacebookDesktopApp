@@ -15,16 +15,32 @@ namespace FacebookAppLogic
         /// </summary>
         //public ISortStrategy SortStrategy { get; set; }
 
-        public Func<Post, bool> SortStrategyMethod { get; set; }
+        /// <summary>
+        /// The new implementation more user friendly because, now the user has more options.
+        /// </summary>
+        public Func<Post, int, bool> SortStrategyFunc { get; set; }
+      
+        /// <summary>
+        /// First implementation not friendly because I gave only two options as a Filter
+        /// </summary>
+       // public Func<Post,bool> SortStrategyMethod { get; set; }
 
-        public FacebookObjectCollection<Post> Sort(FacebookObjectCollection<Post> i_PostsCollection)
+        public FacebookObjectCollection<Post> Filter(FacebookObjectCollection<Post> i_PostsCollection, int i_ChosenYearByUserAsPostsFilter)
         {
             foreach (var post in i_PostsCollection)
             {
-                if (SortStrategyMethod.Invoke(post))
+                if (SortStrategyFunc.Invoke(post, i_ChosenYearByUserAsPostsFilter))
                 {
                     r_FilteredPosts.Add(post);
                 }
+
+                // ReSharper disable once InvalidXmlDocComment
+                ///Last implementation below
+                /// 
+                //if (SortStrategyMethod.Invoke(post))
+                //{
+                //    r_FilteredPosts.Add(post);
+                //}
             }
 
             return r_FilteredPosts;
