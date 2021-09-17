@@ -31,8 +31,11 @@ namespace FacebookAppLogic
         {
             PostsSorter = new PostsSorter();
             PostsConcreteMethodSorter concreteMethodSorter = new PostsConcreteMethodSorter();
-            PostsSorter.SortStrategyFunc += concreteMethodSorter.IsThePostMatchTheYear;
-            
+            ///
+            /// P -> stands for Post
+            /// where is
+            /// y -> stands for Year
+            PostsSorter.SortStrategyFunc = (p, y) => p.CreatedTime.Value.Year == i_ChosenYearByTheUser; 
             //if (i_chosenYearByTheUserForPosts == "Posts Before 2018")
             //{
             //    PostsSorter.SortStrategyMethod = p => p.CreatedTime.Value.Year < 2018;
