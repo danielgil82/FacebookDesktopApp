@@ -23,7 +23,7 @@ namespace FacebookAppLogic
         /// <summary>
         /// First implementation not friendly because I gave only two options as a Filter
         /// </summary>
-       // public Func<Post,bool> SortStrategyMethod { get; set; }
+        // public Func<Post,bool> SortStrategyMethod { get; set; }
 
         public FacebookObjectCollection<Post> Filter(FacebookObjectCollection<Post> i_PostsCollection, int i_ChosenYearByUserAsPostsFilter)
         {
