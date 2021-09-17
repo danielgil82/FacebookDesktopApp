@@ -34,9 +34,7 @@ namespace FacebookAppLogic
                     r_FilteredPosts.Add(post);
                 }
 
-                // ReSharper disable once InvalidXmlDocComment
-                ///Last implementation below
-                /// 
+                
                 //if (SortStrategyMethod.Invoke(post))
                 //{
                 //    r_FilteredPosts.Add(post);
