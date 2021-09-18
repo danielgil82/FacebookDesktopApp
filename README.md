@@ -20,7 +20,7 @@ Singleton
 ```
 
 # Features Description:
-### Volunteer With An Elderly
+### Volunteer With An Elderly Person
 Find an elder in your city and volunteer with him, choose the age range you'd like starting from 65 up to 125, 
 eventually a picture of the "Elder" would appear.
 
