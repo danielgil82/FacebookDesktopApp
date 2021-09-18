@@ -119,10 +119,9 @@ namespace BasicFacebookFeatures
 
         private void loginAndInit()
         {
-            Clipboard.SetText("design.patterns.c21ב"); /// the current password for Desig Patter
             m_LoginResult = FacebookService.Login(
-                "452659572840281",
-                "email",
+                "452659572840281", /// the current appID password for the for the app
+                "email", /// set of permissions
                 "public_profile",
                 "user_age_range",
                 "user_birthday",
