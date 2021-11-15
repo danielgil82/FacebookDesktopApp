@@ -37,7 +37,7 @@ and afterwards the photos of this user will appear with description and date.
   LoginResult result = FacebookWrapper.FBService.Login( AppID, list of permission);
   ```
   providing your AppID and the permissions required from your app's user to display a login form to your user.
-  For the list of permission, see this https://developers.facebook.com/docs/facebook-login/permissions.
+  For the list of permissions, see this https://developers.facebook.com/docs/facebook-login/permissions.
 
 # Resources
 - Visit https://developers.facebook.com/docs/reference/api/ to understand more and get all the information about the Facebook Graph API.
