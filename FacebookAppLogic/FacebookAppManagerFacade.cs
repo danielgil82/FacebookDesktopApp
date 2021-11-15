@@ -108,6 +108,7 @@ namespace FacebookAppLogic
             }
         }
 
+        // getting the events of the user
         public FacebookObjectCollection<Event> GetEvents
         {
             get

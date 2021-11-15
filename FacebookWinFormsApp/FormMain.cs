@@ -44,7 +44,6 @@ namespace BasicFacebookFeatures
             }
         }
 
-
         protected override void OnShown(EventArgs e)
         {
             base.OnShown(e);
@@ -54,7 +53,6 @@ namespace BasicFacebookFeatures
                 new Thread(autoLogin).Start();
             }
         }
-
 
         private void autoLogin()
         {
